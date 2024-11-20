@@ -107,6 +107,18 @@
     dconf:
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
+
+  - name: Copy the new user photo to the user's home directory 
+    copy: 
+      src: files/master_yoda.PNG 
+      dest: "/home/bill/photo.jpg" 
+      owner: bill 
+      group: bill 
+      mode: '0644' 
+      
+  - name: Update the user's photo 
+    command: update-alternatives --set xdmx-user-photo /home/bill/master_yoda.PNG
+    when: ansible_facts['os_family'] == 'Debian'
     
     #  - name: copy custom .bashrc file
     #   copy:
