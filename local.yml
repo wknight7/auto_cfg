@@ -14,23 +14,49 @@
         - mc
         - curl
         - keychain
+        - python3-psutil
 
   - name: copy wallpaper file
-     copy:
-       src: files/wallpaper.png
-       dest: /usr/share/backgrounds/ansible-wallpaper.png
-       owner: root
-       group: root
+      copy:
+        src: files/wallpaper.png
+        dest: /usr/share/backgrounds/ansible-wallpaper.png
+        owner: root
+        group: root
  
-   - name: set wallpaper
-     become_user: bill
-     dconf:
-       key: "/org/gnome/desktop/background/picture-uri"
-       value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
+    - name: set wallpaper
+      become_user: bill
+      dconf:
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
  
-   - name: set wallpaper position
-     become_user: bill
-     dconf:
-       key: "/org/gnome/desktop/background/picture-options"
-       value: "'zoom'"
-
+    - name: set wallpaper position
+      become_user: bill
+      dconf:
+        key: "/org/gnome/desktop/background/picture-options"
+        value: "'zoom'"
+     - name: copy custom .bashrc file
+      copy:
+        src: files/bashrc
+        dest: /home/jay/.bashrc
+        owner: jay
+        group: jay
+ 
+     - name: add ansible user
+       user:
+         name: velociraptor
+         system: yes
+ 
+     - name: set up sudo for ansible user
+       copy:
+         src: files/sudoer_velociraptor
+         dest: /etc/sudoers.d/velociraptor
+         owner: root
+         group: root
+         mode: 0440
+ 
+     - name: add ansible-pull cron job
+       cron:
+         name: ansible auto-provision
+         user: velociraptor
+         minute: "*/10"
+         job: ansible-pull -o -U https://github.com/jlacroix82/ansible_pull_tutorial.git
