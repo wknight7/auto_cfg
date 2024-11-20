@@ -55,9 +55,9 @@
     #      group: root
     #      mode: 0440
  
-     - name: add ansible-pull cron job
-       cron:
-         name: ansible auto-provision
-         user: hal
-         minute: "*/10"
-         job: ansible-pull -o -U https://github.com/wknight7/auto_cfg.git
+    - name: add ansible-pull cron job
+      cron:
+        name: ansible auto-provision
+        user: hal
+        minute: "*/10"
+        job: ansible-pull -o -U https://github.com/wknight7/auto_cfg.git
