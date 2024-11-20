@@ -115,6 +115,10 @@
       owner: bill 
       group: bill 
       mode: '0644' 
+
+  - name: Register the user photo
+    command: sudo update-alternatives --install /usr/bin/xdmx-user-photo xdmx-user-photo /home/bill/master_yoda.PNG 100
+    when: ansible_facts['os_family'] == 'Debian'
       
   - name: Update the user's photo 
     command: update-alternatives --set xdmx-user-photo /home/bill/master_yoda.PNG
