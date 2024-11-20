@@ -54,7 +54,7 @@
   - name: add sudoers file for hal
     tags: always
     copy:
-      src: /etc/sudoers.d/hal
+      src: ~/git/auto_cfg/sudoer_hal
       dest: /etc/sudoers.d/hal
       owner: root
       group: root
@@ -63,7 +63,7 @@
   - name: add sudoers file for bill
     tags: always
     copy:
-      src: /etc/sudoers.d/bill
+      src: ~/git/auto_cfg/sudoer_bill
       dest: /etc/sudoers.d/bill
       owner: root
       group: root
