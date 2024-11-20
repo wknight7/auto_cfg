@@ -17,11 +17,11 @@
         - python3-psutil
 
   - name: copy wallpaper file
-      copy:
-        src: files/deep_space_wallpaper.avif
-        dest: /usr/share/backgrounds/ansible-wallpaper.png
-        owner: root
-        group: root
+    copy:
+      src: files/deep_space_wallpaper.avif
+      dest: /usr/share/backgrounds/ansible-wallpaper.png
+      owner: root
+      group: root
  
     - name: set wallpaper
       become_user: bill
