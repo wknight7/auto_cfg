@@ -111,7 +111,7 @@
   - name: Copy the new user photo to the user's home directory 
     copy: 
       src: files/master_yoda.PNG 
-      dest: "/home/bill/photo.jpg" 
+      dest: "/home/bill/master_yoda.PNG" 
       owner: bill 
       group: bill 
       mode: '0644' 
