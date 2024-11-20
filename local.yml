@@ -4,6 +4,71 @@
   become: true
 
   tasks:
+
+  - name: update systems
+    tags: always
+    package:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name: create bill user
+    tags: always
+    user: 
+      name: bill
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo,adm,root
+      uid: 1000      
+ 
+  - name: create hal user if missing
+    tags: always
+    user: 
+      name: hal
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo
+      uid: 1001
+
+  - name: create user lily
+    tags: always
+    user: 
+      name: lily
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo,adm,root
+      uid: 1002
+
+  - name: add ssh key for hal
+    tags: always
+    authorized_key: 
+      user: hal
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDgyiZ4tMW4B6bJ6VNep4e9grqu0Mc8JbDoZsFs3Kd1EYPKMt/p2oS0nH8BeqVgYVZ34AW4Yw42DSYza1upJ7vOOwN0YpjkXoXhW9B9u5caS9IfRjSa4nVCX3eXRY6XpMWfX25BxTZNxI8BT8QihIhX7MDFSO4d/93YcBwnhXenLIe1Mf5Od1B7qbr2j7V4w2VLt1UeRrhrlPnYFawhdm0kllGNL9oFaU0QEvjaect3wBVKVybhDUGIeo5r3Gkt6SctYc69XlJyufWI6eEfptP19rPhTMJzP4W3gIKqNcs/XeiuUeUoWkpLC8Od4DUcl1+VbbIAIX/yjj4MVHk48Uvhpvp3VZ2EcDxLTxV4M6ZQTsTno40w880CJ3uqLFDycjdvBhw1JNQZ4VCLAKi6i3JeH3Gvo8M1a9QNMBbk7/g1qm3mZ3NWLaTltXdnrr/X+/sCVUNWdEaH7fektUMWTl/YtqeivPr4nHDnaJseKxkRwjmemX02YZDS/i++12WwW4c= bill@semaphore"
+ 
+  - name: add ssh key for bill
+    tags: always
+    authorized_key: 
+      user: bill
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkdzXCp480fWqPU0pMP4BLtrSEG/V399GAXr+Y4ZTVK bill"
+
+  - name: add sudoers file for hal
+    tags: always
+    copy:
+      src: /etc/sudoers.d/hal
+      dest: /etc/sudoers.d/hal
+      owner: root
+      group: root
+      mode: 0440
+
+  - name: add sudoers file for bill
+    tags: always
+    copy:
+      src: /etc/sudoers.d/bill
+      dest: /etc/sudoers.d/bill
+      owner: root
+      group: root
+      mode: 0440 
+
   - name: install packages
     package:
       name:
@@ -15,6 +80,14 @@
         - curl
         - keychain
         - python3-psutil
+        - nfs-common
+        - software-properties-common
+        
+  - name: add groups to bill
+    user: 
+      name: bill
+      groups: sudo,adm,root
+      append: true
 
   - name: copy wallpaper file
     copy:
@@ -42,19 +115,7 @@
     #     owner: jay
     #     group: jay
  
-    #  - name: add ansible user
-    #    user:
-    #      name: velociraptor
-    #      system: yes
- 
-    #  - name: set up sudo for ansible user
-    #    copy:
-    #      src: files/sudoer_velociraptor
-    #      dest: /etc/sudoers.d/velociraptor
-    #      owner: root
-    #      group: root
-    #      mode: 0440
- 
+  
   - name: add ansible-pull cron job
     cron:
       name: ansible auto-provision
