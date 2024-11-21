@@ -172,12 +172,7 @@
     become: false
     become_user: bill
 
-  - name: Refresh GNOME settings
-    command: busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-    become: false
-    become_user: bill
 
-    
     #  - name: copy custom .bashrc file
     #   copy:
     #     src: files/bashrc
