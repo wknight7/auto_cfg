@@ -267,16 +267,23 @@
     become_user: bill
 
 
-  - name: Set environment variables and refresh GNOME settings
-    shell: |
-      export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus
-      export XDG_RUNTIME_DIR=/run/user/$UID
-      busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-    environment:
-      DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ ansible_user_uid }}/bus"
-      XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_uid }}"
+  - name: Create script to refresh GNOME settings
+    copy:
+      content: |
+        #!/bin/bash
+        export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+        export XDG_RUNTIME_DIR=/run/user/$(id -u)
+        busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+      dest: /home/bill/refresh_gnome.sh
+      owner: bill
+      group: bill
+      mode: '0755'
+
+  - name: Execute script to refresh GNOME settings
+    command: /home/bill/refresh_gnome.sh
     become: false
     become_user: bill
+
 
 
   # - name: Refresh GNOME settings
