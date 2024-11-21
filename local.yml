@@ -265,18 +265,19 @@
     become: false
     become_user: bill
 
-  - name: Set environment variables for GNOME Shell
+  - name: Set environment variables and Refresh GNOME settings
     shell: |
       export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
       export XDG_RUNTIME_DIR=/run/user/$(id -u)
+      busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
     become: false
     become_user: bill
 
-  - name: Refresh GNOME settings
-    command: busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-    environment:
-      DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ lookup('pipe', 'id -u') }}/bus"
-      XDG_RUNTIME_DIR: "/run/user/{{ lookup('pipe', 'id -u') }}"
-    become: false
-    become_user: bill
+  # - name: Refresh GNOME settings
+  #   command: busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+  #   environment:
+  #     DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ lookup('pipe', 'id -u') }}/bus"
+  #     XDG_RUNTIME_DIR: "/run/user/{{ lookup('pipe', 'id -u') }}"
+  #   become: false
+  #   become_user: bill
 
