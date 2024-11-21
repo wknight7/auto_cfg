@@ -280,9 +280,7 @@
       mode: '0755'
 
   - name: Execute script to refresh GNOME settings
-    command: /home/bill/refresh_gnome.sh
-    become: false
-    become_user: bill
+    shell: su - bill -c "/home/bill/refresh_gnome.sh"
 
 
 
