@@ -1,0 +1,54 @@
+Set Up a Web Server to Host the Script (credit MS Copilot):
+
+    You'll need a simple web server to host your Ansible playbook and bootstrap script. This can be done using Nginx, Apache, or even a basic Python HTTP server.
+
+Create Your Ansible Playbook:
+
+    Write your Ansible playbook that will configure your workstation. Save it as bootstrap.yml or a similar name.
+
+    Example bootstrap.yml:
+
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+Create the Bootstrap Script:
+
+    This script will download the Ansible playbook and execute it using ansible-pull.
+
+    Save the script as bootstrap.sh:
+
+#!/bin/bash
+
+# Update package manager and install Ansible
+sudo apt-get update
+sudo apt-get install -y ansible
+
+# Run ansible-pull with the provided playbook URL
+ansible-pull -U http://your-server-ip/bootstrap.yml -i localhost
+
+Make sure the script is executable:
+
+chmod +x bootstrap.sh
+
+Host the Script on Your Web Server:
+
+    Place bootstrap.sh and bootstrap.yml in your web server's document root.
+
+    For example, with Nginx, place these files in /var/www/html/.
+
+Test the Script:
+
+    On a new machine or VM, run the following command to execute the bootstrap script:
+
+curl -s http://your-server-ip/bootstrap.sh | sudo bash
+
+        This will download and execute the script, which in turn will download and execute your Ansible playbook.
+
+Summary
+
+By following these steps, you'll create a simple setup where you can quickly provision new machines using curl and a hosted bootstrap script. This approach leverages ansible-pull to ensure that your machines are configured as per your playbook.

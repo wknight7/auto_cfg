@@ -104,6 +104,8 @@
         - python3-psutil
         - nfs-common
         - software-properties-common
+        - cmatrix
+        - whois
         
   - name: copy wallpaper file
     copy:
@@ -190,3 +192,85 @@
       user: hal
       minute: "*/10"
       job: ansible-pull -o -U https://github.com/wknight7/auto_cfg.git
+
+  - name: Recursively remove directories
+    tags: workstations
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+      - /home/bill/Music
+      - /home/bill/Pictures
+      - /home/bill/Templates
+      - /home/bill/Videos
+      - /home/lily/Music
+      - /home/lily/Pictures
+      - /home/lily/Templates
+      - /home/lily/Videos
+
+  - name: Create bill & lily home directories 
+    tags: workstations
+    ansible.builtin.file:
+      path: "{{ item.dest }}"      
+      owner: "{{item.owner}}"
+      group: "{{item.group}}"
+      state: directory
+    loop:
+      - { dest: 'home/bill/Media', owner: 'bill', group: 'media' }
+      - { dest: 'home/bill/paperless', owner: 'bill', group: 'docs' }
+      - { dest: 'home/bill/paperless/media', owner: 'bill', group: 'docs' }
+      - { dest: 'home/bill/paperless/data', owner: 'bill', group: 'docs' }
+      - { dest: 'home/bill/paperless/consume', owner: 'bill', group: 'docs' }
+      - { dest: 'home/lily/Media', owner: 'lily', group: 'media' }
+
+  - name: mount nfs share directories
+    tags: workstations
+    ansible.posix.mount:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
+      opts: rw,sync
+      state: mounted
+      fstype: nfs
+    loop:
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/bill/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/bill/Downloads' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path: '/home/bill/Public' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/bill/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/bill/Media' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/lily/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/lily/Downloads' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/lily/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless/consume', path: '/home/bill/paperless/consume' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/bill/paperless/data' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/bill/paperless/media' }
+
+  - name: Copy ssh config file for bill
+    ansible.builtin.copy:
+      src: /home/bill/git/auto_cfg/files/config_bill
+      dest: /home/bill/.ssh/config
+      owner: bill
+      group: bill
+      mode: '0600'
+
+  - name: Copy known_hosts file for bill
+    ansible.builtin.copy:
+      src: /home/bill/git/auto_cfg/files/known_hosts
+      dest: /home/bill/.ssh/known_hosts
+      owner: bill
+      group: bill
+      mode: '0600'
+
+  - name: Uncheck "Show Volumes and Devices" in Dock settings
+    community.general.dconf:
+      key: "/org/gnome/shell/extensions/dash-to-dock/show-volumes"
+      state: present
+      value: "false"
+    become: false
+    become_user: bill
+
+  - name: Refresh GNOME settings
+    command: busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+    become: false
+    become_user: bill

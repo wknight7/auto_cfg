@@ -1,0 +1,104 @@
+Host proxmox
+  HostName 192.168.86.143
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host truenas
+  HostName 192.168.86.90
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host backup
+  HostName 192.168.86.33
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host plex
+  HostName 192.168.86.97
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host wireguard
+  HostName 192.168.86.73
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host sab
+  HostName 192.168.86.101
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host radarr
+  HostName 192.168.86.79
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host sonarr
+  HostName 192.168.86.21
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host prowlarr
+  HostName 192.168.86.80
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host cloudflared
+  HostName 192.168.86.81
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host paperless
+  HostName 192.168.86.93
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host calibre-web
+  HostName 192.168.86.84
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host photoprism
+  HostName 192.168.86.42
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host calibre
+  HostName 192.168.86.26
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host desktop
+  HostName 192.168.86.40
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host trilium
+  HostName 192.168.86.56
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host lily
+  HostName 192.168.86.53
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host dell
+  HostName 192.168.86.55
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host samsung
+  HostName 192.168.86.83
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host semaphore 
+  HostName 192.168.86.60
+  User bill
+  IdentityFile ~/.ssh/bill
+
+Host github
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/bill
