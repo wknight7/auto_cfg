@@ -124,21 +124,57 @@
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
 
-  - name: Copy the new user photo to the user's home directory 
-    copy: 
-      src: files/master_yoda.PNG 
-      dest: "/home/bill/master_yoda.PNG" 
-      owner: bill 
-      group: bill 
-      mode: '0644' 
+  - name: Ensure bill's home directory exists
+    file:
+      path: "/home/bill"
+      state: directory
+      mode: '0755'
 
-  - name: Register the user photo
-    command: sudo update-alternatives --install /usr/bin/xdmx-user-photo xdmx-user-photo /home/bill/master_yoda.PNG 100
-    when: ansible_facts['os_family'] == 'Debian'
-      
-  - name: Update the user's photo 
-    command: update-alternatives --set xdmx-user-photo /home/bill/master_yoda.PNG
-    when: ansible_facts['os_family'] == 'Debian'
+  - name: Copy the new user photo to bill's home directory
+    copy:
+      src: /path/to/new_photo.jpg
+      dest: "/home/bill/photo.jpg"
+      owner: bill
+      group: bill
+      mode: '0644'
+
+  - name: Register the new user photo
+    command: sudo update-alternatives --install /usr/bin/xdmx-user-photo xdmx-user-photo /home/bill/photo.jpg 100
+    when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution_major_version'] == '20'
+
+  - name: Set the new user photo as the default
+    command: sudo update-alternatives --set xdmx-user-photo /home/bill/photo.jpg
+    when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution_major_version'] == '20'
+
+  - name: Copy the user photo to GNOME user settings directory
+    copy:
+      src: /home/bill/photo.jpg
+      dest: /home/bill/.face
+      owner: bill
+      group: bill
+      mode: '0644'
+
+  - name: Copy the user photo to GNOME user settings icon
+    copy:
+      src: /home/bill/photo.jpg
+      dest: /home/bill/.face.icon
+      owner: bill
+      group: bill
+      mode: '0644'
+
+  - name: Set the user photo for bill using dconf
+    community.general.dconf:
+      key: /org/gnome/login-screen/logo
+      state: present
+      value: "'file:///home/bill/photo.jpg'"
+    become: false
+    become_user: bill
+
+  - name: Refresh GNOME settings
+    command: busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+    become: false
+    become_user: bill
+
     
     #  - name: copy custom .bashrc file
     #   copy:
