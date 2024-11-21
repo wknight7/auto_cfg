@@ -12,13 +12,35 @@
       upgrade: dist
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
+  - name: create group git
+    tags: always
+    ansible.builtin.group:
+      name: git
+      state: present
+      gid: 2013
+
+  - name: create group media
+    tags: always
+    ansible.builtin.group:
+      name: media
+      state: present
+      gid: 1776
+
+  - name: create group docs
+    tags: always
+    ansible.builtin.group:
+      name: docs
+      state: present
+      gid: 1787
+
   - name: create bill user
     tags: always
     user: 
       name: bill
       create_home: yes
       shell: /bin/bash
-      groups: sudo,adm,root
+      groups: sudo,adm,root,git,media,docs
+      append: true
       uid: 1000      
  
   - name: create hal user if missing
@@ -27,7 +49,7 @@
       name: hal
       create_home: yes
       shell: /bin/bash
-      groups: sudo
+      groups: sudo,git,media,docs
       uid: 1001
 
   - name: create user lily
@@ -36,7 +58,7 @@
       name: lily
       create_home: yes
       shell: /bin/bash
-      groups: sudo,adm,root
+      groups: sudo,docs,media
       uid: 1002
 
   - name: add ssh key for hal
@@ -83,12 +105,6 @@
         - nfs-common
         - software-properties-common
         
-  - name: add groups to bill
-    user: 
-      name: bill
-      groups: sudo,adm,root
-      append: true
-
   - name: copy wallpaper file
     copy:
       src: files/deep_space_wallpaper.avif
