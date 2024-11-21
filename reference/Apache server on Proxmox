@@ -1,0 +1,95 @@
+Step 1: Create a New LXC Container
+
+    Log in to Proxmox:
+
+        Open your Proxmox web interface and log in with your credentials.
+
+    Create a New Container:
+
+        Click on "Create" in the top menu and select "LXC".
+
+        Fill in the details for your new container (e.g., name, description, etc.).
+
+        Choose the "Download" tab and search for "Debian" (or your preferred OS).
+
+        Select the latest version and click "OK" to download and create the container.
+
+Step 2: Install Apache on the Container
+
+    Access the Container:
+
+        Once the container is created, click on it to open the details page.
+
+        Click on "Console" to open a terminal session within the container.
+
+    Update and Install Apache:
+
+        Run the following commands to update the package lists and install Apache:
+
+            sudo apt update
+            sudo apt install -y apache2
+
+    Verify Apache Installation:
+
+    Check the status of the Apache service to ensure it's running:
+
+        sudo systemctl status apache2
+
+Step 3: Configure Apache to Serve Your Bootstrap Script
+
+    Create a Directory for Your Script:
+
+        Create a directory to hold your bootstrap script:
+
+            sudo mkdir -p /var/www/bootstrap
+
+    Copy Your Script to the Directory:
+
+    Copy your bootstrap.sh script to the newly created directory:
+
+        sudo cp /path/to/bootstrap.sh /var/www/bootstrap/bootstrap.sh
+
+    Set Permissions:
+
+    Ensure the script has the correct permissions:
+
+        sudo chmod 755 /var/www/bootstrap/bootstrap.sh
+
+    Create an Apache Configuration File:
+
+    Create a configuration file for Apache to serve the script:
+
+        sudo nano /etc/apache2/sites-available/bootstrap.conf
+
+    Add the following configuration to the file:
+
+<VirtualHost *:80>
+    ServerAdmin admin@yourdomain.com
+    DocumentRoot /var/www/bootstrap
+    <Directory /var/www/bootstrap>
+        AllowOverride All
+        Require all granted
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+    Save and exit the editor (Ctrl+X, then Y to confirm, and Enter to save).
+
+    Enable the Site:
+
+    Enable the new site configuration:
+
+        sudo a2ensite bootstrap.conf
+
+    Restart Apache:
+
+    Restart the Apache service to apply the changes:
+
+        sudo systemctl restart apache2
+
+Step 4: Test the Setup
+
+    Access the Script:
+
+        Open your web browser and navigate to http://your-server-ip/bootstrap.sh to test if the script is accessible.

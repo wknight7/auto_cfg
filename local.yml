@@ -134,7 +134,7 @@
 
   - name: Copy the new user photo to bill's home directory
     copy:
-      src: /home/bill/git/auto_cfg/files/master_yoda.PNG
+      src: files/master_yoda.PNG
       dest: "/home/bill/photo.PNG"
       owner: bill
       group: bill
