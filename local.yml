@@ -270,6 +270,14 @@
     become: false
     become_user: bill
 
+
+  - name: Set environment variables for GNOME Shell
+    shell: |
+      export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+      export XDG_RUNTIME_DIR=/run/user/$(id -u)
+    become: false
+    become_user: bill
+
   - name: Refresh GNOME settings
     command: busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
     become: false
