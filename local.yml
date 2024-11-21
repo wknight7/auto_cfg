@@ -243,7 +243,7 @@
 
   - name: Copy ssh config file for bill
     ansible.builtin.copy:
-      src: /home/bill/git/auto_cfg/files/config_bill
+      src: files/config_bill
       dest: /home/bill/.ssh/config
       owner: bill
       group: bill
@@ -251,7 +251,7 @@
 
   - name: Copy known_hosts file for bill
     ansible.builtin.copy:
-      src: /home/bill/git/auto_cfg/files/known_hosts
+      src: files/known_hosts
       dest: /home/bill/.ssh/known_hosts
       owner: bill
       group: bill
