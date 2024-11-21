@@ -236,6 +236,8 @@
       - { dest: 'home/loretta/paperless/media', owner: 'loretta', group: 'docs' }
       - { dest: 'home/loretta/paperless/data', owner: 'loretta', group: 'docs' }
       - { dest: 'home/loretta/paperless/consume', owner: 'loretta', group: 'docs' }
+      - { dest: 'home/bill/Media/media/tv', owner: 'bill', group: 'media' }
+      - { dest: 'home/bill/Media/media/movies', owner: 'bill', group: 'media' }
 
   - name: mount nfs share directories
     tags: workstations
@@ -265,6 +267,8 @@
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/consume', path: '/home/loretta/paperless/consume' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/loretta/paperless/data' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/loretta/paperless/media' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media/tv', path: '/home/bill/Media/tv' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media/movies', path: '/home/bill/Media/movies' }
 
   - name: Copy ssh config file for bill
     ansible.builtin.copy:
