@@ -258,8 +258,7 @@
       - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/consume', path: '/home/bill/paperless/consume' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/bill/paperless/data' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/bill/paperless/media' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/loretta/Desktop', path: '/home/loretta/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/bill/paperless/media' }      
       - { src: '192.168.86.90:/mnt/ssd-files/home/loretta/Documents', path: '/home/loretta/Documents' }
       - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/loretta/Media' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/loretta/paperless' }
