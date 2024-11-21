@@ -108,7 +108,7 @@
   - name: copy wallpaper file
     copy:
       src: files/deep_space_wallpaper.avif
-      dest: /usr/share/backgrounds/ansible-wallpaper.png
+      dest: /usr/share/backgrounds/ansible-wallpaper.avif
       owner: root
       group: root
  
@@ -116,7 +116,7 @@
     become_user: bill
     dconf:
       key: "/org/gnome/desktop/background/picture-uri"
-      value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
+      value: "'file:///usr/share/backgrounds/ansible-wallpaper.avif'"
 
   - name: set wallpaper position
     become_user: bill
@@ -140,11 +140,11 @@
 
   - name: Register the new user photo
     command: sudo update-alternatives --install /usr/bin/xdmx-user-photo xdmx-user-photo /home/bill/photo.jpg 100
-    when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution_major_version'] == '20'
+    when: ansible_facts['os_family'] == 'Debian' 
 
   - name: Set the new user photo as the default
     command: sudo update-alternatives --set xdmx-user-photo /home/bill/photo.jpg
-    when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution_major_version'] == '20'
+    when: ansible_facts['os_family'] == 'Debian' 
 
   - name: Copy the user photo to GNOME user settings directory
     copy:
