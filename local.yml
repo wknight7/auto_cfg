@@ -61,6 +61,15 @@
       groups: sudo,docs,media
       uid: 1002
 
+  - name: create user loretta
+    tags: always
+    user: 
+      name: loretta
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo,docs,media
+      uid: 1003
+
   - name: add ssh key for hal
     tags: always
     authorized_key: 
@@ -202,8 +211,12 @@
       - /home/lily/Pictures
       - /home/lily/Templates
       - /home/lily/Videos
+      - /home/loretta/Music
+      - /home/loretta/Pictures
+      - /home/loretta/Templates
+      - /home/loretta/Videos
 
-  - name: Create bill & lily home directories 
+  - name: Create bill & lily directories 
     tags: workstations
     ansible.builtin.file:
       path: "{{ item.dest }}"      
@@ -218,6 +231,11 @@
       - { dest: 'home/bill/paperless/data', owner: 'bill', group: 'docs' }
       - { dest: 'home/bill/paperless/consume', owner: 'bill', group: 'docs' }
       - { dest: 'home/lily/Media', owner: 'lily', group: 'media' }
+      - { dest: 'home/loretta/Media', owner: 'loretta', group: 'media' }
+      - { dest: 'home/loretta/paperless', owner: 'loretta', group: 'docs' }
+      - { dest: 'home/loretta/paperless/media', owner: 'loretta', group: 'docs' }
+      - { dest: 'home/loretta/paperless/data', owner: 'loretta', group: 'docs' }
+      - { dest: 'home/loretta/paperless/consume', owner: 'loretta', group: 'docs' }
 
   - name: mount nfs share directories
     tags: workstations
@@ -241,6 +259,13 @@
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/consume', path: '/home/bill/paperless/consume' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/bill/paperless/data' }
       - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/bill/paperless/media' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/loretta/Desktop', path: '/home/loretta/Desktop' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/loretta/Documents', path: '/home/loretta/Documents' }
+      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/loretta/Media' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/loretta/paperless' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless/consume', path: '/home/loretta/paperless/consume' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/loretta/paperless/data' }
+      - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/loretta/paperless/media' }
 
   - name: Copy ssh config file for bill
     ansible.builtin.copy:
