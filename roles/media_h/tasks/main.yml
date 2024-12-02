@@ -1,0 +1,42 @@
+- name: create group media
+  tags: always
+  ansible.builtin.group:
+    name: media
+    state: present
+    gid: 1776
+
+- name: add hal to media group
+  tags: always
+  user:
+    name: hal
+    groups: media
+    append: true
+
+- name: add bill to media group
+  tags: always
+  user:
+    name: bill
+    groups: media
+    append: true
+
+- name: Create multimedia directory
+  tags: media
+  ansible.builtin.file:
+    path: /mnt/multimedia
+    owner: bill
+    group: media
+    state: directory
+    mode: 0775
+
+#- name: mount nfs share directories for media managers
+#  tags: media
+#  ansible.posix.mount:
+#    src: "{{ item.src }}"
+#    path: "{{ item.path }}"
+#    opts: rw,sync
+#    state: mounted
+#    fstype: nfs
+#  loop:
+#    - { src: '192.168.86.90:/mnt/Data/multimedia', path: '/mnt/multimedia' }
+#    - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/mnt/multimedia/media' }
+#    - { src: '192.168.86.90:/mnt/Data/multimedia/usenet', path: '/mnt/multimedia/usenet' }
