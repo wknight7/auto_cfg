@@ -280,7 +280,7 @@
 
   - name: Copy known_hosts file for bill
     ansible.builtin.copy:
-      src: files/known_hosts
+      src: /home/bill/.ssh/known_hosts
       dest: /home/bill/.ssh/known_hosts
       owner: bill
       group: bill
