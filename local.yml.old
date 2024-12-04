@@ -1,77 +1,108 @@
 ---
-
 - hosts: localhost
   connection: local
   become: true
 
   tasks:
 
-  - name: Update systems
+  - name: update systems
     tags: always
     package:
       update_cache: yes
       upgrade: dist
     when: ansible_distribution in ["Debian", "Ubuntu"]
 
-  - name: Create groups
+  - name: create group git
     tags: always
     ansible.builtin.group:
-      name: "{{ item.name }}"
+      name: git
       state: present
-      gid: "{{ item.gid }}"
-    loop:
-      - { name: 'git', gid: 2013 }
-      - { name: 'media', gid: 1776 }
-      - { name: 'docs', gid: 1787 }
+      gid: 2013
 
-  - name: Create users
+  - name: create group media
     tags: always
-    user:
-      name: "{{ item.name }}"
+    ansible.builtin.group:
+      name: media
+      state: present
+      gid: 1776
+
+  - name: create group docs
+    tags: always
+    ansible.builtin.group:
+      name: docs
+      state: present
+      gid: 1787
+
+  - name: create bill user
+    tags: always
+    user: 
+      name: bill
       create_home: yes
       shell: /bin/bash
-      groups: "{{ item.groups }}"
+      groups: sudo,adm,root,git,media,docs
       append: true
-      uid: "{{ item.uid }}"
-    loop:
-      - { name: 'bill', uid: 1000, groups: 'sudo,adm,root,git,media,docs' }
-      - { name: 'hal', uid: 1001, groups: 'sudo,git,media,docs' }
-      - { name: 'lily', uid: 1002, groups: 'sudo,docs,media' }
-      - { name: 'loretta', uid: 1003, groups: 'sudo,docs,media' }
-
-  - name: Debug user creation
-    debug:
-      msg: "User {{ item.name }} should be created"
-    loop:
-      - { name: 'bill' }
-      - { name: 'hal' }
-      - { name: 'lily' }
-      - { name: 'loretta' }
-
-  - name: Add SSH keys
+      uid: 1000      
+ 
+  - name: create hal user if missing
     tags: always
-    authorized_key:
-      user: "{{ item.user }}"
-      key: "{{ item.key }}"
-    loop:
-      - { user: 'hal', key: '[secret]' }
-      - { user: 'bill', key: '[secret]' }
+    user: 
+      name: hal
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo,git,media,docs
+      uid: 1001
 
-  - name: Add sudoers files
+  - name: create user lily
+    tags: always
+    user: 
+      name: lily
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo,docs,media
+      uid: 1002
+
+  - name: create user loretta
+    tags: always
+    user: 
+      name: loretta
+      create_home: yes
+      shell: /bin/bash
+      groups: sudo,docs,media
+      uid: 1003
+
+  - name: add ssh key for hal
+    tags: always
+    authorized_key: 
+      user: hal
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDgyiZ4tMW4B6bJ6VNep4e9grqu0Mc8JbDoZsFs3Kd1EYPKMt/p2oS0nH8BeqVgYVZ34AW4Yw42DSYza1upJ7vOOwN0YpjkXoXhW9B9u5caS9IfRjSa4nVCX3eXRY6XpMWfX25BxTZNxI8BT8QihIhX7MDFSO4d/93YcBwnhXenLIe1Mf5Od1B7qbr2j7V4w2VLt1UeRrhrlPnYFawhdm0kllGNL9oFaU0QEvjaect3wBVKVybhDUGIeo5r3Gkt6SctYc69XlJyufWI6eEfptP19rPhTMJzP4W3gIKqNcs/XeiuUeUoWkpLC8Od4DUcl1+VbbIAIX/yjj4MVHk48Uvhpvp3VZ2EcDxLTxV4M6ZQTsTno40w880CJ3uqLFDycjdvBhw1JNQZ4VCLAKi6i3JeH3Gvo8M1a9QNMBbk7/g1qm3mZ3NWLaTltXdnrr/X+/sCVUNWdEaH7fektUMWTl/YtqeivPr4nHDnaJseKxkRwjmemX02YZDS/i++12WwW4c= bill@semaphore"
+ 
+  - name: add ssh key for bill
+    tags: always
+    authorized_key: 
+      user: bill
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkdzXCp480fWqPU0pMP4BLtrSEG/V399GAXr+Y4ZTVK bill"
+
+  - name: add sudoers file for hal
     tags: always
     copy:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
+      src: files/sudoer_hal
+      dest: /etc/sudoers.d/hal
       owner: root
       group: root
       mode: 0440
-    loop:
-      - { src: 'files/sudoer_hal', dest: '/etc/sudoers.d/hal' }
-      - { src: 'files/sudoer_bill', dest: '/etc/sudoers.d/bill' }
 
-  - name: Install packages
+  - name: add sudoers file for bill
+    tags: always
+    copy:
+      src: files/sudoer_bill
+      dest: /etc/sudoers.d/bill
+      owner: root
+      group: root
+      mode: 0440 
+
+  - name: install packages
     package:
-      name: 
+      name:
         - htop
         - tmux
         - vim-nox
@@ -84,27 +115,33 @@
         - software-properties-common
         - cmatrix
         - whois
-
-  - name: Copy wallpaper file
+        
+  - name: copy wallpaper file
     copy:
       src: files/deep_space_wallpaper.avif
       dest: /usr/share/backgrounds/ansible-wallpaper.avif
       owner: root
       group: root
-
-  - name: Set wallpaper for Bill
+ 
+  - name: set wallpaper
     become_user: bill
     dconf:
       key: "/org/gnome/desktop/background/picture-uri"
       value: "'file:///usr/share/backgrounds/ansible-wallpaper.avif'"
 
-  - name: Set wallpaper position for Bill
+  - name: set wallpaper position
     become_user: bill
     dconf:
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
 
-  - name: Copy user photo
+  - name: Ensure bill's home directory exists
+    file:
+      path: "/home/bill"
+      state: directory
+      mode: '0755'
+
+  - name: Copy the new user photo to bill's home directory
     copy:
       src: files/master_yoda.PNG
       dest: "/home/bill/photo.PNG"
@@ -136,7 +173,7 @@
       group: bill
       mode: '0644'
 
-  - name: Set the user photo for Bill using dconf
+  - name: Set the user photo for bill using dconf
     community.general.dconf:
       key: /org/gnome/login-screen/logo
       state: present
@@ -144,12 +181,21 @@
     become: false
     become_user: bill
 
-  - name: Add ansible-pull cron job with logging
+
+    #  - name: copy custom .bashrc file
+    #   copy:
+    #     src: files/bashrc
+    #     dest: /home/jay/.bashrc
+    #     owner: jay
+    #     group: jay
+ 
+  
+  - name: add ansible-pull cron job
     cron:
       name: ansible auto-provision
       user: hal
       minute: "*/10"
-      job: "ansible-pull -o -U https://github.com/wknight7/auto_cfg.git >> /var/log/ansible-pull.log 2>&1"
+      job: ansible-pull -o -U https://github.com/wknight7/auto_cfg.git
 
   - name: Recursively remove directories
     tags: workstations
@@ -170,10 +216,10 @@
       - /home/loretta/Templates
       - /home/loretta/Videos
 
-  - name: Create directories
+  - name: Create bill & lily directories 
     tags: workstations
     ansible.builtin.file:
-      path: "{{ item.dest }}"
+      path: "{{ item.dest }}"      
       owner: "{{item.owner}}"
       group: "{{item.group}}"
       state: directory
@@ -193,7 +239,7 @@
       - { dest: 'home/bill/Media/media/tv', owner: 'bill', group: 'media' }
       - { dest: 'home/bill/Media/media/movies', owner: 'bill', group: 'media' }
 
-  - name: Mount NFS share directories
+  - name: mount nfs share directories
     tags: workstations
     ansible.posix.mount:
       src: "{{ item.src }}"
@@ -248,6 +294,7 @@
     become: false
     become_user: bill
 
+
   - name: Create script to refresh GNOME settings
     copy:
       content: |
@@ -262,3 +309,14 @@
 
   - name: Execute script to refresh GNOME settings
     shell: su - bill -c "/home/bill/refresh_gnome.sh"
+
+
+
+  # - name: Refresh GNOME settings
+  #   command: busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+  #   environment:
+  #     DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/{{ lookup('pipe', 'id -u') }}/bus"
+  #     XDG_RUNTIME_DIR: "/run/user/{{ lookup('pipe', 'id -u') }}"
+  #   become: false
+  #   become_user: bill
+
