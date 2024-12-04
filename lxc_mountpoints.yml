@@ -1,0 +1,18 @@
+---
+- name: Append mountpoints to LXC containers
+  hosts: localhost
+  tasks:
+    - name: Gather facts
+      command: lxc-ls --fancy
+      register: lxc_containers
+
+    - name: Ensure mountpoints are appended to LXC containers
+      block:
+        - name: Append mountpoints
+          lineinfile:
+            path: "/etc/pve/lxc/{{ item.container_id }}.conf"
+            line: "{{ item.mount_point }}"
+            state: present
+          with_items: "{{ lxc_containers.stdout_lines | map('regex_search', '^\\s*([\\d]+)\\s', '\\g<1>') | map('regex_replace', '$', ',') | map('split', ',') | list }}"
+          when: item.mount_point is defined
+      loop: "{{ lxc_containers.stdout_lines }}"
