@@ -179,19 +179,19 @@
       state: directory
       mode: '0755'
     loop:
-      - { dest: 'home/bill/Media', owner: 'bill', group: 'media' }
-      - { dest: 'home/bill/paperless', owner: 'bill', group: 'docs' }
-      - { dest: 'home/bill/paperless/media', owner: 'bill', group: 'docs' }
-      - { dest: 'home/bill/paperless/data', owner: 'bill', group: 'docs' }
-      - { dest: 'home/bill/paperless/consume', owner: 'bill', group: 'docs' }
-      - { dest: 'home/lily/Media', owner: 'lily', group: 'media' }
-      - { dest: 'home/loretta/Media', owner: 'loretta', group: 'media' }
-      - { dest: 'home/loretta/paperless', owner: 'loretta', group: 'docs' }
-      - { dest: 'home/loretta/paperless/media', owner: 'loretta', group: 'docs' }
-      - { dest: 'home/loretta/paperless/data', owner: 'loretta', group: 'docs' }
-      - { dest: 'home/loretta/paperless/consume', owner: 'loretta', group: 'docs' }
-      - { dest: 'home/bill/Media/media/tv', owner: 'bill', group: 'media' }
-      - { dest: 'home/bill/Media/media/movies', owner: 'bill', group: 'media' }
+      #- { dest: 'home/bill/Media', owner: 'bill', group: 'media' }
+      # - { dest: 'home/bill/paperless', owner: 'bill', group: 'docs' }
+      # - { dest: 'home/bill/paperless/media', owner: 'bill', group: 'docs' }
+      # - { dest: 'home/bill/paperless/data', owner: 'bill', group: 'docs' }
+      # - { dest: 'home/bill/paperless/consume', owner: 'bill', group: 'docs' }
+      # - { dest: 'home/lily/Media', owner: 'lily', group: 'media' }
+      # - { dest: 'home/loretta/Media', owner: 'loretta', group: 'media' }
+      # - { dest: 'home/loretta/paperless', owner: 'loretta', group: 'docs' }
+      # - { dest: 'home/loretta/paperless/media', owner: 'loretta', group: 'docs' }
+      # - { dest: 'home/loretta/paperless/data', owner: 'loretta', group: 'docs' }
+      # - { dest: 'home/loretta/paperless/consume', owner: 'loretta', group: 'docs' }
+      # - { dest: 'home/bill/Media/media/tv', owner: 'bill', group: 'media' }
+      # - { dest: 'home/bill/Media/media/movies', owner: 'bill', group: 'media' }
 
   - name: Mount NFS share directories
     tags: workstations
@@ -202,27 +202,8 @@
       state: mounted
       fstype: nfs
     loop:
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/bill/Desktop' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/bill/Downloads' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Public', path: '/home/bill/Public' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/bill/Documents' }
-      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/bill/Media' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Desktop', path: '/home/lily/Desktop' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Downloads', path: '/home/lily/Downloads' }
-      - { src: '192.168.86.90:/mnt/ssd-files/home/bill/Documents', path: '/home/lily/Documents' }
-      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/lily/Media' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/bill/paperless' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless/consume', path: '/home/bill/paperless/consume' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/bill/paperless/data' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/bill/paperless/media' }      
-      - { src: '192.168.86.90:/mnt/ssd-files/home/loretta/Documents', path: '/home/loretta/Documents' }
-      - { src: '192.168.86.90:/mnt/Data/multimedia/media', path: '/home/loretta/Media' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless', path: '/home/loretta/paperless' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless/consume', path: '/home/loretta/paperless/consume' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless/data', path: '/home/loretta/paperless/data' }
-      - { src: '192.168.86.90:/mnt/ssd-files/paperless/media', path: '/home/loretta/paperless/media' }
-      - { src: '192.168.86.90:/mnt/Data/multimedia/media/tv', path: '/home/bill/Media/tv' }
-      - { src: '192.168.86.90:/mnt/Data/multimedia/media/movies', path: '/home/bill/Media/movies' }
+      - { src: '192.168.86.90:/mnt/ssd-files/home/bill', path: '/home/bill' }
+      - { src: '192.168.86.90:/mnt/Data/media', path: '/media' }
 
   - name: Copy ssh config file for bill
     ansible.builtin.copy:

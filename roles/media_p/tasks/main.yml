@@ -19,20 +19,17 @@
     groups: media
     append: true
 
-# - name: Create media directory
-#   tags: always
-#   ansible.builtin.file:
-#     path: /mnt/media
-#     owner: bill
-#     group: media
-#     state: directory
-#     mode: 0775
+- name: Gather LXC container facts
+  command: lxc-ls --fancy
+  register: lxc_containers
 
-# - name: mount nfs share directories for media managers
-#   tags: always
-#   ansible.posix.mount:
-#     src: 192.168.86.90:/mnt/Data/multimedia/media
-#     path: /mnt/media
-#     opts: rw,sync
-#     state: mounted
-#     fstype: nfs
+- name: Ensure mountpoints are appended to LXC containers
+  block:
+    - name: Append mountpoints
+      lineinfile:
+        path: "/etc/pve/lxc/{{ item.container_id }}.conf"
+        line: "mp0: /media/storage,mp=/media"
+        state: present
+      with_items: "{{ lxc_containers.stdout_lines | map('regex_search', '^\\s*([\\d]+)\\s', '\\g<1>') | list }}"
+      loop_control:
+        loop_var: item
