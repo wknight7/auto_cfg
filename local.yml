@@ -48,14 +48,14 @@
       - { name: 'lily' }
       - { name: 'loretta' }
 
-  - name: Add SSH keys
-    tags: always
-    authorized_key:
-      user: "{{ item.user }}"
-      key: "{{ item.key }}"
-    loop:
-      - { user: 'hal', key: '[secret]' }
-      - { user: 'bill', key: '[secret]' }
+  # - name: Add SSH keys
+  #   tags: always
+  #   authorized_key:
+  #     user: "{{ item.user }}"
+  #     key: "{{ item.key }}"
+  #   loop:
+  #     - { user: 'hal', key: '[secret]' }
+  #     - { user: 'bill', key: '[secret]' }
 
   - name: Add sudoers files
     tags: always
