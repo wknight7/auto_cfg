@@ -130,7 +130,6 @@
           stat:
             path: "{{ item.path }}"
           register: dir_check
-          ignore_errors: true
 
         - name: Create directory if it does not exist
           file:
@@ -150,4 +149,5 @@
       dconf:
         key: "/org/gnome/desktop/background/picture-options"
         value: "'zoom'"
+
 
