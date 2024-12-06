@@ -107,11 +107,11 @@
         src: /etc/fstab
         dest: /etc/fstab.bak
 
-    - name: Clean up old NFS entries
+    - name: Clean up old NFS and CIFS entries
       lineinfile:
         path: /etc/fstab
         state: absent
-        regex: '^\s*192\.168\.86\.90:.*\s+nfs\s+.*'
+        regex: '^\s*192\.168\.86\.90:.*\s+(nfs|cifs)\s+.*'
         backup: yes
 
     - name: Update /etc/fstab entries
@@ -134,3 +134,4 @@
       dconf:
         key: "/org/gnome/desktop/background/picture-options"
         value: "'zoom'"
+
