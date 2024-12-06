@@ -1,0 +1,19 @@
+ensure_directories:
+  - path: /home/bill/Code
+  - path: /home/bill/Configs
+  - path: /home/bill/Documents
+  - path: /home/bill/Downloads
+  - path: /home/bill/Media
+
+remove_directories:
+  - path: /home/bill/Videos
+  - path: /home/bill/Templates
+  - path: /home/bill/Pictures
+  - path: /home/bill/Books
+  - path: /home/bill/Pictures
+  - path: /home/bill/fileshare
+  - path: /home/bill/'Calibre Library'
+  - path: /home/bill/data
+  - path: /home/bill/media
+  - path: /home/bill/paperless
+  - path: /home/bill/Public

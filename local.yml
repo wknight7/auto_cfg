@@ -86,16 +86,6 @@
         dest: /usr/share/backgrounds/ansible-wallpaper.avif
         owner: root
         group: root
-        mode: 0644
-
-    - name: Ensure directories exist
-      file:
-        path: "{{ item.path }}"
-        state: directory
-      loop:
-        - { path: "/home/bill/Desktop" }
-        - { path: "/home/bill/Documents" }
-        - { path: "/home/bill/Downloads" }
 
     - name: Load fstab configuration from local file
       include_vars:
@@ -123,6 +113,23 @@
           {% endfor %}
         marker: "# {mark} ANSIBLE MANAGED BLOCK"
 
+    - name: Load directory structure configuration from local file
+      include_vars:
+        file: files/directory_structure.yml
+        name: directory_structure
+
+    - name: Remove unnecessary directories
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ directory_structure.remove_directories }}"
+
+    - name: Ensure directory structure exists
+      file:
+        path: "{{ item.path }}"
+        state: directory
+      loop: "{{ directory_structure.ensure_directories }}"
+
     - name: Set wallpaper
       become_user: bill
       dconf:
@@ -134,4 +141,3 @@
       dconf:
         key: "/org/gnome/desktop/background/picture-options"
         value: "'zoom'"
-
