@@ -44,3 +44,18 @@ Name or service not known
 2024-12-06 15:07:45,486 p=24787 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
 2024-12-06 15:07:45,486 p=24787 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
 2024-12-06 15:07:45,486 p=24787 u=bill n=ansible | test_lxc=192.168.86.67     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-06 15:22:39,369 p=25918 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc=192.168.86.67: Failed to connect to the host via ssh: ssh: Could not resolve hostname test_lxc=192.168.86.67:
+Name or service not known
+
+2024-12-06 15:22:39,372 p=25918 u=bill n=ansible | test_lxc=192.168.86.67 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"test_lxc=192.168.86.67\". Make sure this host can be reached over ssh: ssh: Could not resolve hostname test_lxc=192.168.86.67: Name or service not known\r\n",
+    "unreachable": true
+}
+2024-12-06 15:22:39,499 p=25918 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: hal@192.168.86.101: Permission denied (publickey,password).
+
+2024-12-06 15:22:39,641 p=25918 u=bill n=ansible | test_desk | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.101\". Make sure this host can be reached over ssh: hal@192.168.86.101: Permission denied (publickey,password).\r\n",
+    "unreachable": true
+}
