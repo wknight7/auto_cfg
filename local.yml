@@ -142,4 +142,11 @@
     - name: Set wallpaper
       become_user: bill
       dconf:
-        key: "/
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///usr/share/backgrounds/ansible-wallpaper.avif'"
+
+    - name: Set wallpaper position
+      become_user: bill
+      dconf:
+        key: "/org/gnome/desktop/background/picture-options"
+        value: "'zoom'"
