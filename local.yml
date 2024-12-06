@@ -123,13 +123,14 @@
           {% endfor %}
         marker: "# {mark} ANSIBLE MANAGED BLOCK"
 
-    - name: Gather desktop environment facts
-      setup:
-        filter: ansible_env
-
-    - name: Apply wallpaper for the current user
+    - name: Set wallpaper
       become_user: "{{ ansible_user_id }}"
-      command: >
-        gsettings set org.gnome.desktop.background picture-uri
-        file:///usr/share/backgrounds/ansible-wallpaper.avif
-      when: ansible_env.SHELL == "/bin/bash"
+      dconf:
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///usr/share/backgrounds/ansible-wallpaper.avif'"
+
+    - name: Set wallpaper position
+      become_user: "{{ ansible_user_id }}"
+      dconf:
+        key: "/org/gnome/desktop/background/picture-options"
+        value: "'zoom'"
