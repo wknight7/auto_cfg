@@ -73,8 +73,12 @@
           - software-properties-common
           - cmatrix
           - whois
-          - code  # Visual Studio Code
           - libreoffice  # LibreOffice
+
+    - name: Install VS Code
+      community.general.snap:
+        name: code
+        classic: true
 
     - name: Copy wallpaper file
       copy:
@@ -88,12 +92,10 @@
       file:
         path: "{{ item.path }}"
         state: directory
-      loop:  
+      loop:
+        - { path: "/home/bill/Desktop" }
         - { path: "/home/bill/Documents" }
         - { path: "/home/bill/Downloads" }
-        - { path: "/home/bill/Code" }
-        - { path: "/home/bill/Configs" }
-        - { path: "/home/bill/Media" }
 
     - name: Load fstab configuration from local file
       include_vars:
@@ -113,3 +115,4 @@
           {{ mount.server }}:{{ mount.remote_path }} {{ mount.path }} nfs rw,sync 0 0
           {% endfor %}
         marker: "# {mark} ANSIBLE MANAGED BLOCK"
+
