@@ -1,0 +1,17 @@
+---
+- name: Ensure groups are present
+  group:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ groups }}"
+  when: groups is defined
+
+- name: Ensure users are present
+  user:
+    name: "{{ item.name }}"
+    uid: "{{ item.uid | default(omit) }}"
+    groups: "{{ item.groups | join(',') }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    state: "{{ item.state | default('present') }}"
+  loop: "{{ users }}"
+  when: users is defined

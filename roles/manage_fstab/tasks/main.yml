@@ -1,0 +1,34 @@
+---
+- name: Backup existing fstab
+  copy:
+    src: /etc/fstab
+    dest: /etc/fstab.bak
+    backup: yes
+
+- name: Remove NFS and CIFS entries from fstab
+  lineinfile:
+    path: /etc/fstab
+    state: absent
+    regex: '^\s*[^#].*\s+(nfs|cifs)\s+.*'
+    backup: yes
+
+- name: Ensure directories exist
+  file:
+    path: "{{ item.path }}"
+    state: directory
+  loop: "{{ fstab_entries.mounts }}"
+  loop_control:
+    loop_var: item
+  when: fstab_entries is defined
+
+- name: Add managed fstab entries
+  blockinfile:
+    path: /etc/fstab
+    block: |
+      # Begin managed fstab entries
+      {% for mount in fstab_entries.mounts %}
+      {{ mount.server }}:{{ mount.remote_path }} {{ mount.path }} nfs defaults 0 0
+      {% endfor %}
+      # End managed fstab entries
+  when: fstab_entries is defined
+

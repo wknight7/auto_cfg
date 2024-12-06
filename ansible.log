@@ -1,0 +1,46 @@
+2024-12-06 15:00:43,296 p=24488 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventory_development.yml as an inventory source
+
+2024-12-06 15:00:43,296 p=24488 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-06 15:00:43,298 p=24488 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 15:00:43,407 p=24488 u=bill n=ansible | ERROR! the role 'manage_fstab' was not found in /home/bill/git/auto_cfg/roles:/home/bill/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/home/bill/git/auto_cfg
+
+The error appears to be in '/home/bill/git/auto_cfg/local.yml': line 35, column 7, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+    - manage_fstab
+      ^ here
+
+2024-12-06 15:02:26,820 p=24605 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventory_development.yml as an inventory source
+
+2024-12-06 15:02:26,820 p=24605 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-06 15:02:26,822 p=24605 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 15:02:26,929 p=24605 u=bill n=ansible | ERROR! the role 'manage_users' was not found in /home/bill/git/auto_cfg/roles:/home/bill/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/home/bill/git/auto_cfg
+
+The error appears to be in '/home/bill/git/auto_cfg/local.yml': line 40, column 7, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  roles:
+    - manage_users
+      ^ here
+
+2024-12-06 15:07:39,204 p=24787 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 15:07:39,208 p=24787 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 15:07:39,364 p=24787 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc=192.168.86.67: Failed to connect to the host via ssh: ssh: Could not resolve hostname test_lxc=192.168.86.67:
+Name or service not known
+
+2024-12-06 15:07:39,374 p=24787 u=bill n=ansible | fatal: [test_lxc=192.168.86.67]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"test_lxc=192.168.86.67\". Make sure this host can be reached over ssh: ssh: Could not resolve hostname test_lxc=192.168.86.67: Name or service not known\r\n", "unreachable": true}
+2024-12-06 15:07:42,413 p=24787 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: ssh: connect to host 192.168.86.55 port 22: No route to host
+
+2024-12-06 15:07:45,485 p=24787 u=bill n=ansible | fatal: [test_desk]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.55\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.55 port 22: No route to host\r\n", "unreachable": true}
+2024-12-06 15:07:45,486 p=24787 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 15:07:45,486 p=24787 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-06 15:07:45,486 p=24787 u=bill n=ansible | test_lxc=192.168.86.67     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
