@@ -4,83 +4,112 @@
   become: true
 
   tasks:
+    - name: Update systems
+      tags: always
+      package:
+        update_cache: yes
+        upgrade: dist
+      when: ansible_distribution in ["Debian", "Ubuntu"]
 
-  - name: Update systems
-    tags: always
-    package:
-      update_cache: yes
-      upgrade: dist
-    when: ansible_distribution in ["Debian", "Ubuntu"]
+    - name: Create groups
+      tags: always
+      ansible.builtin.group:
+        name: "{{ item.name }}"
+        state: present
+        gid: "{{ item.gid }}"
+      loop:
+        - { name: 'git', gid: 2013 }
+        - { name: 'media', gid: 1776 }
+        - { name: 'docs', gid: 1787 }
 
-  - name: Create groups
-    tags: always
-    ansible.builtin.group:
-      name: "{{ item.name }}"
-      state: present
-      gid: "{{ item.gid }}"
-    loop:
-      - { name: 'git', gid: 2013 }
-      - { name: 'media', gid: 1776 }
-      - { name: 'docs', gid: 1787 }
+    - name: Create users
+      tags: always
+      user:
+        name: "{{ item.name }}"
+        create_home: yes
+        shell: /bin/bash
+        groups: "{{ item.groups }}"
+        append: true
+        uid: "{{ item.uid }}"
+      loop:
+        - { name: 'bill', uid: 1000, groups: 'sudo,adm,root,git,media,docs' }
+        - { name: 'hal', uid: 1001, groups: 'sudo,git,media,docs' }
+        - { name: 'lily', uid: 1002, groups: 'sudo,docs,media' }
+        - { name: 'loretta', uid: 1003, groups: 'sudo,docs,media' }
 
-  - name: Create users
-    tags: always
-    user:
-      name: "{{ item.name }}"
-      create_home: yes
-      shell: /bin/bash
-      groups: "{{ item.groups }}"
-      append: true
-      uid: "{{ item.uid }}"
-    loop:
-      - { name: 'bill', uid: 1000, groups: 'sudo,adm,root,git,media,docs' }
-      - { name: 'hal', uid: 1001, groups: 'sudo,git,media,docs' }
-      - { name: 'lily', uid: 1002, groups: 'sudo,docs,media' }
-      - { name: 'loretta', uid: 1003, groups: 'sudo,docs,media' }
+    - name: Debug user creation
+      debug:
+        msg: "User {{ item.name }} should be created"
+      loop:
+        - { name: 'bill' }
+        - { name: 'hal' }
+        - { name: 'lily' }
+        - { name: 'loretta' }
 
-  - name: Debug user creation
-    debug:
-      msg: "User {{ item.name }} should be created"
-    loop:
-      - { name: 'bill' }
-      - { name: 'hal' }
-      - { name: 'lily' }
-      - { name: 'loretta' }
+    - name: Add sudoers files
+      tags: always
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: 0440
+      loop:
+        - { src: 'files/sudoer_hal', dest: '/etc/sudoers.d/hal' }
+        - { src: 'files/sudoer_bill', dest: '/etc/sudoers.d/bill' }
 
-  - name: Add sudoers files
-    tags: always
-    copy:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
-      owner: root
-      group: root
-      mode: 0440
-    loop:
-      - { src: 'files/sudoer_hal', dest: '/etc/sudoers.d/hal' }
-      - { src: 'files/sudoer_bill', dest: '/etc/sudoers.d/bill' }
+    - name: Install packages
+      package:
+        name:
+          - htop
+          - tmux
+          - vim-nox
+          - git
+          - mc
+          - curl
+          - keychain
+          - python3-psutil
+          - nfs-common
+          - software-properties-common
+          - cmatrix
+          - whois
+          - code  # Visual Studio Code
+          - libreoffice  # LibreOffice
 
-  - name: Install packages
-    package:
-      name:
-        - htop
-        - tmux
-        - vim-nox
-        - git
-        - mc
-        - curl
-        - keychain
-        - python3-psutil
-        - nfs-common
-        - software-properties-common
-        - cmatrix
-        - whois
-        - code  # Visual Studio Code
-        - libreoffice  # LibreOffice
+    - name: Copy wallpaper file
+      copy:
+        src: files/deep_space_wallpaper.avif
+        dest: /usr/share/backgrounds/ansible-wallpaper.avif
+        owner: root
+        group: root
+        mode: 0644
 
+    - name: Ensure directories exist
+      file:
+        path: "{{ item.path }}"
+        state: directory
+      loop:  
+        - { path: "/home/bill/Documents" }
+        - { path: "/home/bill/Downloads" }
+        - { path: "/home/bill/Code" }
+        - { path: "/home/bill/Configs" }
+        - { path: "/home/bill/Media" }
 
-  - name: Copy wallpaper file
-    copy:
-      src: files/deep_space_wallpaper.avif
-      dest: /usr/share/backgrounds/ansible-wallpaper.avif
-      owner: root
-      group
+    - name: Load fstab configuration from local file
+      include_vars:
+        file: auto_cfg/files/fstab_config.yml
+        name: fstab_config
+
+    - name: Backup current /etc/fstab
+      copy:
+        src: /etc/fstab
+        dest: /etc/fstab.bak
+
+    - name: Update /etc/fstab entries
+      blockinfile:
+        path: /etc/fstab
+        block: |
+          {% for mount in fstab_config.mounts %}
+          {{ mount.server }}:{{ mount.remote_path }} {{ mount.path }} nfs rw,sync 0 0
+          {% endfor %}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
