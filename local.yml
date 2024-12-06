@@ -99,7 +99,7 @@
 
     - name: Load fstab configuration from local file
       include_vars:
-        file: auto_cfg/files/fstab_config.yml
+        file: files/fstab_config.yml
         name: fstab_config
 
     - name: Backup current /etc/fstab
