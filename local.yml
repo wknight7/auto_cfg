@@ -61,7 +61,7 @@
 
   - name: Install packages
     package:
-      name: 
+      name:
         - htop
         - tmux
         - vim-nox
@@ -75,6 +75,8 @@
         - cmatrix
         - whois
         - code  # Visual Studio Code
+        - libreoffice  # LibreOffice
+
 
   - name: Copy wallpaper file
     copy:

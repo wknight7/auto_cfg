@@ -1,0 +1,36 @@
+---
+- name: Update fstab entries from GitHub
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Fetch fstab configuration from GitHub
+      uri:
+        url: https://raw.githubusercontent.com/yourusername/yourrepository/main/fstab_config.yml
+        return_content: yes
+      register: fstab_config
+
+    - name: Ensure directories exist
+      file:
+        path: "{{ item.path }}"
+        state: directory
+      with_items: "{{ fstab_config.json.mounts }}"
+
+    - name: Read current /etc/fstab
+      command: cat /etc/fstab
+      register: current_fstab
+
+    - name: Backup current /etc/fstab
+      copy:
+        src: /etc/fstab
+        dest: /etc/fstab.bak
+
+    - name: Update /etc/fstab entries
+      blockinfile:
+        path: /etc/fstab
+        block: |
+          {% for mount in fstab_config.json.mounts %}
+          {{ mount.server }}:{{ mount.remote_path }} {{ mount.path }} nfs rw,sync 0 0
+          {% endfor %}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+      when: fstab_config is succeeded

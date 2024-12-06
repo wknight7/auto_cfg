@@ -1,0 +1,16 @@
+mounts:
+  - path: /home/bill/Documents
+    server: 192.168.86.90
+    remote_path: /mnt/ssd-files/home/bill/Documents
+  - path: /home/bill/Downloads
+    server: 192.168.86.90
+    remote_path: /mnt/ssd-files/home/bill/Downloads
+  - path: /home/bill/Code
+    server: 192.168.86.90
+    remote_path: /mnt/ssd-files/home/bill/Code
+  - path: /home/bill/Configs
+    server: 192.168.86.90
+    remote_path: /mnt/ssd-files/home/bill/Configs
+  - path: /home/bill/Media
+    server: 192.168.86.90
+    remote_path: /mnt/Data/media
