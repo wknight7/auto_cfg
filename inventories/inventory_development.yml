@@ -1,5 +1,6 @@
-[lxc]
-test_lxc=192.168.86.67
-
-[workstations]
-test_desk ansible_host=192.168.86.101
+all:
+  hosts:
+    test_desk:
+      ansible_host: 192.168.86.101
+    test_lxc:
+      ansible_host: 192.168.86.67
