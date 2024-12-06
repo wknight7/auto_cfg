@@ -1,0 +1,17 @@
+---
+- name: Ensure directories for non-workstations exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ ensure_directories | default([]) }}"
+  when:
+    - ensure_directories is defined
+    - inventory_hostname not in groups['workstations']
+
+- name: Add user to groups
+  user:
+    name: "{{ ansible_user }}"
+    groups: "{{ groups | join(',') }}"
+    append: yes
+  when: groups is defined
+

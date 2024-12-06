@@ -1,0 +1,5 @@
+[lxc]
+test_lxc=192.168.86.67
+
+[workstations]
+test_desk ansible_host=192.168.86.55

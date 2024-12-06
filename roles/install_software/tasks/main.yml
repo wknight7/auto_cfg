@@ -1,0 +1,14 @@
+---
+- name: Install Snap packages
+  community.general.snap:
+    name: "{{ item }}"
+    classic: true
+  loop: "{{ workstation_snap_packages | default([]) }}"
+  when: workstation_snap_packages is defined
+
+- name: Install APT packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ workstation_apt_packages | default([]) }}"
+  when: workstation_apt_packages is defined

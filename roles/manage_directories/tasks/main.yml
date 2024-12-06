@@ -1,0 +1,14 @@
+---
+- name: Ensure directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ ensure_directories | default([]) }}"
+  when: ensure_directories is defined
+
+- name: Remove unnecessary directories
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ remove_directories | default([]) }}"
+  when: remove_directories is defined

@@ -1,0 +1,18 @@
+groups:
+  - name: media
+    gid: 1776
+    state: present
+
+mount_points:
+  - { mount_point: "mp0: /mnt/media,mp=/mnt/media,backup=0" }
+dynamic_container_ids: ["101", "102", "103"] # Adjust as needed
+      
+users:
+  - name: bill
+    groups: media, sudo, admin
+    state: present
+    
+  - name: hal
+    groups: sudo, non-login, media
+    shell: /usr/sbin/nologin
+    state: present

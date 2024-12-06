@@ -1,0 +1,29 @@
+---
+- name: Clean up old NFS and CIFS entries in fstab
+  lineinfile:
+    path: /etc/fstab
+    state: absent
+    regex: '^\s*192\.168\.86\.90:.*\s+(nfs|cifs)\s+.*'
+    backup: yes
+
+- name: Gather LXC container facts
+  command: lxc-ls --fancy
+  register: lxc_containers
+
+- name: Ensure mountpoints are appended to LXC containers
+  block:
+    - name: Append mountpoints
+      lineinfile:
+        path: "/etc/pve/lxc/{{ item.container_id }}.conf"
+        line: "{{ item.mount_point }}"
+        state: present
+      loop: "{{ mount_points }}"
+      when: mount_points is defined
+
+- name: Clean up old NFS and CIFS entries in fstab
+  lineinfile:
+    path: /etc/fstab
+    state: absent
+    regex: '^\s*192\.168\.86\.90:.*\s+(nfs|cifs)\s+.*'
+    backup: yes
+  when: fstab_entries is defined

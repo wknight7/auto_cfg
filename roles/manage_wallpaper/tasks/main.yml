@@ -1,0 +1,19 @@
+---
+- name: Copy wallpaper file
+  copy:
+    src: files/deep_space_wallpaper.avif
+    dest: /usr/share/backgrounds/ansible-wallpaper.avif
+    owner: root
+    group: root
+
+- name: Set wallpaper
+  become_user: bill
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/ansible-wallpaper.avif'"
+
+- name: Set wallpaper position
+  become_user: bill
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"

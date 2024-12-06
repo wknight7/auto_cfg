@@ -1,0 +1,66 @@
+users:
+  - name: bill
+    groups: sudo, admin, git, media, docs
+    state: present
+  - name: hal
+    groups: sudo, non-login, git, media, docs
+    shell: /usr/sbin/nologin
+    state: present
+  - name: lily
+    uid: 1002
+    groups: sudo, media, docs
+    state: present
+  - name: loretta, media, docs
+    uid: 1003
+    groups: sudo
+    state: present
+
+groups:
+  - name: git
+    gid: 2013
+    state: present
+  - name: media
+    gid: 1776
+    state: present
+  - name: docs
+    gid: 1787
+    state: present
+
+
+fstab_entries:
+  mounts:
+    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/docs", path: "/mnt/docs" }
+    - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/media" }
+    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Code", path: "/home/bill/Code" }
+    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Configs", path: "/home/bill/Configs" }
+    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Documents", path: "/home/bill/Documents" }
+    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Downloads", path: "/home/bill/Downloads" }
+
+ensure_directories:
+  - /home/bill/Code
+  - /home/bill/Configs
+  - /home/bill/Documents
+  - /home/bill/Downloads
+  - /home/bill/Media
+remove_directories:
+  - /home/bill/Videos
+  - /home/bill/Templates
+  - /home/bill/Pictures
+  - /home/bill/Books
+  - /home/bill/Pictures
+  - /home/bill/fileshare
+  - /home/bill/'Calibre Library'
+  - /home/bill/data
+  - /home/bill/media
+  - /home/bill/paperless
+  - /home/bill/Public
+  - /home/bill/files
+  - /home/bill/Music
+
+workstation_snap_packages:
+  - libreoffice
+
+workstation_apt_packages:
+  - vim-nox
+  - git
+  - ansible

@@ -1,0 +1,19 @@
+groups: 
+  - name: docs
+    gid: 1787
+    state: present
+
+users:
+  - name: bill
+    groups: sudo, admin, docs
+    state: present
+  - name: hal
+    groups: sudo, non-login, docs
+    shell: /usr/sbin/nologin
+    state: present
+
+mount_points:
+  - { mount_point: "mp0: /mnt/docs,mp=/mnt/docs,backup=0" }
+dynamic_container_ids: ["101", "102", "103"] # Adjust as needed
+
+  - /mnt/docs

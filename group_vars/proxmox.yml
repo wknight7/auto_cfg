@@ -1,0 +1,24 @@
+users:
+  - name: bill
+    groups: sudo, admin, git, media, docs
+    state: present
+  - name: hal
+    groups: sudo, non-login, git, media, docs
+    shell: /usr/sbin/nologin
+    state: present
+
+groups:
+  - name: git
+    gid: 2013
+    state: present
+  - name: media
+    gid: 1776
+    state: present
+  - name: docs
+    gid: 1787
+    state: present
+
+fstab_entries:
+  mounts:
+    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/docs", path: "/mnt/docs" }
+    - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/media" }
