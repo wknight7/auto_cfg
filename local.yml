@@ -149,6 +149,3 @@
       dconf:
         key: "/org/gnome/desktop/background/picture-options"
         value: "'zoom'"
-
-
-
