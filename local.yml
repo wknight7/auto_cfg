@@ -128,5 +128,17 @@
       file:
         path: "{{ item.path }}"
         state: directory
-        force: yes  # Ensure directory is created if it doesn't exist
+        mode: 0755  # Ensure directory permissions
       loop: "{{ directory_structure.ensure_directories }}"
+
+    - name: Set wallpaper
+      become_user: bill
+      dconf:
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///usr/share/backgrounds/ansible-wallpaper.avif'"
+
+    - name: Set wallpaper position
+      become_user: bill
+      dconf:
+        key: "/org/gnome/desktop/background/picture-options"
+        value: "'zoom'"
