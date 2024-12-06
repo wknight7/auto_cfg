@@ -99,4 +99,37 @@
 
     - name: Load fstab configuration from local file
       include_vars:
-        file: files
+        file: files/fstab_config.yml
+        name: fstab_config
+
+    - name: Backup current /etc/fstab
+      copy:
+        src: /etc/fstab
+        dest: /etc/fstab.bak
+
+    - name: Clean up old NFS entries
+      lineinfile:
+        path: /etc/fstab
+        state: absent
+        regex: '^\s*192\.168\.86\.90:.*\s+nfs\s+.*'
+        backup: yes
+
+    - name: Update /etc/fstab entries
+      blockinfile:
+        path: /etc/fstab
+        block: |
+          {% for mount in fstab_config.mounts %}
+          {{ mount.server }}:{{ mount.remote_path }} {{ mount.path }} nfs rw,sync 0 0
+          {% endfor %}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+
+    - name: Gather desktop environment facts
+      setup:
+        filter: ansible_env
+
+    - name: Apply wallpaper for the current user
+      become_user: "{{ ansible_user_id }}"
+      command: >
+        gsettings set org.gnome.desktop.background picture-uri
+        file:///usr/share/backgrounds/ansible-wallpaper.avif
+      when: ansible_env.SHELL == "/bin/bash"
