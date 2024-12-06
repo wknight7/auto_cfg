@@ -118,12 +118,6 @@
         file: files/directory_structure.yml
         name: directory_structure
 
-    - name: Remove unnecessary directories
-      file:
-        path: "{{ item.path }}"
-        state: absent
-      loop: "{{ directory_structure.remove_directories }}"
-
     - name: Ensure directory structure exists
       block:
         - name: Check if directory exists
@@ -136,7 +130,13 @@
             path: "{{ item.path }}"
             state: directory
           when: not dir_check.stat.exists
-      loop: "{{ directory_structure.ensure_directories }}"
+      with_items: "{{ directory_structure.ensure_directories }}"
+
+    - name: Remove unnecessary directories
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ directory_structure.remove_directories }}"
 
     - name: Set wallpaper
       become_user: bill
