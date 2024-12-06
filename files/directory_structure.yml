@@ -17,3 +17,5 @@ remove_directories:
   - path: /home/bill/media
   - path: /home/bill/paperless
   - path: /home/bill/Public
+  - path: /home/bill/files
+  - path: /home/bill/Music
