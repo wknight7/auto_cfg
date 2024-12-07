@@ -16,12 +16,12 @@
   group:
     name: "{{ item }}"
     state: present
-  loop: "{{ query('vars', 'groups', wantlist=True) }}"
+  loop: "{{ groups }}"
   when: groups is defined
 
 - name: Add user to groups
   user:
-    name: "{{ item.name }}"
+    name: "{{ users }}"
     groups: "{{ item.groups | join(',') }}"
   loop: "{{ users }}"
   when: users is defined

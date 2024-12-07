@@ -1174,3 +1174,550 @@ The offending line appears to be:
 2024-12-06 22:05:41,899 p=32084 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
 2024-12-06 22:05:41,899 p=32084 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
 2024-12-06 22:05:41,899 p=32084 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:06:30,863 p=32272 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:06:30,869 p=32272 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:06:31,614 p=32272 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:06:31,624 p=32272 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:06:31,647 p=32272 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 22:06:32,328 p=32272 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 22:06:32,348 p=32272 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 22:06:32,896 p=32272 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 22:06:32,944 p=32272 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 22:06:33,484 p=32272 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 22:06:33,542 p=32272 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 22:06:33,590 p=32272 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:06:33,595 p=32272 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:06:34,130 p=32272 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:06:34,177 p=32272 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:06:34,198 p=32272 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 22:06:34,225 p=32272 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 22:06:34,229 p=32272 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-06 22:06:34,229 p=32272 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-06 22:06:34,231 p=32272 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-06 22:06:34,234 p=32272 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-06 22:06:34,237 p=32272 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-06 22:06:34,238 p=32272 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 22:06:34,243 p=32272 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-06 22:06:34,255 p=32272 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:06:34,262 p=32272 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:06:34,267 p=32272 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 22:06:34,483 p=32272 u=bill n=ansible | failed: [test_lxc] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:06:34,499 p=32272 u=bill n=ansible | failed: [test_desk] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:06:34,501 p=32272 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:06:34,501 p=32272 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:06:34,501 p=32272 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:17:18,630 p=32477 u=bill n=ansible | [WARNING]: While constructing a mapping from /home/bill/git/auto_cfg/inventories/inventory_development.yml, line 1, column 1, found a duplicate dict key (hosts). Using last defined value
+only.
+
+2024-12-06 22:17:18,630 p=32477 u=bill n=ansible | [WARNING]: Skipping unexpected key (test_lxc) in group (hosts), only "vars", "children" and "hosts" are valid
+
+2024-12-06 22:17:18,632 p=32477 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 22:17:18,748 p=32477 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:17:18,749 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,749 p=32477 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:17:18,749 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,749 p=32477 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-06 22:17:18,749 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,750 p=32477 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-06 22:17:18,750 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,750 p=32477 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:17:18,750 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,750 p=32477 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:17:18,750 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,751 p=32477 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-06 22:17:18,751 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,751 p=32477 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-06 22:17:18,751 p=32477 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:17:18,751 p=32477 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:19:13,932 p=32503 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with yaml plugin: We were unable to read either as JSON nor YAML, these are the errors we got
+from each: JSON: Expecting value: line 1 column 1 (char 0)  Syntax Error while loading YAML.   mapping values are not allowed in this context  The error appears to be in
+'/home/bill/git/auto_cfg/inventories/inventory_development.yml': line 6, column 25, but may be elsewhere in the file depending on the exact syntax problem.  The offending line appears to
+be:  hosts:   test_lxc: ansible_host: 192.168.86.67                         ^ here
+
+2024-12-06 22:19:13,932 p=32503 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with ini plugin: Invalid host pattern 'workstations:' supplied, ending in ':' is not allowed,
+this character is reserved to provide a port.
+
+2024-12-06 22:19:13,932 p=32503 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with auto plugin: We were unable to read either as JSON nor YAML, these are the errors we got
+from each: JSON: Expecting value: line 1 column 1 (char 0)  Syntax Error while loading YAML.   mapping values are not allowed in this context  The error appears to be in
+'/home/bill/git/auto_cfg/inventories/inventory_development.yml': line 6, column 25, but may be elsewhere in the file depending on the exact syntax problem.  The offending line appears to
+be:  hosts:   test_lxc: ansible_host: 192.168.86.67                         ^ here
+
+2024-12-06 22:19:13,932 p=32503 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml as an inventory source
+
+2024-12-06 22:19:13,932 p=32503 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-06 22:19:13,934 p=32503 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 22:19:14,053 p=32503 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:19:14,053 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,053 p=32503 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:19:14,053 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,054 p=32503 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-06 22:19:14,054 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,054 p=32503 u=bill n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: workstations
+
+2024-12-06 22:19:14,054 p=32503 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-06 22:19:14,054 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,054 p=32503 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:19:14,055 p=32503 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:20:07,010 p=32557 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with yaml plugin: We were unable to read either as JSON nor YAML, these are the errors we got
+from each: JSON: Expecting value: line 1 column 1 (char 0)  Syntax Error while loading YAML.   mapping values are not allowed in this context  The error appears to be in
+'/home/bill/git/auto_cfg/inventories/inventory_development.yml': line 6, column 27, but may be elsewhere in the file depending on the exact syntax problem.  The offending line appears to
+be:    hosts:     test_lxc: ansible_host: 192.168.86.67                           ^ here
+
+2024-12-06 22:20:07,010 p=32557 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with ini plugin: Invalid host pattern 'workstations:' supplied, ending in ':' is not allowed,
+this character is reserved to provide a port.
+
+2024-12-06 22:20:07,011 p=32557 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with auto plugin: We were unable to read either as JSON nor YAML, these are the errors we got
+from each: JSON: Expecting value: line 1 column 1 (char 0)  Syntax Error while loading YAML.   mapping values are not allowed in this context  The error appears to be in
+'/home/bill/git/auto_cfg/inventories/inventory_development.yml': line 6, column 27, but may be elsewhere in the file depending on the exact syntax problem.  The offending line appears to
+be:    hosts:     test_lxc: ansible_host: 192.168.86.67                           ^ here
+
+2024-12-06 22:20:07,011 p=32557 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml as an inventory source
+
+2024-12-06 22:20:07,011 p=32557 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-06 22:20:07,012 p=32557 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 22:20:07,131 p=32557 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:20:07,131 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,131 p=32557 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:20:07,131 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,132 p=32557 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-06 22:20:07,132 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,132 p=32557 u=bill n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: workstations
+
+2024-12-06 22:20:07,132 p=32557 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-06 22:20:07,132 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:20:07,133 p=32557 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:22:19,134 p=32598 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with yaml plugin: Invalid data from file, expected dictionary and got:  192.168.86.101
+
+2024-12-06 22:22:19,134 p=32598 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with ini plugin: Invalid host pattern 'workstations:' supplied, ending in ':' is not allowed,
+this character is reserved to provide a port.
+
+2024-12-06 22:22:19,134 p=32598 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with auto plugin: no root 'plugin' key found,
+'/home/bill/git/auto_cfg/inventories/inventory_development.yml' is not a valid YAML inventory plugin config file
+
+2024-12-06 22:22:19,134 p=32598 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml as an inventory source
+
+2024-12-06 22:22:19,134 p=32598 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-06 22:22:19,136 p=32598 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 22:22:19,253 p=32598 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:22:19,253 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,254 p=32598 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:22:19,254 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,254 p=32598 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-06 22:22:19,254 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,254 p=32598 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-06 22:22:19,254 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,255 p=32598 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:22:19,255 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,255 p=32598 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:22:19,255 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,255 p=32598 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-06 22:22:19,255 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,256 p=32598 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-06 22:22:19,256 p=32598 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:22:19,256 p=32598 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:23:10,024 p=32651 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with yaml plugin: Invalid data from file, expected dictionary and got:  192.168.86.101
+
+2024-12-06 22:23:10,024 p=32651 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with ini plugin: Invalid host pattern '---' supplied, '---' is normally a sign this is a YAML
+file.
+
+2024-12-06 22:23:10,025 p=32651 u=bill n=ansible | [WARNING]:  * Failed to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml with auto plugin: no root 'plugin' key found,
+'/home/bill/git/auto_cfg/inventories/inventory_development.yml' is not a valid YAML inventory plugin config file
+
+2024-12-06 22:23:10,025 p=32651 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml as an inventory source
+
+2024-12-06 22:23:10,025 p=32651 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-06 22:23:10,027 p=32651 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 22:23:10,146 p=32651 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:23:10,146 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,146 p=32651 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:23:10,146 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,147 p=32651 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-06 22:23:10,147 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,147 p=32651 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-06 22:23:10,147 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,147 p=32651 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:23:10,147 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,148 p=32651 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:23:10,148 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,148 p=32651 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-06 22:23:10,148 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,148 p=32651 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-06 22:23:10,148 p=32651 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:23:10,148 p=32651 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:28:34,698 p=32787 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml as an inventory source
+
+2024-12-06 22:28:34,699 p=32787 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-06 22:28:34,700 p=32787 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-06 22:28:34,820 p=32787 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:28:34,820 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,820 p=32787 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:28:34,821 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,821 p=32787 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-06 22:28:34,821 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,821 p=32787 u=bill n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: workstations
+
+2024-12-06 22:28:34,822 p=32787 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-06 22:28:34,822 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,822 p=32787 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:28:34,822 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,822 p=32787 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-06 22:28:34,822 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,823 p=32787 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-06 22:28:34,823 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,823 p=32787 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-06 22:28:34,823 p=32787 u=bill n=ansible | skipping: no hosts matched
+2024-12-06 22:28:34,823 p=32787 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:28:50,437 p=32853 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:28:50,442 p=32853 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:28:51,538 p=32853 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:28:51,634 p=32853 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:28:51,658 p=32853 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 22:28:52,296 p=32853 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 22:28:52,351 p=32853 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 22:28:52,876 p=32853 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 22:28:52,957 p=32853 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 22:28:53,427 p=32853 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 22:28:53,556 p=32853 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 22:28:53,603 p=32853 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:28:53,609 p=32853 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:28:54,150 p=32853 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:28:54,203 p=32853 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:28:54,225 p=32853 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 22:28:54,257 p=32853 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 22:28:54,260 p=32853 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-06 22:28:54,261 p=32853 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-06 22:28:54,261 p=32853 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-06 22:28:54,262 p=32853 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-06 22:28:54,264 p=32853 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-06 22:28:54,265 p=32853 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 22:28:54,270 p=32853 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-06 22:28:54,283 p=32853 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:28:54,290 p=32853 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:28:54,315 p=32853 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 22:28:54,503 p=32853 u=bill n=ansible | failed: [test_lxc] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:28:54,519 p=32853 u=bill n=ansible | failed: [test_desk] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:28:54,520 p=32853 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:28:54,520 p=32853 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:28:54,520 p=32853 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:34:10,900 p=33036 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:34:10,905 p=33036 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:34:11,949 p=33036 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:34:12,072 p=33036 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:34:12,096 p=33036 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 22:34:12,768 p=33036 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 22:34:12,769 p=33036 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 22:34:13,334 p=33036 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 22:34:13,382 p=33036 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 22:34:13,919 p=33036 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 22:34:13,991 p=33036 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 22:34:14,038 p=33036 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:34:14,044 p=33036 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:34:14,581 p=33036 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:34:14,625 p=33036 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:34:14,646 p=33036 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 22:34:14,672 p=33036 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 22:34:14,675 p=33036 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-06 22:34:14,677 p=33036 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-06 22:34:14,679 p=33036 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-06 22:34:14,679 p=33036 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-06 22:34:14,680 p=33036 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-06 22:34:14,680 p=33036 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 22:34:14,686 p=33036 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-06 22:34:14,696 p=33036 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:34:14,702 p=33036 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:34:14,729 p=33036 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 22:34:14,920 p=33036 u=bill n=ansible | failed: [test_lxc] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:34:14,935 p=33036 u=bill n=ansible | failed: [test_desk] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:34:14,936 p=33036 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:34:14,937 p=33036 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:34:14,937 p=33036 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:37:52,334 p=33234 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:37:52,339 p=33234 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:37:53,406 p=33234 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:37:53,505 p=33234 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:37:53,528 p=33234 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 22:37:54,167 p=33234 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 22:37:54,221 p=33234 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 22:37:54,717 p=33234 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 22:37:54,823 p=33234 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 22:37:55,329 p=33234 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 22:37:55,477 p=33234 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 22:37:55,524 p=33234 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:37:55,530 p=33234 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:37:56,071 p=33234 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:37:56,123 p=33234 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:37:56,145 p=33234 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 22:37:56,171 p=33234 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 22:37:56,175 p=33234 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-06 22:37:56,176 p=33234 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-06 22:37:56,176 p=33234 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-06 22:37:56,181 p=33234 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-06 22:37:56,184 p=33234 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-06 22:37:56,184 p=33234 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 22:37:56,193 p=33234 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-06 22:37:56,206 p=33234 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:37:56,213 p=33234 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:37:56,238 p=33234 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 22:37:56,429 p=33234 u=bill n=ansible | failed: [test_lxc] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:37:56,449 p=33234 u=bill n=ansible | failed: [test_desk] (item={'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}) => {"ansible_loop_var": "item", "changed": false, "item": {"all": ["test_desk", "test_lxc"], "docs": ["test_lxc"], "ungrouped": [], "workstations": ["test_desk"]}, "msg": "groupadd: '{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}' is not a valid group name\n", "name": "{'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}"}
+2024-12-06 22:37:56,450 p=33234 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:37:56,450 p=33234 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:37:56,450 p=33234 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:52:36,131 p=33507 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:52:36,136 p=33507 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:52:37,222 p=33507 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:52:37,310 p=33507 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:52:37,334 p=33507 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 22:52:37,975 p=33507 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 22:52:38,035 p=33507 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 22:52:38,536 p=33507 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 22:52:38,651 p=33507 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 22:52:39,109 p=33507 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 22:52:39,233 p=33507 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 22:52:39,282 p=33507 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:52:39,287 p=33507 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:52:39,813 p=33507 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:52:39,871 p=33507 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:52:39,893 p=33507 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 22:52:39,919 p=33507 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 22:52:39,922 p=33507 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-06 22:52:39,923 p=33507 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-06 22:52:39,924 p=33507 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-06 22:52:39,925 p=33507 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-06 22:52:39,926 p=33507 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-06 22:52:39,927 p=33507 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 22:52:39,932 p=33507 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-06 22:52:39,944 p=33507 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:52:39,950 p=33507 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:52:39,976 p=33507 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 22:52:39,986 p=33507 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 22:52:39,990 p=33507 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 22:52:39,990 p=33507 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:52:39,991 p=33507 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:52:39,991 p=33507 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:54:28,558 p=33662 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 22:54:28,563 p=33662 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:54:29,654 p=33662 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:54:29,733 p=33662 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:54:29,756 p=33662 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 22:54:30,411 p=33662 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 22:54:30,445 p=33662 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 22:54:30,988 p=33662 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 22:54:31,064 p=33662 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 22:54:31,566 p=33662 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 22:54:31,691 p=33662 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 22:54:31,739 p=33662 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 22:54:31,745 p=33662 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 22:54:32,276 p=33662 u=bill n=ansible | ok: [test_desk]
+2024-12-06 22:54:32,328 p=33662 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 22:54:32,349 p=33662 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 22:54:32,375 p=33662 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 22:54:32,378 p=33662 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-06 22:54:32,378 p=33662 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-06 22:54:32,378 p=33662 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-06 22:54:32,381 p=33662 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-06 22:54:32,383 p=33662 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-06 22:54:32,384 p=33662 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 22:54:32,389 p=33662 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-06 22:54:32,402 p=33662 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:54:32,409 p=33662 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-06 22:54:32,434 p=33662 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 22:54:32,446 p=33662 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 22:54:32,449 p=33662 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 22:54:32,449 p=33662 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 22:54:32,450 p=33662 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 22:54:32,450 p=33662 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   

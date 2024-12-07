@@ -1,8 +1,0 @@
-workstations:
-  hosts:
-    test_desk:
-      ansible_host: 192.168.86.101
-docs:
-  hosts:
-    test_lxc:
-      ansible_host: 192.168.86.67

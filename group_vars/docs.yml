@@ -2,6 +2,9 @@ groups:
   - name: docs
     gid: 1787
     state: present
+  - name: bill
+    gid: 1000
+    state: present
 
 users:
   - name: bill
