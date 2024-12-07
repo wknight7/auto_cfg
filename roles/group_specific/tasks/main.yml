@@ -8,10 +8,16 @@
     - ensure_directories is defined
     - inventory_hostname not in groups['workstations']
 
-- name: Add user to groups
-  user:
-    name: "{{ ansible_user }}"
-    groups: "{{ groups | join(',') }}"
-    append: yes
+- name: Ensure groups are present
+  group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ groups }}"
   when: groups is defined
 
+- name: Add user to groups
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups | join(',') }}"
+  loop: "{{ users }}"
+  when: users is defined

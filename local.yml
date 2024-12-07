@@ -1,8 +1,9 @@
----
 - name: Apply common configurations
   hosts: all
+  vars_files:
+    - group_vars/common.yml
   roles:
-    - common
+    - common    
 
 - name: Apply group-specific configurations
   hosts: all
