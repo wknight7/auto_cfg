@@ -8,11 +8,15 @@
     - ensure_directories is defined
     - inventory_hostname not in groups['workstations']
 
+- name: Debug groups variable
+  debug:
+    var: groups
+
 - name: Ensure groups are present
   group:
     name: "{{ item }}"
     state: present
-  loop: "{{ groups }}"
+  loop: "{{ query('vars', 'groups', wantlist=True) }}"
   when: groups is defined
 
 - name: Add user to groups
