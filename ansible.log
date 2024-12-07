@@ -369,3 +369,51 @@ If you are using a module and expect the file to exist on the remote, see the re
 2024-12-06 19:02:04,127 p=29755 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
 2024-12-06 19:02:04,128 p=29755 u=bill n=ansible | test_desk                  : ok=3    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
 2024-12-06 19:02:04,128 p=29755 u=bill n=ansible | test_lxc                   : ok=3    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 21:07:35,104 p=30586 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 21:07:35,109 p=30586 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 21:07:36,221 p=30586 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 21:07:36,317 p=30586 u=bill n=ansible | ok: [test_desk]
+2024-12-06 21:07:36,339 p=30586 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 21:07:37,028 p=30586 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 21:07:37,039 p=30586 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 21:07:37,597 p=30586 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 21:07:37,651 p=30586 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 21:07:38,145 p=30586 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 21:07:38,260 p=30586 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 21:07:38,307 p=30586 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 21:07:38,313 p=30586 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 21:07:38,849 p=30586 u=bill n=ansible | ok: [test_desk]
+2024-12-06 21:07:38,898 p=30586 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 21:07:38,920 p=30586 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 21:07:38,939 p=30586 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 21:07:38,948 p=30586 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 21:07:38,953 p=30586 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 21:07:38,962 p=30586 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': ['test_desk', 'test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 21:07:38,966 p=30586 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': ['test_desk', 'test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 21:07:38,967 p=30586 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 21:07:38,967 p=30586 u=bill n=ansible | test_desk                  : ok=3    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 21:07:38,967 p=30586 u=bill n=ansible | test_lxc                   : ok=3    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 21:31:55,990 p=30883 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-06 21:31:55,994 p=30883 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 21:31:57,054 p=30883 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 21:31:57,153 p=30883 u=bill n=ansible | ok: [test_desk]
+2024-12-06 21:31:57,176 p=30883 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-06 21:31:57,831 p=30883 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-06 21:31:57,850 p=30883 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-06 21:31:58,401 p=30883 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-06 21:31:58,450 p=30883 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-06 21:31:58,960 p=30883 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-06 21:31:59,050 p=30883 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-06 21:31:59,098 p=30883 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-06 21:31:59,103 p=30883 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-06 21:31:59,633 p=30883 u=bill n=ansible | ok: [test_desk]
+2024-12-06 21:31:59,686 p=30883 u=bill n=ansible | ok: [test_lxc]
+2024-12-06 21:31:59,707 p=30883 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-06 21:31:59,726 p=30883 u=bill n=ansible | skipping: [test_desk]
+2024-12-06 21:31:59,735 p=30883 u=bill n=ansible | skipping: [test_lxc]
+2024-12-06 21:31:59,740 p=30883 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-06 21:31:59,750 p=30883 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': ['test_desk', 'test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 21:31:59,754 p=30883 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': ['test_desk', 'test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-06 21:31:59,755 p=30883 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-06 21:31:59,755 p=30883 u=bill n=ansible | test_desk                  : ok=3    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-06 21:31:59,755 p=30883 u=bill n=ansible | test_lxc                   : ok=3    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   

@@ -10,8 +10,11 @@ users:
     state: present
 
 ansible_user: hal
+
 groups:
   - sudo
+  - root
+
 common_packages:
   - curl
   - git
