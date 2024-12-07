@@ -15,7 +15,7 @@ users:
     groups: sudo
     state: present
 
-groups:
+custom_groups:
   - name: git
     gid: 2013
     state: present

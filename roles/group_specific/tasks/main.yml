@@ -16,7 +16,7 @@
   group:
     name: "{{ item }}"
     state: present
-  loop: "{{ groups }}"
+  loop: "{{ custom_groups }}"
   when: groups is defined
 
 - name: Add user to groups
