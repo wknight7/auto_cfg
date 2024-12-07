@@ -12,8 +12,8 @@ users:
 ansible_user: hal
 
 groups:
-  - sudo
-  - root
+  - name: sudo
+    state: present
 
 common_packages:
   - curl
