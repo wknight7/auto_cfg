@@ -1,6 +1,6 @@
 [workstations]
-test_desk ansible_host=192.168.86.101
+test_desk ansible_host=192.168.86.101 ansible_user=bill
 
 [docs]
-test_lxc ansible_host=192.168.86.67
+test_lxc ansible_host=192.168.86.67 ansible_user=bill
 

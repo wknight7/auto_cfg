@@ -1,3 +1,8 @@
+- name: Manage users and groups
+  hosts: all
+  roles:
+    - manage_users
+
 - name: Apply common configurations
   hosts: all
   vars_files:
@@ -35,8 +40,4 @@
   roles:
     - manage_fstab
 
-- name: Manage users and groups
-  hosts: all
-  roles:
-    - manage_users
 

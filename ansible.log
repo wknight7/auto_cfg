@@ -2505,3 +2505,446 @@ remote_tmp dir with the correct permissions manually
 2024-12-07 19:03:31,697 p=43926 u=bill n=ansible | PLAY RECAP *********************************************************************************************************************************************************************************
 2024-12-07 19:03:31,697 p=43926 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
 2024-12-07 19:03:31,697 p=43926 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:04:18,688 p=44127 u=bill n=ansible | PLAY [Apply common configurations] *********************************************************************************************************************************************************
+2024-12-07 19:04:18,693 p=44127 u=bill n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************************
+2024-12-07 19:04:18,851 p=44127 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: unexpected output from Python interpreter discovery
+
+2024-12-07 19:04:18,853 p=44127 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: unexpected output from Python interpreter discovery
+
+2024-12-07 19:04:18,861 p=44127 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_desk is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:04:18,865 p=44127 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_lxc is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:04:18,865 p=44127 u=bill n=ansible | PLAY RECAP *********************************************************************************************************************************************************************************
+2024-12-07 19:04:18,865 p=44127 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:04:18,865 p=44127 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:10:22,884 p=44497 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 19:10:22,889 p=44497 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 19:10:23,356 p=44497 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: unexpected output from Python interpreter discovery
+
+2024-12-07 19:10:23,368 p=44497 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_lxc is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:10:23,463 p=44497 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: unexpected output from Python interpreter discovery
+
+2024-12-07 19:10:23,472 p=44497 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_desk is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:10:23,473 p=44497 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 19:10:23,473 p=44497 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:10:23,473 p=44497 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:10:50,590 p=44633 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: unexpected output from Python interpreter discovery
+
+2024-12-07 19:10:50,591 p=44633 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: unexpected output from Python interpreter discovery
+
+2024-12-07 19:10:50,600 p=44633 u=bill n=ansible | [WARNING]: Platform unknown on host test_desk is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information.
+
+2024-12-07 19:10:50,600 p=44633 u=bill n=ansible | test_desk | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "module_stderr": "",
+    "module_stdout": "This account is currently not available.\n",
+    "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error",
+    "rc": 1
+}
+2024-12-07 19:10:50,602 p=44633 u=bill n=ansible | [WARNING]: Platform unknown on host test_lxc is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning
+of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information.
+
+2024-12-07 19:10:50,603 p=44633 u=bill n=ansible | test_lxc | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "module_stderr": "",
+    "module_stdout": "This account is currently not available.\n",
+    "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error",
+    "rc": 1
+}
+2024-12-07 19:15:08,867 p=44961 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 19:15:08,872 p=44961 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 19:15:09,320 p=44961 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: unexpected output from Python interpreter discovery
+
+2024-12-07 19:15:09,331 p=44961 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_lxc is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:15:09,419 p=44961 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: unexpected output from Python interpreter discovery
+
+2024-12-07 19:15:09,429 p=44961 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_desk is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:15:09,432 p=44961 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 19:15:09,432 p=44961 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:15:09,432 p=44961 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:20:42,682 p=45254 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 19:20:42,687 p=45254 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 19:20:43,140 p=45254 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: unexpected output from Python interpreter discovery
+
+2024-12-07 19:20:43,150 p=45254 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_lxc is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:20:43,242 p=45254 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: unexpected output from Python interpreter discovery
+
+2024-12-07 19:20:43,253 p=45254 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_desk is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:20:43,253 p=45254 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 19:20:43,253 p=45254 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:20:43,253 p=45254 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:30:54,802 p=45486 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 19:30:54,807 p=45486 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 19:30:55,097 p=45486 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: hal@192.168.86.101: Permission denied (publickey,password).
+
+2024-12-07 19:30:55,130 p=45486 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: Failed to connect to the host via ssh: hal@192.168.86.67: Permission denied (publickey,password).
+
+2024-12-07 19:30:55,239 p=45486 u=bill n=ansible | fatal: [test_desk]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.101\". Make sure this host can be reached over ssh: hal@192.168.86.101: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 19:30:55,299 p=45486 u=bill n=ansible | fatal: [test_lxc]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.67\". Make sure this host can be reached over ssh: hal@192.168.86.67: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 19:30:55,300 p=45486 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 19:30:55,300 p=45486 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:30:55,300 p=45486 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:44:07,634 p=46269 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 19:44:07,639 p=46269 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 19:44:07,930 p=46269 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: hal@192.168.86.101: Permission denied (publickey,password).
+
+2024-12-07 19:44:07,956 p=46269 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: Failed to connect to the host via ssh: hal@192.168.86.67: Permission denied (publickey,password).
+
+2024-12-07 19:44:08,083 p=46269 u=bill n=ansible | fatal: [test_desk]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.101\". Make sure this host can be reached over ssh: hal@192.168.86.101: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 19:44:08,139 p=46269 u=bill n=ansible | fatal: [test_lxc]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.67\". Make sure this host can be reached over ssh: hal@192.168.86.67: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 19:44:08,139 p=46269 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 19:44:08,139 p=46269 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:44:08,140 p=46269 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:54:34,799 p=46533 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 19:54:34,804 p=46533 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 19:54:35,098 p=46533 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: hal@192.168.86.101: Permission denied (publickey,password).
+
+2024-12-07 19:54:35,129 p=46533 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: Failed to connect to the host via ssh: hal@192.168.86.67: Permission denied (publickey,password).
+
+2024-12-07 19:54:35,239 p=46533 u=bill n=ansible | fatal: [test_desk]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.101\". Make sure this host can be reached over ssh: hal@192.168.86.101: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 19:54:35,311 p=46533 u=bill n=ansible | fatal: [test_lxc]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.67\". Make sure this host can be reached over ssh: hal@192.168.86.67: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 19:54:35,312 p=46533 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 19:54:35,312 p=46533 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:54:35,312 p=46533 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:09:57,385 p=46928 u=bill n=ansible | ansible-playbook [core 2.14.16]
+  config file = /home/bill/git/auto_cfg/ansible.cfg
+  configured module search path = ['/home/bill/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/bill/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible-playbook
+  python version = 3.11.2 (main, Sep 14 2024, 03:00:30) [GCC 12.2.0] (/usr/bin/python3)
+  jinja version = 3.1.2
+  libyaml = True
+2024-12-07 20:09:57,385 p=46928 u=bill n=ansible | Using /home/bill/git/auto_cfg/ansible.cfg as config file
+2024-12-07 20:09:57,388 p=46928 u=bill n=ansible | host_list declined parsing /home/bill/git/auto_cfg/inventories/inventory_development as it did not pass its verify_file() method
+2024-12-07 20:09:57,388 p=46928 u=bill n=ansible | script declined parsing /home/bill/git/auto_cfg/inventories/inventory_development as it did not pass its verify_file() method
+2024-12-07 20:09:57,389 p=46928 u=bill n=ansible | Parsed /home/bill/git/auto_cfg/inventories/inventory_development inventory source with ini plugin
+2024-12-07 20:09:57,459 p=46928 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:09:57,479 p=46928 u=bill n=ansible | redirecting (type: modules) ansible.builtin.dconf to community.general.dconf
+2024-12-07 20:09:57,501 p=46928 u=bill n=ansible | redirecting (type: modules) ansible.builtin.dconf to community.general.dconf
+2024-12-07 20:09:57,512 p=46928 u=bill n=ansible | Skipping callback 'default', as we already have a stdout callback.
+2024-12-07 20:09:57,513 p=46928 u=bill n=ansible | Skipping callback 'minimal', as we already have a stdout callback.
+2024-12-07 20:09:57,513 p=46928 u=bill n=ansible | Skipping callback 'oneline', as we already have a stdout callback.
+2024-12-07 20:09:57,513 p=46928 u=bill n=ansible | PLAYBOOK: local.yml ***********************************************************************************************************************************************************************
+2024-12-07 20:09:57,513 p=46928 u=bill n=ansible | 8 plays in local.yml
+2024-12-07 20:09:57,513 p=46928 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:09:57,514 p=46928 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:09:57,514 p=46928 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:09:57,515 p=46928 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 20:09:57,520 p=46928 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:09:57,520 p=46928 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:09:57,526 p=46928 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:09:57,674 p=46928 u=bill n=ansible | <test_desk> Attempting python interpreter discovery
+2024-12-07 20:09:57,674 p=46928 u=bill n=ansible | <192.168.86.101> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:09:57,674 p=46928 u=bill n=ansible | <192.168.86.101> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.101 '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'python3.11'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.10'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.9'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.8'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+2024-12-07 20:09:57,675 p=46928 u=bill n=ansible | <test_lxc> Attempting python interpreter discovery
+2024-12-07 20:09:57,675 p=46928 u=bill n=ansible | <192.168.86.67> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:09:57,675 p=46928 u=bill n=ansible | <192.168.86.67> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.67 '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'python3.11'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.10'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.9'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.8'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+2024-12-07 20:09:57,815 p=46928 u=bill n=ansible | <192.168.86.101> (255, b'', b'hal@192.168.86.101: Permission denied (publickey,password).\r\n')
+2024-12-07 20:09:57,816 p=46928 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: hal@192.168.86.101: Permission denied (publickey,password).
+
+2024-12-07 20:09:57,818 p=46928 u=bill n=ansible | Using module file /usr/lib/python3/dist-packages/ansible/modules/setup.py
+2024-12-07 20:09:57,818 p=46928 u=bill n=ansible | Pipelining is enabled.
+2024-12-07 20:09:57,818 p=46928 u=bill n=ansible | <192.168.86.101> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:09:57,818 p=46928 u=bill n=ansible | <192.168.86.101> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.101 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-biltslvjvpzwisufkmgrccygktdhbgga ; /usr/bin/python'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2024-12-07 20:09:57,863 p=46928 u=bill n=ansible | <192.168.86.67> (255, b'', b'hal@192.168.86.67: Permission denied (publickey,password).\r\n')
+2024-12-07 20:09:57,863 p=46928 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: Failed to connect to the host via ssh: hal@192.168.86.67: Permission denied (publickey,password).
+
+2024-12-07 20:09:57,863 p=46928 u=bill n=ansible | Using module file /usr/lib/python3/dist-packages/ansible/modules/setup.py
+2024-12-07 20:09:57,863 p=46928 u=bill n=ansible | Pipelining is enabled.
+2024-12-07 20:09:57,864 p=46928 u=bill n=ansible | <192.168.86.67> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:09:57,864 p=46928 u=bill n=ansible | <192.168.86.67> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.67 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-vwdmmjhntuvteuxheqoqyifrrulboqvk ; /usr/bin/python'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2024-12-07 20:09:57,960 p=46928 u=bill n=ansible | fatal: [test_desk]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.101\". Make sure this host can be reached over ssh: hal@192.168.86.101: Permission denied (publickey,password).\r\n",
+    "unreachable": true
+}
+2024-12-07 20:09:58,034 p=46928 u=bill n=ansible | fatal: [test_lxc]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.67\". Make sure this host can be reached over ssh: hal@192.168.86.67: Permission denied (publickey,password).\r\n",
+    "unreachable": true
+}
+2024-12-07 20:09:58,035 p=46928 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 20:09:58,035 p=46928 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:09:58,035 p=46928 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:21:15,673 p=1900 u=bill n=ansible | ansible-playbook [core 2.14.16]
+  config file = /home/bill/git/auto_cfg/ansible.cfg
+  configured module search path = ['/home/bill/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/bill/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible-playbook
+  python version = 3.11.2 (main, Sep 14 2024, 03:00:30) [GCC 12.2.0] (/usr/bin/python3)
+  jinja version = 3.1.2
+  libyaml = True
+2024-12-07 20:21:15,674 p=1900 u=bill n=ansible | Using /home/bill/git/auto_cfg/ansible.cfg as config file
+2024-12-07 20:21:15,682 p=1900 u=bill n=ansible | host_list declined parsing /home/bill/git/auto_cfg/inventories/inventory_development as it did not pass its verify_file() method
+2024-12-07 20:21:15,682 p=1900 u=bill n=ansible | script declined parsing /home/bill/git/auto_cfg/inventories/inventory_development as it did not pass its verify_file() method
+2024-12-07 20:21:15,685 p=1900 u=bill n=ansible | Parsed /home/bill/git/auto_cfg/inventories/inventory_development inventory source with ini plugin
+2024-12-07 20:21:15,827 p=1900 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:21:15,871 p=1900 u=bill n=ansible | redirecting (type: modules) ansible.builtin.dconf to community.general.dconf
+2024-12-07 20:21:15,899 p=1900 u=bill n=ansible | redirecting (type: modules) ansible.builtin.dconf to community.general.dconf
+2024-12-07 20:21:15,917 p=1900 u=bill n=ansible | Skipping callback 'default', as we already have a stdout callback.
+2024-12-07 20:21:15,917 p=1900 u=bill n=ansible | Skipping callback 'minimal', as we already have a stdout callback.
+2024-12-07 20:21:15,917 p=1900 u=bill n=ansible | Skipping callback 'oneline', as we already have a stdout callback.
+2024-12-07 20:21:15,917 p=1900 u=bill n=ansible | PLAYBOOK: local.yml ***********************************************************************************************************************************************************************
+2024-12-07 20:21:15,917 p=1900 u=bill n=ansible | 8 plays in local.yml
+2024-12-07 20:21:15,917 p=1900 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:21:15,918 p=1900 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:21:15,918 p=1900 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:21:15,918 p=1900 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 20:21:15,928 p=1900 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:21:15,928 p=1900 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:21:15,934 p=1900 u=bill n=ansible | Read vars_file 'group_vars/common.yml'
+2024-12-07 20:21:16,100 p=1900 u=bill n=ansible | <test_desk> Attempting python interpreter discovery
+2024-12-07 20:21:16,100 p=1900 u=bill n=ansible | <192.168.86.101> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:21:16,100 p=1900 u=bill n=ansible | <192.168.86.101> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.101 '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'python3.11'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.10'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.9'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.8'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+2024-12-07 20:21:16,101 p=1900 u=bill n=ansible | <test_lxc> Attempting python interpreter discovery
+2024-12-07 20:21:16,101 p=1900 u=bill n=ansible | <192.168.86.67> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:21:16,102 p=1900 u=bill n=ansible | <192.168.86.67> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.67 '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'python3.11'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.10'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.9'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.8'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+2024-12-07 20:21:16,242 p=1900 u=bill n=ansible | <192.168.86.101> (255, b'', b'hal@192.168.86.101: Permission denied (publickey,password).\r\n')
+2024-12-07 20:21:16,242 p=1900 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: hal@192.168.86.101: Permission denied (publickey,password).
+
+2024-12-07 20:21:16,247 p=1900 u=bill n=ansible | Using module file /usr/lib/python3/dist-packages/ansible/modules/setup.py
+2024-12-07 20:21:16,247 p=1900 u=bill n=ansible | Pipelining is enabled.
+2024-12-07 20:21:16,248 p=1900 u=bill n=ansible | <192.168.86.101> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:21:16,248 p=1900 u=bill n=ansible | <192.168.86.101> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.101 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-iivzzzflrgftscavkcyffgifghyjduny ; /usr/bin/python'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2024-12-07 20:21:16,278 p=1900 u=bill n=ansible | <192.168.86.67> (255, b'', b'hal@192.168.86.67: Permission denied (publickey,password).\r\n')
+2024-12-07 20:21:16,279 p=1900 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: Failed to connect to the host via ssh: hal@192.168.86.67: Permission denied (publickey,password).
+
+2024-12-07 20:21:16,279 p=1900 u=bill n=ansible | Using module file /usr/lib/python3/dist-packages/ansible/modules/setup.py
+2024-12-07 20:21:16,279 p=1900 u=bill n=ansible | Pipelining is enabled.
+2024-12-07 20:21:16,279 p=1900 u=bill n=ansible | <192.168.86.67> ESTABLISH SSH CONNECTION FOR USER: hal
+2024-12-07 20:21:16,279 p=1900 u=bill n=ansible | <192.168.86.67> SSH: EXEC ssh -o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o 'IdentityFile="/home/bill/.ssh/bill"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="hal"' -o ConnectTimeout=10 -o 'ControlPath="/home/bill/.ansible/cp/%h-%r"' 192.168.86.67 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-eilgfyporohqiekhnvblsdagldrqakta ; /usr/bin/python'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2024-12-07 20:21:16,391 p=1900 u=bill n=ansible | fatal: [test_desk]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.101\". Make sure this host can be reached over ssh: hal@192.168.86.101: Permission denied (publickey,password).\r\n",
+    "unreachable": true
+}
+2024-12-07 20:21:16,456 p=1900 u=bill n=ansible | fatal: [test_lxc]: UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.67\". Make sure this host can be reached over ssh: hal@192.168.86.67: Permission denied (publickey,password).\r\n",
+    "unreachable": true
+}
+2024-12-07 20:21:16,457 p=1900 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 20:21:16,457 p=1900 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:21:16,457 p=1900 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:40:37,961 p=2114 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 20:40:37,966 p=2114 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:40:38,256 p=2114 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: Failed to connect to the host via ssh: hal@192.168.86.101: Permission denied (publickey,password).
+
+2024-12-07 20:40:38,288 p=2114 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: Failed to connect to the host via ssh: hal@192.168.86.67: Permission denied (publickey,password).
+
+2024-12-07 20:40:38,409 p=2114 u=bill n=ansible | fatal: [test_desk]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.101\". Make sure this host can be reached over ssh: hal@192.168.86.101: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 20:40:38,461 p=2114 u=bill n=ansible | fatal: [test_lxc]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.67\". Make sure this host can be reached over ssh: hal@192.168.86.67: Permission denied (publickey,password).\r\n", "unreachable": true}
+2024-12-07 20:40:38,462 p=2114 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 20:40:38,462 p=2114 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:40:38,462 p=2114 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:42:53,340 p=2169 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml as an inventory source
+
+2024-12-07 20:42:53,340 p=2169 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-07 20:42:53,342 p=2169 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-07 20:42:53,460 p=2169 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 20:42:53,460 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,460 p=2169 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 20:42:53,460 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,460 p=2169 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-07 20:42:53,460 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,461 p=2169 u=bill n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: workstations
+
+2024-12-07 20:42:53,461 p=2169 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-07 20:42:53,461 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,461 p=2169 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-07 20:42:53,461 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,461 p=2169 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-07 20:42:53,461 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,462 p=2169 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-07 20:42:53,462 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,462 p=2169 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 20:42:53,462 p=2169 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 20:42:53,462 p=2169 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 20:43:25,016 p=2230 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 20:43:25,021 p=2230 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:43:25,994 p=2230 u=bill n=ansible | ok: [test_desk]
+2024-12-07 20:43:26,090 p=2230 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 20:43:26,112 p=2230 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-07 20:43:26,773 p=2230 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-07 20:43:26,823 p=2230 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-07 20:43:27,373 p=2230 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-07 20:43:27,461 p=2230 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-07 20:43:27,976 p=2230 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-07 20:43:28,077 p=2230 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-07 20:43:28,591 p=2230 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 20:43:28,717 p=2230 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 20:43:28,765 p=2230 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 20:43:28,771 p=2230 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:43:29,316 p=2230 u=bill n=ansible | ok: [test_desk]
+2024-12-07 20:43:29,364 p=2230 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 20:43:29,385 p=2230 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-07 20:43:29,413 p=2230 u=bill n=ansible | skipping: [test_lxc]
+2024-12-07 20:43:29,420 p=2230 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-07 20:43:29,422 p=2230 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-07 20:43:29,425 p=2230 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-07 20:43:29,427 p=2230 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-07 20:43:29,429 p=2230 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-07 20:43:29,430 p=2230 u=bill n=ansible | skipping: [test_desk]
+2024-12-07 20:43:29,435 p=2230 u=bill n=ansible | TASK [group_specific : Ensure custom_groups are present] **********************************************************************************************************************************
+2024-12-07 20:43:29,646 p=2230 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 20:43:29,670 p=2230 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 20:43:29,804 p=2230 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 20:43:29,811 p=2230 u=bill n=ansible | TASK [group_specific : Ensure all required groups are present] ****************************************************************************************************************************
+2024-12-07 20:43:29,967 p=2230 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 20:43:29,976 p=2230 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 20:43:30,084 p=2230 u=bill n=ansible | ok: [test_lxc] => (item= admin)
+2024-12-07 20:43:30,115 p=2230 u=bill n=ansible | ok: [test_desk] => (item= admin)
+2024-12-07 20:43:30,205 p=2230 u=bill n=ansible | ok: [test_lxc] => (item= docs)
+2024-12-07 20:43:30,251 p=2230 u=bill n=ansible | ok: [test_desk] => (item= git)
+2024-12-07 20:43:30,322 p=2230 u=bill n=ansible | ok: [test_lxc] => (item= non-login)
+2024-12-07 20:43:30,387 p=2230 u=bill n=ansible | ok: [test_desk] => (item= media)
+2024-12-07 20:43:30,522 p=2230 u=bill n=ansible | ok: [test_desk] => (item= docs)
+2024-12-07 20:43:30,654 p=2230 u=bill n=ansible | ok: [test_desk] => (item= non-login)
+2024-12-07 20:43:30,659 p=2230 u=bill n=ansible | TASK [group_specific : Add user to groups] ************************************************************************************************************************************************
+2024-12-07 20:43:30,944 p=2230 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'bill', 'groups': 'sudo, admin, docs', 'state': 'present'})
+2024-12-07 20:43:30,971 p=2230 u=bill n=ansible | ok: [test_desk] => (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'})
+2024-12-07 20:43:31,096 p=2230 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'hal', 'groups': 'sudo, non-login, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'})
+2024-12-07 20:43:31,151 p=2230 u=bill n=ansible | ok: [test_desk] => (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'})
+2024-12-07 20:43:31,326 p=2230 u=bill n=ansible | ok: [test_desk] => (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'})
+2024-12-07 20:43:31,499 p=2230 u=bill n=ansible | ok: [test_desk] => (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'})
+2024-12-07 20:43:31,544 p=2230 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-07 20:43:31,549 p=2230 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:43:32,076 p=2230 u=bill n=ansible | ok: [test_desk]
+2024-12-07 20:43:32,130 p=2230 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 20:43:32,152 p=2230 u=bill n=ansible | TASK [manage_lxc : Clean up old NFS and CIFS entries in fstab] ****************************************************************************************************************************
+2024-12-07 20:43:32,358 p=2230 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 20:43:32,380 p=2230 u=bill n=ansible | ok: [test_desk]
+2024-12-07 20:43:32,387 p=2230 u=bill n=ansible | TASK [manage_lxc : Gather LXC container facts] ********************************************************************************************************************************************
+2024-12-07 20:43:32,597 p=2230 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"changed": false, "cmd": "lxc-ls --fancy", "msg": "[Errno 2] No such file or directory: b'lxc-ls'", "rc": 2, "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+2024-12-07 20:43:32,611 p=2230 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"changed": false, "cmd": "lxc-ls --fancy", "msg": "[Errno 2] No such file or directory: b'lxc-ls'", "rc": 2, "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+2024-12-07 20:43:32,612 p=2230 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 20:43:32,612 p=2230 u=bill n=ansible | test_desk                  : ok=8    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 20:43:32,612 p=2230 u=bill n=ansible | test_lxc                   : ok=8    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 20:52:56,819 p=2506 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 20:52:56,824 p=2506 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:52:57,783 p=2506 u=bill n=ansible | ok: [test_desk]
+2024-12-07 20:52:57,887 p=2506 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 20:52:57,908 p=2506 u=bill n=ansible | TASK [manage_users : Ensure groups are present] *******************************************************************************************************************************************
+2024-12-07 20:52:57,918 p=2506 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-07 20:52:57,922 p=2506 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"msg": "Invalid data passed to 'loop', it requires a list, got this instead: {'all': ['test_desk', 'test_lxc'], 'ungrouped': [], 'workstations': ['test_desk'], 'docs': ['test_lxc']}. Hint: If you passed a list/dict of just one element, try adding wantlist=True to your lookup invocation or use q/query instead of lookup."}
+2024-12-07 20:52:57,923 p=2506 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 20:52:57,923 p=2506 u=bill n=ansible | test_desk                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:52:57,923 p=2506 u=bill n=ansible | test_lxc                   : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:58:11,273 p=2654 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 20:58:11,278 p=2654 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 20:58:12,236 p=2654 u=bill n=ansible | ok: [test_desk]
+2024-12-07 20:58:12,344 p=2654 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 20:58:12,365 p=2654 u=bill n=ansible | TASK [manage_users : Ensure groups are present] *******************************************************************************************************************************************
+2024-12-07 20:58:12,562 p=2654 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 20:58:12,584 p=2654 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 20:58:12,719 p=2654 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 20:58:12,725 p=2654 u=bill n=ansible | TASK [manage_users : Ensure users are present] ********************************************************************************************************************************************
+2024-12-07 20:58:13,006 p=2654 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, admin, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 20:58:13,033 p=2654 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 20:58:13,208 p=2654 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, non-login, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 20:58:13,262 p=2654 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 20:58:13,437 p=2654 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group  does not exist"}
+2024-12-07 20:58:13,612 p=2654 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "loretta", "state": "present", "uid": 1003}, "msg": "Group  does not exist"}
+2024-12-07 20:58:13,614 p=2654 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 20:58:13,614 p=2654 u=bill n=ansible | test_desk                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 20:58:13,614 p=2654 u=bill n=ansible | test_lxc                   : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:02:39,967 p=2785 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 21:02:39,972 p=2785 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 21:02:40,937 p=2785 u=bill n=ansible | ok: [test_desk]
+2024-12-07 21:02:41,039 p=2785 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 21:02:41,059 p=2785 u=bill n=ansible | TASK [manage_users : Ensure groups are present] *******************************************************************************************************************************************
+2024-12-07 21:02:41,259 p=2785 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:02:41,275 p=2785 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 21:02:41,410 p=2785 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:02:41,416 p=2785 u=bill n=ansible | TASK [manage_users : Ensure users are present] ********************************************************************************************************************************************
+2024-12-07 21:02:41,699 p=2785 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:02:41,726 p=2785 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:02:41,851 p=2785 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, docs', 'shell': '/bin/bash', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "hal", "shell": "/bin/bash", "state": "present"}, "msg": "Group o does not exist"}
+2024-12-07 21:02:41,902 p=2785 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:02:42,080 p=2785 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group  does not exist"}
+2024-12-07 21:02:42,260 p=2785 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "loretta", "state": "present", "uid": 1003}, "msg": "Group  does not exist"}
+2024-12-07 21:02:42,262 p=2785 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 21:02:42,262 p=2785 u=bill n=ansible | test_desk                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:02:42,262 p=2785 u=bill n=ansible | test_lxc                   : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:04:47,725 p=2916 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 21:04:47,730 p=2916 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 21:04:48,740 p=2916 u=bill n=ansible | ok: [test_desk]
+2024-12-07 21:04:48,825 p=2916 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 21:04:48,846 p=2916 u=bill n=ansible | TASK [manage_users : Ensure groups are present] *******************************************************************************************************************************************
+2024-12-07 21:04:49,059 p=2916 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:04:49,084 p=2916 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 21:04:49,216 p=2916 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:04:49,222 p=2916 u=bill n=ansible | TASK [manage_users : Ensure users are present] ********************************************************************************************************************************************
+2024-12-07 21:04:49,504 p=2916 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "bill", "state": "present"}, "msg": "Group u does not exist"}
+2024-12-07 21:04:49,533 p=2916 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group s does not exist"}
+2024-12-07 21:04:49,654 p=2916 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, docs', 'shell': '/bin/bash', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "hal", "shell": "/bin/bash", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:04:49,715 p=2916 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:04:49,890 p=2916 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group  does not exist"}
+2024-12-07 21:04:50,066 p=2916 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "loretta", "state": "present", "uid": 1003}, "msg": "Group  does not exist"}
+2024-12-07 21:04:50,068 p=2916 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 21:04:50,068 p=2916 u=bill n=ansible | test_desk                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:04:50,068 p=2916 u=bill n=ansible | test_lxc                   : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:07:23,133 p=3053 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 21:07:23,138 p=3053 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 21:07:24,100 p=3053 u=bill n=ansible | ok: [test_desk]
+2024-12-07 21:07:24,176 p=3053 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 21:07:24,214 p=3053 u=bill n=ansible | TASK [manage_users : Ensure groups are present] *******************************************************************************************************************************************
+2024-12-07 21:07:24,409 p=3053 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:07:24,434 p=3053 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 21:07:24,568 p=3053 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:07:24,574 p=3053 u=bill n=ansible | TASK [manage_users : Ensure users are present] ********************************************************************************************************************************************
+2024-12-07 21:07:24,855 p=3053 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:07:24,884 p=3053 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:07:25,011 p=3053 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, docs', 'shell': '/bin/bash', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "hal", "shell": "/bin/bash", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:07:25,064 p=3053 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:07:25,241 p=3053 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group u does not exist"}
+2024-12-07 21:07:25,423 p=3053 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "loretta", "state": "present", "uid": 1003}, "msg": "Group  does not exist"}
+2024-12-07 21:07:25,425 p=3053 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 21:07:25,425 p=3053 u=bill n=ansible | test_desk                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:07:25,425 p=3053 u=bill n=ansible | test_lxc                   : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:10:22,402 p=3175 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 21:10:22,407 p=3175 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 21:10:23,374 p=3175 u=bill n=ansible | ok: [test_desk]
+2024-12-07 21:10:23,443 p=3175 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 21:10:23,481 p=3175 u=bill n=ansible | TASK [manage_users : Ensure groups are present] *******************************************************************************************************************************************
+2024-12-07 21:10:23,674 p=3175 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:10:23,695 p=3175 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 21:10:23,831 p=3175 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:10:23,836 p=3175 u=bill n=ansible | TASK [manage_users : Ensure users are present] ********************************************************************************************************************************************
+2024-12-07 21:10:24,117 p=3175 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:10:24,143 p=3175 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:10:24,268 p=3175 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, docs', 'shell': '/bin/bash', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "hal", "shell": "/bin/bash", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:10:24,327 p=3175 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:10:24,503 p=3175 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group  does not exist"}
+2024-12-07 21:10:24,682 p=3175 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "loretta", "state": "present", "uid": 1003}, "msg": "Group  does not exist"}
+2024-12-07 21:10:24,683 p=3175 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 21:10:24,683 p=3175 u=bill n=ansible | test_desk                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:10:24,683 p=3175 u=bill n=ansible | test_lxc                   : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:11:37,358 p=3301 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 21:11:37,363 p=3301 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 21:11:38,321 p=3301 u=bill n=ansible | ok: [test_desk]
+2024-12-07 21:11:38,457 p=3301 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 21:11:38,479 p=3301 u=bill n=ansible | TASK [manage_users : Ensure groups are present] *******************************************************************************************************************************************
+2024-12-07 21:11:38,675 p=3301 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:11:38,692 p=3301 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 21:11:38,827 p=3301 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 21:11:38,833 p=3301 u=bill n=ansible | TASK [manage_users : Ensure users are present] ********************************************************************************************************************************************
+2024-12-07 21:11:39,117 p=3301 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:11:39,146 p=3301 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:11:39,301 p=3301 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, docs', 'shell': '/bin/bash', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, docs", "name": "hal", "shell": "/bin/bash", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:11:39,355 p=3301 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 21:11:39,531 p=3301 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group  does not exist"}
+2024-12-07 21:11:39,705 p=3301 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "loretta", "state": "present", "uid": 1003}, "msg": "Group  does not exist"}
+2024-12-07 21:11:39,707 p=3301 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 21:11:39,707 p=3301 u=bill n=ansible | test_desk                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 21:11:39,707 p=3301 u=bill n=ansible | test_lxc                   : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   

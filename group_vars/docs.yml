@@ -5,11 +5,11 @@ custom_groups:
 
 users:
   - name: bill
-    groups: sudo, admin, docs
+    groups: sudo, docs
     state: present
   - name: hal
-    groups: sudo, non-login, docs
-    shell: /usr/sbin/nologin
+    groups: sudo, docs
+    shell: /bin/bash
     state: present
 
 mount_points:

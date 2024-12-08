@@ -9,10 +9,10 @@ dynamic_container_ids: ["101", "102", "103"] # Adjust as needed
       
 users:
   - name: bill
-    groups: media, sudo, admin
+    groups: media, sudo
     state: present
     
   - name: hal
-    groups: sudo, non-login, media
-    shell: /usr/sbin/nologin
+    groups: sudo, media
+    shell: /bin/bash
     state: present

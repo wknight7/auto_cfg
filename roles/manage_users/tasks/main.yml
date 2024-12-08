@@ -3,8 +3,8 @@
   group:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
-  loop: "{{ groups }}"
-  when: groups is defined
+  loop: "{{ custom_groups }}"
+  when: custom_groups is defined
 
 - name: Ensure users are present
   user:

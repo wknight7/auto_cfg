@@ -5,15 +5,11 @@ users:
     state: present
   - name: hal
     uid: 101
-    groups: sudo, non-login
-    shell: /usr/sbin/nologin
+    groups: sudo
+    shell: /bin/bash
     state: present
 
 ansible_user: hal
-
-groups:
-  - name: sudo
-    state: present
 
 common_packages:
   - curl
