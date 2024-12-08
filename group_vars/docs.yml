@@ -5,10 +5,10 @@ custom_groups:
 
 users:
   - name: bill
-    groups: sudo, docs
+    groups: ['sudo', 'docs']
     state: present
   - name: hal
-    groups: sudo, docs
+    groups: ['sudo', 'docs']
     shell: /bin/bash
     state: present
 

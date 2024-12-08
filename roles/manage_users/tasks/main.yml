@@ -2,6 +2,7 @@
 - name: Ensure groups are present
   group:
     name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
     state: "{{ item.state | default('present') }}"
   loop: "{{ custom_groups }}"
   when: custom_groups is defined
@@ -10,7 +11,7 @@
   user:
     name: "{{ item.name }}"
     uid: "{{ item.uid | default(omit) }}"
-    groups: "{{ item.custom_groups | join(',') }}"
+    groups: "{{ item.groups | join(',') }}"
     shell: "{{ item.shell | default('/bin/bash') }}"
     state: "{{ item.state | default('present') }}"
   loop: "{{ users }}"

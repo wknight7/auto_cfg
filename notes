@@ -1,3 +1,5 @@
+this is the current state of roles/manage_fstab/tasks/main.yml, if you can please add the needed changes:  
+
 ---
 - name: Backup existing fstab
   copy:
@@ -30,14 +32,4 @@
       {{ mount.server }}:{{ mount.remote_path }} {{ mount.path }} nfs defaults 0 0
       {% endfor %}
       # End managed fstab entries
-  when: fstab_entries is defined
-
-- name: Reload systemd daemon
-  command: systemctl daemon-reload
-  become: true
-  when: fstab_entries is defined
-
-- name: Remount all filesystems
-  command: mount -a
-  become: true
   when: fstab_entries is defined

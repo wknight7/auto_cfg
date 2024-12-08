@@ -6,19 +6,29 @@
     regex: '^\s*192\.168\.86\.90:.*\s+(nfs|cifs)\s+.*'
     backup: yes
 
-- name: Gather LXC container facts
-  command: lxc-ls --fancy
-  register: lxc_containers
+- name: Install LXC tools
+  apt:
+    name: lxc
+    state: present
+  become: true
+
+- name: Gather LXC container IDs
+  command: lxc-ls --fancy --fancy-format name
+  register: lxc_container_ids
+
+- name: Set fact for container IDs
+  set_fact:
+    dynamic_container_ids: "{{ lxc_container_ids.stdout_lines }}"
 
 - name: Ensure mountpoints are appended to LXC containers
   block:
     - name: Append mountpoints
       lineinfile:
-        path: "/etc/pve/lxc/{{ item.container_id }}.conf"
-        line: "{{ item.mount_point }}"
+        path: "/etc/pve/lxc/{{ item }}.conf"
+        line: "{{ mount_points | selectattr('container_id', 'equalto', item) | map(attribute='mount_point') | list | join('\n') }}"
         state: present
-      loop: "{{ mount_points }}"
-      when: mount_points is defined
+      loop: "{{ dynamic_container_ids }}"
+      when: dynamic_container_ids is defined
 
 - name: Clean up old NFS and CIFS entries in fstab
   lineinfile:
@@ -27,3 +37,4 @@
     regex: '^\s*192\.168\.86\.90:.*\s+(nfs|cifs)\s+.*'
     backup: yes
   when: fstab_entries is defined
+

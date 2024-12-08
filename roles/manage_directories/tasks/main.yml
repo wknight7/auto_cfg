@@ -3,12 +3,18 @@
   file:
     path: "{{ item }}"
     state: directory
-  loop: "{{ ensure_directories | default([]) }}"
+  loop: "{{ ensure_directories }}"
   when: ensure_directories is defined
+
+- name: Unmount directories before removal
+  shell: "umount -l {{ item }} || true"
+  ignore_errors: yes
+  loop: "{{ remove_directories }}"
+  when: remove_directories is defined
 
 - name: Remove unnecessary directories
   file:
     path: "{{ item }}"
     state: absent
-  loop: "{{ remove_directories | default([]) }}"
+  loop: "{{ remove_directories }}"
   when: remove_directories is defined

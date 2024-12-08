@@ -1,4 +1,9 @@
 ---
+- name: Ensure Python `psutil` library is installed
+  apt:
+    name: python3-psutil
+    state: present
+
 - name: Copy wallpaper file
   copy:
     src: files/deep_space_wallpaper.avif

@@ -1,18 +1,18 @@
 users:
   - name: bill
-    groups: sudo, media, docs
+    groups: ['sudo', 'media', 'docs']
     state: present
   - name: hal
-    groups: sudo, media, docs
+    groups: ['sudo', 'media', 'docs']
     shell: /bin/bash
     state: present
   - name: lily
     uid: 1002
-    groups: sudo, media, docs
+    groups: ['sudo', 'media', 'docs']
     state: present
   - name: loretta
     uid: 1003
-    groups: sudo, media, docs
+    groups: ['sudo', 'media', 'docs']
     state: present
 
 custom_groups:
@@ -24,10 +24,11 @@ custom_groups:
     state: present
 
 
+
 fstab_entries:
   mounts:
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/docs", path: "/mnt/docs" }
-    - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/media" }
+    - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/home/bill/Media" }
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Code", path: "/home/bill/Code" }
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Configs", path: "/home/bill/Configs" }
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Documents", path: "/home/bill/Documents" }
