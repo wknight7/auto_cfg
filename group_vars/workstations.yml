@@ -10,15 +10,12 @@ users:
     uid: 1002
     groups: sudo, media, docs
     state: present
-  - name: loretta, media, docs
+  - name: loretta
     uid: 1003
-    groups: sudo
+    groups: sudo, media, docs
     state: present
 
 custom_groups:
-  - name: git
-    gid: 2013
-    state: present
   - name: media
     gid: 1776
     state: present

@@ -1,0 +1,24 @@
+users:
+  bill:
+    uid: 1000
+    groups:  ['sudo', 'admin']
+    state: present
+  hal:
+    uid: 101
+    groups: ['sudo', 'non-login']
+    shell: /usr/sbin/nologin
+    state: present
+  lily:
+    uid: 1002    
+    state: present
+  loretta:
+    uid: 1003    
+    state: present
+
+groups:
+  docs:
+    gid: 1787
+    state: present
+  media:
+    gid: 1776
+    state: present

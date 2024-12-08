@@ -1,9 +1,6 @@
-custom_groups: 
-  - name: docs 
-    gid: 1787 
-    state: present
-  - name: bill
-    gid: 1000
+custom_groups:
+  - name: docs
+    gid: 1787
     state: present
 
 users:

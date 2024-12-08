@@ -8,20 +8,28 @@
     - ensure_directories is defined
     - inventory_hostname not in groups['workstations']
 
-- name: Debug groups variable
-  debug:
-    var: groups
-
-- name: Ensure groups are present
+- name: Ensure custom_groups are present
   group:
-    name: "{{ item }}"
-    state: present
+    name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
+    state: "{{ item.state }}"
   loop: "{{ custom_groups }}"
-  when: groups is defined
+  when: custom_groups is defined
+
+- name: Ensure all required groups are present
+  group:
+    name: "{{ item | trim }}"
+    state: present
+  loop: "{{ users | map(attribute='groups') | join(',') | split(',') | unique }}"
+  when: users is defined
 
 - name: Add user to groups
   user:
-    name: "{{ users }}"
-    groups: "{{ item.groups | join(',') }}"
+    name: "{{ item.name }}"
+    uid: "{{ item.uid | default(omit) }}"
+    groups: "{{ item.groups.split(', ') | map('trim') | join(',') }}"
+    shell: "{{ item.shell | default(omit) }}"
+    state: "{{ item.state }}"
   loop: "{{ users }}"
   when: users is defined
+

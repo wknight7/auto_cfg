@@ -2153,3 +2153,355 @@ file.
 2024-12-07 11:14:27,461 p=37359 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
 2024-12-07 11:14:27,462 p=37359 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
 2024-12-07 11:14:27,462 p=37359 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 11:40:37,119 p=37891 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 11:40:37,125 p=37891 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 11:40:38,231 p=37891 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 11:40:38,320 p=37891 u=bill n=ansible | ok: [test_desk]
+2024-12-07 11:40:38,344 p=37891 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-07 11:40:39,001 p=37891 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-07 11:40:39,042 p=37891 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-07 11:40:39,634 p=37891 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-07 11:40:39,654 p=37891 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-07 11:40:40,226 p=37891 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-07 11:40:40,265 p=37891 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-07 11:40:40,816 p=37891 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 11:40:40,890 p=37891 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 11:40:40,939 p=37891 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 11:40:40,945 p=37891 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 11:40:41,491 p=37891 u=bill n=ansible | ok: [test_desk]
+2024-12-07 11:40:41,535 p=37891 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 11:40:41,556 p=37891 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-07 11:40:41,614 p=37891 u=bill n=ansible | skipping: [test_lxc]
+2024-12-07 11:40:41,616 p=37891 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-07 11:40:41,617 p=37891 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-07 11:40:41,617 p=37891 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-07 11:40:41,620 p=37891 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-07 11:40:41,621 p=37891 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-07 11:40:41,622 p=37891 u=bill n=ansible | skipping: [test_desk]
+2024-12-07 11:40:41,627 p=37891 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-07 11:40:41,646 p=37891 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-07 11:40:41,646 p=37891 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-07 11:40:41,651 p=37891 u=bill n=ansible | TASK [group_specific : Ensure groups are present] *****************************************************************************************************************************************
+2024-12-07 11:40:41,833 p=37891 u=bill n=ansible | ok: [test_lxc] => (item=docs)
+2024-12-07 11:40:41,857 p=37891 u=bill n=ansible | ok: [test_desk] => (item=media)
+2024-12-07 11:40:41,993 p=37891 u=bill n=ansible | ok: [test_desk] => (item=docs)
+2024-12-07 11:40:41,998 p=37891 u=bill n=ansible | TASK [group_specific : Add user to groups] ************************************************************************************************************************************************
+2024-12-07 11:40:42,273 p=37891 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, admin, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 11:40:42,300 p=37891 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 11:40:42,420 p=37891 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, non-login, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 11:40:42,473 p=37891 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 11:40:42,642 p=37891 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group  does not exist"}
+2024-12-07 11:40:42,813 p=37891 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta, media, docs', 'uid': 1003, 'groups': 'sudo', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo", "name": "loretta, media, docs", "state": "present", "uid": 1003}, "msg": "Group d does not exist"}
+2024-12-07 11:40:42,814 p=37891 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 11:40:42,814 p=37891 u=bill n=ansible | test_desk                  : ok=5    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 11:40:42,815 p=37891 u=bill n=ansible | test_lxc                   : ok=5    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:08:49,016 p=38389 u=bill n=ansible | [WARNING]: Unable to parse /home/bill/git/auto_cfg/inventories/inventory_development.yml as an inventory source
+
+2024-12-07 12:08:49,016 p=38389 u=bill n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2024-12-07 12:08:49,018 p=38389 u=bill n=ansible | [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2024-12-07 12:08:49,148 p=38389 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 12:08:49,148 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,149 p=38389 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 12:08:49,149 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,149 p=38389 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-07 12:08:49,149 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,149 p=38389 u=bill n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: workstations
+
+2024-12-07 12:08:49,150 p=38389 u=bill n=ansible | PLAY [Manage directories on workstations] *************************************************************************************************************************************************
+2024-12-07 12:08:49,150 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,150 p=38389 u=bill n=ansible | PLAY [Manage wallpaper on workstations] ***************************************************************************************************************************************************
+2024-12-07 12:08:49,150 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,150 p=38389 u=bill n=ansible | PLAY [Install software on workstations] ***************************************************************************************************************************************************
+2024-12-07 12:08:49,150 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,150 p=38389 u=bill n=ansible | PLAY [Manage fstab entries] ***************************************************************************************************************************************************************
+2024-12-07 12:08:49,151 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,151 p=38389 u=bill n=ansible | PLAY [Manage users and groups] ************************************************************************************************************************************************************
+2024-12-07 12:08:49,151 p=38389 u=bill n=ansible | skipping: no hosts matched
+2024-12-07 12:08:49,151 p=38389 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 12:09:23,509 p=38434 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 12:09:23,514 p=38434 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:09:24,591 p=38434 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:09:24,711 p=38434 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:09:24,733 p=38434 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-07 12:09:25,411 p=38434 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-07 12:09:25,419 p=38434 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-07 12:09:25,991 p=38434 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-07 12:09:26,034 p=38434 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-07 12:09:26,584 p=38434 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-07 12:09:26,644 p=38434 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-07 12:09:27,177 p=38434 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 12:09:27,264 p=38434 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 12:09:27,311 p=38434 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 12:09:27,317 p=38434 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:09:27,861 p=38434 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:09:27,911 p=38434 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:09:27,933 p=38434 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-07 12:09:27,991 p=38434 u=bill n=ansible | skipping: [test_lxc]
+2024-12-07 12:09:27,993 p=38434 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-07 12:09:27,993 p=38434 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-07 12:09:27,994 p=38434 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-07 12:09:27,994 p=38434 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-07 12:09:27,996 p=38434 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-07 12:09:27,997 p=38434 u=bill n=ansible | skipping: [test_desk]
+2024-12-07 12:09:28,003 p=38434 u=bill n=ansible | TASK [group_specific : Debug groups variable] *********************************************************************************************************************************************
+2024-12-07 12:09:28,014 p=38434 u=bill n=ansible | ok: [test_desk] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-07 12:09:28,020 p=38434 u=bill n=ansible | ok: [test_lxc] => {
+    "groups": {
+        "all": [
+            "test_desk",
+            "test_lxc"
+        ],
+        "docs": [
+            "test_lxc"
+        ],
+        "ungrouped": [],
+        "workstations": [
+            "test_desk"
+        ]
+    }
+}
+2024-12-07 12:09:28,025 p=38434 u=bill n=ansible | TASK [group_specific : Ensure custom_groups are present] **********************************************************************************************************************************
+2024-12-07 12:09:28,035 p=38434 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'str object' has no attribute 'key'. 'str object' has no attribute 'key'\n\nThe error appears to be in '/home/bill/git/auto_cfg/roles/group_specific/tasks/main.yml': line 15, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Ensure custom_groups are present\n  ^ here\n"}
+2024-12-07 12:09:28,040 p=38434 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'str object' has no attribute 'key'. 'str object' has no attribute 'key'\n\nThe error appears to be in '/home/bill/git/auto_cfg/roles/group_specific/tasks/main.yml': line 15, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Ensure custom_groups are present\n  ^ here\n"}
+2024-12-07 12:09:28,041 p=38434 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 12:09:28,041 p=38434 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:09:28,041 p=38434 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:15:39,170 p=38629 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 12:15:39,175 p=38629 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:15:40,233 p=38629 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:15:40,344 p=38629 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:15:40,367 p=38629 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-07 12:15:41,048 p=38629 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-07 12:15:41,062 p=38629 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-07 12:15:41,652 p=38629 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-07 12:15:41,670 p=38629 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-07 12:15:42,256 p=38629 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-07 12:15:42,256 p=38629 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-07 12:15:42,954 p=38629 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 12:15:42,959 p=38629 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 12:15:43,006 p=38629 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 12:15:43,011 p=38629 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:15:43,549 p=38629 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:15:43,597 p=38629 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:15:43,640 p=38629 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-07 12:15:43,667 p=38629 u=bill n=ansible | skipping: [test_lxc]
+2024-12-07 12:15:43,668 p=38629 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-07 12:15:43,670 p=38629 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-07 12:15:43,673 p=38629 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-07 12:15:43,677 p=38629 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-07 12:15:43,679 p=38629 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-07 12:15:43,680 p=38629 u=bill n=ansible | skipping: [test_desk]
+2024-12-07 12:15:43,685 p=38629 u=bill n=ansible | TASK [group_specific : Ensure custom_groups are present] **********************************************************************************************************************************
+2024-12-07 12:15:43,870 p=38629 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:15:43,891 p=38629 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 12:15:44,026 p=38629 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:15:44,031 p=38629 u=bill n=ansible | TASK [group_specific : Add user to groups] ************************************************************************************************************************************************
+2024-12-07 12:15:44,310 p=38629 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, admin, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, docs", "name": "bill", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 12:15:44,337 p=38629 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group s does not exist"}
+2024-12-07 12:15:44,464 p=38629 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, non-login, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 12:15:44,515 p=38629 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group  does not exist"}
+2024-12-07 12:15:44,690 p=38629 u=bill n=ansible | failed: [test_desk] (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, media, docs", "name": "lily", "state": "present", "uid": 1002}, "msg": "Group  does not exist"}
+2024-12-07 12:15:44,860 p=38629 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta, media, docs', 'uid': 1003, 'groups': 'sudo', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo", "name": "loretta, media, docs", "state": "present", "uid": 1003}, "msg": "Group o does not exist"}
+2024-12-07 12:15:44,861 p=38629 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 12:15:44,861 p=38629 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:15:44,861 p=38629 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:22:59,781 p=38904 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 12:22:59,786 p=38904 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:23:00,851 p=38904 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:23:00,962 p=38904 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:23:00,985 p=38904 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-07 12:23:01,658 p=38904 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-07 12:23:01,667 p=38904 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-07 12:23:02,285 p=38904 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-07 12:23:02,296 p=38904 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-07 12:23:02,863 p=38904 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-07 12:23:02,909 p=38904 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-07 12:23:03,441 p=38904 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 12:23:03,519 p=38904 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 12:23:03,566 p=38904 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 12:23:03,572 p=38904 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:23:04,110 p=38904 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:23:04,158 p=38904 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:23:04,179 p=38904 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-07 12:23:04,232 p=38904 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-07 12:23:04,232 p=38904 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-07 12:23:04,233 p=38904 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-07 12:23:04,233 p=38904 u=bill n=ansible | skipping: [test_lxc]
+2024-12-07 12:23:04,235 p=38904 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-07 12:23:04,235 p=38904 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-07 12:23:04,236 p=38904 u=bill n=ansible | skipping: [test_desk]
+2024-12-07 12:23:04,242 p=38904 u=bill n=ansible | TASK [group_specific : Ensure custom_groups are present] **********************************************************************************************************************************
+2024-12-07 12:23:04,428 p=38904 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:23:04,453 p=38904 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 12:23:04,587 p=38904 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:23:04,593 p=38904 u=bill n=ansible | TASK [group_specific : Add user to groups] ************************************************************************************************************************************************
+2024-12-07 12:23:04,873 p=38904 u=bill n=ansible | failed: [test_lxc] (item={'name': 'bill', 'groups': 'sudo, admin, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, docs", "name": "bill", "state": "present"}, "msg": "Group admin does not exist"}
+2024-12-07 12:23:04,902 p=38904 u=bill n=ansible | failed: [test_desk] (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, admin, git, media, docs", "name": "bill", "state": "present"}, "msg": "Group git does not exist"}
+2024-12-07 12:23:05,026 p=38904 u=bill n=ansible | failed: [test_lxc] (item={'name': 'hal', 'groups': 'sudo, non-login, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group non-login does not exist"}
+2024-12-07 12:23:05,081 p=38904 u=bill n=ansible | failed: [test_desk] (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo, non-login, git, media, docs", "name": "hal", "shell": "/usr/sbin/nologin", "state": "present"}, "msg": "Group git does not exist"}
+2024-12-07 12:23:05,278 p=38904 u=bill n=ansible | changed: [test_desk] => (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'})
+2024-12-07 12:23:05,462 p=38904 u=bill n=ansible | failed: [test_desk] (item={'name': 'loretta, media, docs', 'uid': 1003, 'groups': 'sudo', 'state': 'present'}) => {"ansible_loop_var": "item", "changed": false, "item": {"groups": "sudo", "name": "loretta, media, docs", "state": "present", "uid": 1003}, "msg": "useradd: invalid user name 'loretta, media, docs': use --badname to ignore\n", "name": "loretta, media, docs", "rc": 3}
+2024-12-07 12:23:05,463 p=38904 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 12:23:05,463 p=38904 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:23:05,463 p=38904 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:25:03,028 p=39070 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 12:25:03,033 p=39070 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:25:04,105 p=39070 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:25:04,220 p=39070 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:25:04,245 p=39070 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-07 12:25:04,921 p=39070 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-07 12:25:04,936 p=39070 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-07 12:25:05,503 p=39070 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-07 12:25:05,550 p=39070 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-07 12:25:06,080 p=39070 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-07 12:25:06,153 p=39070 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-07 12:25:06,654 p=39070 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 12:25:06,751 p=39070 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 12:25:06,798 p=39070 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 12:25:06,804 p=39070 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:25:07,353 p=39070 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:25:07,394 p=39070 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:25:07,415 p=39070 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-07 12:25:07,473 p=39070 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-07 12:25:07,474 p=39070 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-07 12:25:07,474 p=39070 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-07 12:25:07,475 p=39070 u=bill n=ansible | skipping: [test_lxc]
+2024-12-07 12:25:07,476 p=39070 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-07 12:25:07,478 p=39070 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-07 12:25:07,479 p=39070 u=bill n=ansible | skipping: [test_desk]
+2024-12-07 12:25:07,485 p=39070 u=bill n=ansible | TASK [group_specific : Ensure custom_groups are present] **********************************************************************************************************************************
+2024-12-07 12:25:07,666 p=39070 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:25:07,687 p=39070 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 12:25:07,820 p=39070 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:25:07,826 p=39070 u=bill n=ansible | TASK [group_specific : Ensure additional groups are present] ******************************************************************************************************************************
+2024-12-07 12:25:07,975 p=39070 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 12:25:07,991 p=39070 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 12:25:08,141 p=39070 u=bill n=ansible | failed: [test_lxc] (item= admin) => {"ansible_loop_var": "item", "changed": false, "item": " admin", "msg": "groupadd: ' admin' is not a valid group name\n", "name": " admin"}
+2024-12-07 12:25:08,179 p=39070 u=bill n=ansible | failed: [test_desk] (item= admin) => {"ansible_loop_var": "item", "changed": false, "item": " admin", "msg": "groupadd: ' admin' is not a valid group name\n", "name": " admin"}
+2024-12-07 12:25:08,267 p=39070 u=bill n=ansible | failed: [test_lxc] (item= docs) => {"ansible_loop_var": "item", "changed": false, "item": " docs", "msg": "groupadd: ' docs' is not a valid group name\n", "name": " docs"}
+2024-12-07 12:25:08,339 p=39070 u=bill n=ansible | failed: [test_desk] (item= git) => {"ansible_loop_var": "item", "changed": false, "item": " git", "msg": "groupadd: ' git' is not a valid group name\n", "name": " git"}
+2024-12-07 12:25:08,407 p=39070 u=bill n=ansible | failed: [test_lxc] (item= non-login) => {"ansible_loop_var": "item", "changed": false, "item": " non-login", "msg": "groupadd: ' non-login' is not a valid group name\n", "name": " non-login"}
+2024-12-07 12:25:08,483 p=39070 u=bill n=ansible | failed: [test_desk] (item= media) => {"ansible_loop_var": "item", "changed": false, "item": " media", "msg": "groupadd: ' media' is not a valid group name\n", "name": " media"}
+2024-12-07 12:25:08,625 p=39070 u=bill n=ansible | failed: [test_desk] (item= docs) => {"ansible_loop_var": "item", "changed": false, "item": " docs", "msg": "groupadd: ' docs' is not a valid group name\n", "name": " docs"}
+2024-12-07 12:25:08,766 p=39070 u=bill n=ansible | failed: [test_desk] (item= non-login) => {"ansible_loop_var": "item", "changed": false, "item": " non-login", "msg": "groupadd: ' non-login' is not a valid group name\n", "name": " non-login"}
+2024-12-07 12:25:08,768 p=39070 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 12:25:08,768 p=39070 u=bill n=ansible | test_desk                  : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:25:08,768 p=39070 u=bill n=ansible | test_lxc                   : ok=4    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:28:29,759 p=39241 u=bill n=ansible | PLAY [Apply common configurations] ********************************************************************************************************************************************************
+2024-12-07 12:28:29,764 p=39241 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:28:30,846 p=39241 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:28:30,944 p=39241 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:28:30,967 p=39241 u=bill n=ansible | TASK [common : Install common packages] ***************************************************************************************************************************************************
+2024-12-07 12:28:31,637 p=39241 u=bill n=ansible | ok: [test_desk] => (item=curl)
+2024-12-07 12:28:31,661 p=39241 u=bill n=ansible | ok: [test_lxc] => (item=curl)
+2024-12-07 12:28:32,237 p=39241 u=bill n=ansible | ok: [test_desk] => (item=git)
+2024-12-07 12:28:32,257 p=39241 u=bill n=ansible | ok: [test_lxc] => (item=git)
+2024-12-07 12:28:32,826 p=39241 u=bill n=ansible | ok: [test_desk] => (item=htop)
+2024-12-07 12:28:32,871 p=39241 u=bill n=ansible | ok: [test_lxc] => (item=htop)
+2024-12-07 12:28:33,576 p=39241 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 12:28:33,619 p=39241 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 12:28:33,667 p=39241 u=bill n=ansible | PLAY [Apply group-specific configurations] ************************************************************************************************************************************************
+2024-12-07 12:28:33,672 p=39241 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:28:34,210 p=39241 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:28:34,256 p=39241 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:28:34,298 p=39241 u=bill n=ansible | TASK [group_specific : Ensure directories for non-workstations exist] *********************************************************************************************************************
+2024-12-07 12:28:34,324 p=39241 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Code) 
+2024-12-07 12:28:34,325 p=39241 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Configs) 
+2024-12-07 12:28:34,326 p=39241 u=bill n=ansible | skipping: [test_lxc]
+2024-12-07 12:28:34,329 p=39241 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Documents) 
+2024-12-07 12:28:34,331 p=39241 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Downloads) 
+2024-12-07 12:28:34,334 p=39241 u=bill n=ansible | skipping: [test_desk] => (item=/home/bill/Media) 
+2024-12-07 12:28:34,334 p=39241 u=bill n=ansible | skipping: [test_desk]
+2024-12-07 12:28:34,340 p=39241 u=bill n=ansible | TASK [group_specific : Ensure custom_groups are present] **********************************************************************************************************************************
+2024-12-07 12:28:34,526 p=39241 u=bill n=ansible | ok: [test_lxc] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:28:34,543 p=39241 u=bill n=ansible | ok: [test_desk] => (item={'name': 'media', 'gid': 1776, 'state': 'present'})
+2024-12-07 12:28:34,677 p=39241 u=bill n=ansible | ok: [test_desk] => (item={'name': 'docs', 'gid': 1787, 'state': 'present'})
+2024-12-07 12:28:34,682 p=39241 u=bill n=ansible | TASK [group_specific : Ensure all required groups are present] ****************************************************************************************************************************
+2024-12-07 12:28:34,837 p=39241 u=bill n=ansible | ok: [test_lxc] => (item=sudo)
+2024-12-07 12:28:34,852 p=39241 u=bill n=ansible | ok: [test_desk] => (item=sudo)
+2024-12-07 12:28:34,970 p=39241 u=bill n=ansible | changed: [test_lxc] => (item= admin)
+2024-12-07 12:28:35,004 p=39241 u=bill n=ansible | changed: [test_desk] => (item= admin)
+2024-12-07 12:28:35,123 p=39241 u=bill n=ansible | ok: [test_lxc] => (item= docs)
+2024-12-07 12:28:35,196 p=39241 u=bill n=ansible | changed: [test_desk] => (item= git)
+2024-12-07 12:28:35,256 p=39241 u=bill n=ansible | changed: [test_lxc] => (item= non-login)
+2024-12-07 12:28:35,335 p=39241 u=bill n=ansible | ok: [test_desk] => (item= media)
+2024-12-07 12:28:35,471 p=39241 u=bill n=ansible | ok: [test_desk] => (item= docs)
+2024-12-07 12:28:35,620 p=39241 u=bill n=ansible | changed: [test_desk] => (item= non-login)
+2024-12-07 12:28:35,626 p=39241 u=bill n=ansible | TASK [group_specific : Add user to groups] ************************************************************************************************************************************************
+2024-12-07 12:28:35,921 p=39241 u=bill n=ansible | changed: [test_lxc] => (item={'name': 'bill', 'groups': 'sudo, admin, docs', 'state': 'present'})
+2024-12-07 12:28:35,949 p=39241 u=bill n=ansible | changed: [test_desk] => (item={'name': 'bill', 'groups': 'sudo, admin, git, media, docs', 'state': 'present'})
+2024-12-07 12:28:36,090 p=39241 u=bill n=ansible | changed: [test_lxc] => (item={'name': 'hal', 'groups': 'sudo, non-login, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'})
+2024-12-07 12:28:36,148 p=39241 u=bill n=ansible | changed: [test_desk] => (item={'name': 'hal', 'groups': 'sudo, non-login, git, media, docs', 'shell': '/usr/sbin/nologin', 'state': 'present'})
+2024-12-07 12:28:36,329 p=39241 u=bill n=ansible | ok: [test_desk] => (item={'name': 'lily', 'uid': 1002, 'groups': 'sudo, media, docs', 'state': 'present'})
+2024-12-07 12:28:36,544 p=39241 u=bill n=ansible | changed: [test_desk] => (item={'name': 'loretta', 'uid': 1003, 'groups': 'sudo, media, docs', 'state': 'present'})
+2024-12-07 12:28:36,588 p=39241 u=bill n=ansible | PLAY [Manage LXC containers and clean up fstab entries] ***********************************************************************************************************************************
+2024-12-07 12:28:36,594 p=39241 u=bill n=ansible | TASK [Gathering Facts] ********************************************************************************************************************************************************************
+2024-12-07 12:28:37,137 p=39241 u=bill n=ansible | ok: [test_desk]
+2024-12-07 12:28:37,183 p=39241 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:28:37,205 p=39241 u=bill n=ansible | TASK [manage_lxc : Clean up old NFS and CIFS entries in fstab] ****************************************************************************************************************************
+2024-12-07 12:28:37,408 p=39241 u=bill n=ansible | ok: [test_lxc]
+2024-12-07 12:28:37,444 p=39241 u=bill n=ansible | [WARNING]: Module remote_tmp /root/.ansible/tmp did not exist and was created with a mode of 0700, this may cause issues when running as another user. To avoid this, create the
+remote_tmp dir with the correct permissions manually
+
+2024-12-07 12:28:37,444 p=39241 u=bill n=ansible | changed: [test_desk]
+2024-12-07 12:28:37,449 p=39241 u=bill n=ansible | TASK [manage_lxc : Gather LXC container facts] ********************************************************************************************************************************************
+2024-12-07 12:28:37,626 p=39241 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"changed": false, "cmd": "lxc-ls --fancy", "msg": "[Errno 2] No such file or directory: b'lxc-ls'", "rc": 2, "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+2024-12-07 12:28:37,645 p=39241 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"changed": false, "cmd": "lxc-ls --fancy", "msg": "[Errno 2] No such file or directory: b'lxc-ls'", "rc": 2, "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+2024-12-07 12:28:37,646 p=39241 u=bill n=ansible | PLAY RECAP ********************************************************************************************************************************************************************************
+2024-12-07 12:28:37,646 p=39241 u=bill n=ansible | test_desk                  : ok=8    changed=3    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 12:28:37,646 p=39241 u=bill n=ansible | test_lxc                   : ok=8    changed=2    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2024-12-07 19:03:31,112 p=43926 u=bill n=ansible | PLAY [Apply common configurations] *********************************************************************************************************************************************************
+2024-12-07 19:03:31,117 p=43926 u=bill n=ansible | TASK [Gathering Facts] *********************************************************************************************************************************************************************
+2024-12-07 19:03:31,593 p=43926 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_lxc: unexpected output from Python interpreter discovery
+
+2024-12-07 19:03:31,608 p=43926 u=bill n=ansible | fatal: [test_lxc]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_lxc is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:03:31,684 p=43926 u=bill n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host test_desk: unexpected output from Python interpreter discovery
+
+2024-12-07 19:03:31,696 p=43926 u=bill n=ansible | fatal: [test_desk]: FAILED! => {"ansible_facts": {}, "changed": false, "failed_modules": {"ansible.legacy.setup": {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python"}, "failed": true, "module_stderr": "", "module_stdout": "This account is currently not available.\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1, "warnings": ["Platform unknown on host test_desk is using the discovered Python interpreter at /usr/bin/python, but future installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.14/reference_appendices/interpreter_discovery.html for more information."]}}, "msg": "The following modules failed to execute: ansible.legacy.setup\n"}
+2024-12-07 19:03:31,697 p=43926 u=bill n=ansible | PLAY RECAP *********************************************************************************************************************************************************************************
+2024-12-07 19:03:31,697 p=43926 u=bill n=ansible | test_desk                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2024-12-07 19:03:31,697 p=43926 u=bill n=ansible | test_lxc                   : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
