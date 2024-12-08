@@ -10,7 +10,7 @@
   user:
     name: "{{ item.name }}"
     uid: "{{ item.uid | default(omit) }}"
-    groups: "{{ item.groups | join(',') }}"
+    groups: "{{ item.custom_groups | join(',') }}"
     shell: "{{ item.shell | default('/bin/bash') }}"
     state: "{{ item.state | default('present') }}"
   loop: "{{ users }}"

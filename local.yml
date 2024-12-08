@@ -1,8 +1,3 @@
-- name: Manage users and groups
-  hosts: all
-  roles:
-    - manage_users
-
 - name: Apply common configurations
   hosts: all
   vars_files:
@@ -14,6 +9,11 @@
   hosts: all
   roles:
     - group_specific
+
+- name: Manage users and groups
+  hosts: all
+  roles:
+    - manage_users
 
 - name: Manage LXC containers and clean up fstab entries
   hosts: all

@@ -1,10 +1,10 @@
 users:
   - name: bill
-    groups: sudo, admin, git, media, docs
+    groups: sudo, media, docs
     state: present
   - name: hal
-    groups: sudo, non-login, git, media, docs
-    shell: /usr/sbin/nologin
+    groups: sudo, media, docs
+    shell: /bin/bash
     state: present
   - name: lily
     uid: 1002
