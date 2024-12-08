@@ -18,9 +18,11 @@
 
 - name: Ensure all required groups are present
   group:
-    name: "{{ item | trim }}"
+    name: "{{ item }}"
     state: present
-  loop: "{{ users | map(attribute='groups') | join(',') | split(',') | unique }}"
+  loop: "{{ users | map(attribute='groups') | flatten | unique }}"
+  loop_control:
+    loop_var: item
   when: users is defined
 
 - name: Add user to groups
@@ -32,5 +34,3 @@
     state: "{{ item.state }}"
   loop: "{{ users }}"
   when: users is defined
-
-

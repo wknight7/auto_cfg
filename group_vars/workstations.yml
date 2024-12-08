@@ -1,6 +1,8 @@
-users: 
+managed_users:
   - name: bill
-    groups: ['sudo', 'media', 'docs']
+    state: present
+    home: /home/bill
+    groups: ['docs','media']
     directories:
       - /home/bill/Code
       - /home/bill/Configs
@@ -10,17 +12,17 @@ users:
       - /home/bill/Configs/user_bill
   - name: lily
     uid: 1002
-    groups: ['sudo', 'media', 'docs']
+    state: present
+    groups: ['docs','media']
+    home: /home/lily
     directories:
       - /home/lily/Configs
       - /home/lily/Documents
       - /home/lily/Downloads
       - /home/lily/Media
       - /home/lily/Configs/user_lily
-  - name: loretta
-    uid: 1003
-    groups: ['sudo', 'media', 'docs']
-    home: /home/loretta
+
+users: "{{ managed_users }}"
 
 custom_groups:
   - name: media
@@ -60,4 +62,5 @@ workstation_apt_packages:
   - vim-nox
   - git
   - ansible
+
 

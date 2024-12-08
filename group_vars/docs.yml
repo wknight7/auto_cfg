@@ -3,14 +3,18 @@ custom_groups:
     gid: 1787
     state: present
 
-users:
+managed_users:
   - name: bill
+    home: /home/bill
     groups: ['sudo', 'docs']
     state: present
   - name: hal
+    home: /home/hal
     groups: ['sudo', 'docs']
     shell: /bin/bash
     state: present
+
+users: "{{ managed_users }}"
 
 ensure_directories:
   - /mnt/docs

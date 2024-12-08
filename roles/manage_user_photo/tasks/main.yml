@@ -1,40 +1,106 @@
 ---
-- name: Copy the new user photo to bill's home directory
+- name: Gather user home directories
+  command: getent passwd {{ item.name }}
+  register: user_home_info
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
+
+- name: Set user home fact
+  set_fact:
+    user_homes: "{{ user_homes | default({}) | combine({ item.item.name: item.stdout.split(':')[5] }) }}"
+  loop: "{{ user_home_info.results }}"
+  loop_control:
+    loop_var: item
+
+- name: Ensure Configs directory exists
+  file:
+    path: "{{ user_homes[item.name] }}/Configs/user_{{ item.name }}"
+    state: directory
+  become: true
+  become_user: "{{ 'bill' if item.name == 'bill' else 'root' }}"
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
+
+- name: Set ownership for specific Configs directory
+  command: chown {{ item.name }}:{{ item.name }} {{ user_homes[item.name] }}/Configs/user_{{ item.name }}
+  become: true
+  become_user: "{{ 'bill' if item.name == 'bill' else 'root' }}"
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
+
+- name: Set permissions for specific Configs directory
+  command: chmod 0755 {{ user_homes[item.name] }}/Configs/user_{{ item.name }}
+  become: true
+  become_user: "{{ 'bill' if item.name == 'bill' else 'root' }}"
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
+
+- name: Copy the new user photo to the home directory
   copy:
     src: files/master_yoda.PNG
-    dest: "/home/bill/Configs/user_bill/yoda.PNG"
-    owner: bill
-    group: bill
+    dest: "{{ user_homes[item.name] }}/Configs/user_{{ item.name }}/yoda.PNG"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
     mode: '0644'
+  become: true
+  become_user: "{{ 'bill' if item.name == 'bill' else 'root' }}"
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
 
 - name: Register the new user photo
-  command: sudo update-alternatives --install /usr/bin/xdmx-user-photo xdmx-user-photo /home/bill/Configs/user_bill/yoda.PNG 100
+  command: sudo update-alternatives --install /usr/bin/xdmx-user-photo xdmx-user-photo {{ user_homes[item.name] }}/Configs/user_{{ item.name }}/yoda.PNG 100
   when: ansible_facts['os_family'] == 'Debian'
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
 
 - name: Set the new user photo as the default
-  command: sudo update-alternatives --set xdmx-user-photo /home/bill/Configs/user_bill/yoda.PNG
+  command: sudo update-alternatives --set xdmx-user-photo {{ user_homes[item.name] }}/Configs/user_{{ item.name }}/yoda.PNG
   when: ansible_facts['os_family'] == 'Debian'
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
 
 - name: Copy the user photo to GNOME user settings directory
   copy:
-    src: /home/bill/Configs/user_bill/yoda.PNG
-    dest: /home/bill/.face
-    owner: bill
-    group: bill
+    src: "{{ user_homes[item.name] }}/Configs/user_{{ item.name }}/yoda.PNG"
+    dest: "{{ user_homes[item.name] }}/.face"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
     mode: '0644'
+    remote_src: yes
+  become: true
+  become_user: "{{ 'bill' if item.name == 'bill' else 'root' }}"
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
 
 - name: Copy the user photo to GNOME user settings icon
   copy:
-    src: /home/bill/Configs/user_bill/yoda.PNG
-    dest: /home/bill/.face.icon
-    owner: bill
-    group: bill
+    src: "{{ user_homes[item.name] }}/Configs/user_{{ item.name }}/yoda.PNG"
+    dest: "{{ user_homes[item.name] }}/.face.icon"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
     mode: '0644'
+    remote_src: yes
+  become: true
+  become_user: "{{ 'bill' if item.name == 'bill' else 'root' }}"
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
 
-- name: Set the user photo for bill using dconf
+- name: Set the user photo using dconf
   community.general.dconf:
     key: /org/gnome/login-screen/logo
     state: present
-    value: "'file:///home/bill/Configs/user_bill/yoda.PNG'"
+    value: "'file://{{ user_homes[item.name] }}/Configs/user_{{ item.name }}/yoda.PNG'"
   become: false
-  become_user: bill
+  loop: "{{ users }}"
+  loop_control:
+    loop_var: item
+
