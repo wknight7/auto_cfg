@@ -12,6 +12,9 @@ users:
     shell: /bin/bash
     state: present
 
+ensure_directories:
+  - /mnt/docs
+
 mount_points:
   - { mount_point: "mp0: /mnt/docs,mp=/mnt/docs,backup=0" }
 dynamic_container_ids: ["101", "102", "103"] # Adjust as needed

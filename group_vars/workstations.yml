@@ -1,19 +1,26 @@
-users:
+users: 
   - name: bill
     groups: ['sudo', 'media', 'docs']
-    state: present
-  - name: hal
-    groups: ['sudo', 'media', 'docs']
-    shell: /bin/bash
-    state: present
+    directories:
+      - /home/bill/Code
+      - /home/bill/Configs
+      - /home/bill/Documents
+      - /home/bill/Downloads
+      - /home/bill/Media
+      - /home/bill/Configs/user_bill
   - name: lily
     uid: 1002
     groups: ['sudo', 'media', 'docs']
-    state: present
+    directories:
+      - /home/lily/Configs
+      - /home/lily/Documents
+      - /home/lily/Downloads
+      - /home/lily/Media
+      - /home/lily/Configs/user_lily
   - name: loretta
     uid: 1003
     groups: ['sudo', 'media', 'docs']
-    state: present
+    home: /home/loretta
 
 custom_groups:
   - name: media
@@ -22,8 +29,6 @@ custom_groups:
   - name: docs
     gid: 1787
     state: present
-
-
 
 fstab_entries:
   mounts:
@@ -34,18 +39,11 @@ fstab_entries:
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Documents", path: "/home/bill/Documents" }
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Downloads", path: "/home/bill/Downloads" }
 
-ensure_directories:
-  - /home/bill/Code
-  - /home/bill/Configs
-  - /home/bill/Documents
-  - /home/bill/Downloads
-  - /home/bill/Media
 remove_directories:
   - /home/bill/Videos
   - /home/bill/Templates
   - /home/bill/Pictures
   - /home/bill/Books
-  - /home/bill/Pictures
   - /home/bill/fileshare
   - /home/bill/'Calibre Library'
   - /home/bill/data
@@ -62,3 +60,4 @@ workstation_apt_packages:
   - vim-nox
   - git
   - ansible
+

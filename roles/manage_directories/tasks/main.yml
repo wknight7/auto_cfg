@@ -1,15 +1,36 @@
 ---
-- name: Ensure directories exist
+- name: Ensure common directories exist for all users
+  file:
+    path: "{{ item.home }}"
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0755'
+  loop: "{{ managed_users }}"
+  loop_control:
+    loop_var: item
+  become: true
+
+- name: Ensure specific directories exist for workstation users
   file:
     path: "{{ item }}"
     state: directory
-  loop: "{{ ensure_directories }}"
-  when: ensure_directories is defined
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: '0755'
+  loop: "{{ user.directories }}"
+  loop_control:
+    loop_var: item
+  become: true
+  vars:
+    user: "{{ item }}"
+  when: item.directories is defined
 
 - name: Unmount directories before removal
   shell: "umount -l {{ item }} || true"
   ignore_errors: yes
   loop: "{{ remove_directories }}"
+  become: true
   when: remove_directories is defined
 
 - name: Remove unnecessary directories
@@ -17,4 +38,5 @@
     path: "{{ item }}"
     state: absent
   loop: "{{ remove_directories }}"
+  become: true
   when: remove_directories is defined

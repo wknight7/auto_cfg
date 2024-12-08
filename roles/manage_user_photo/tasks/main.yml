@@ -1,0 +1,40 @@
+---
+- name: Copy the new user photo to bill's home directory
+  copy:
+    src: files/master_yoda.PNG
+    dest: "/home/bill/Configs/user_bill/yoda.PNG"
+    owner: bill
+    group: bill
+    mode: '0644'
+
+- name: Register the new user photo
+  command: sudo update-alternatives --install /usr/bin/xdmx-user-photo xdmx-user-photo /home/bill/Configs/user_bill/yoda.PNG 100
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Set the new user photo as the default
+  command: sudo update-alternatives --set xdmx-user-photo /home/bill/Configs/user_bill/yoda.PNG
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Copy the user photo to GNOME user settings directory
+  copy:
+    src: /home/bill/Configs/user_bill/yoda.PNG
+    dest: /home/bill/.face
+    owner: bill
+    group: bill
+    mode: '0644'
+
+- name: Copy the user photo to GNOME user settings icon
+  copy:
+    src: /home/bill/Configs/user_bill/yoda.PNG
+    dest: /home/bill/.face.icon
+    owner: bill
+    group: bill
+    mode: '0644'
+
+- name: Set the user photo for bill using dconf
+  community.general.dconf:
+    key: /org/gnome/login-screen/logo
+    state: present
+    value: "'file:///home/bill/Configs/user_bill/yoda.PNG'"
+  become: false
+  become_user: bill

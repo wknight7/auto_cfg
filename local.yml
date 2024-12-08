@@ -1,3 +1,4 @@
+---
 - name: Apply common configurations
   hosts: all
   vars_files:
@@ -15,15 +16,25 @@
   roles:
     - manage_users
 
+- name: Manage sudoers files
+  hosts: all
+  roles:
+    - manage_sudoers
+
 - name: Manage LXC containers and clean up fstab entries
   hosts: all
   roles:
     - manage_lxc
 
-- name: Manage directories on workstations
-  hosts: workstations
+- name: Manage directories
+  hosts: all
   roles:
     - manage_directories
+
+- name: Manage user photo
+  hosts: workstations
+  roles:
+    - manage_user_photo
 
 - name: Manage wallpaper on workstations
   hosts: workstations
@@ -39,5 +50,4 @@
   hosts: all
   roles:
     - manage_fstab
-
 

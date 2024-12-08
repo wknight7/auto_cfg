@@ -1,14 +1,3 @@
-users:
-  - name: bill
-    uid: 1000
-    groups: sudo, admin
-    state: present
-  - name: hal
-    uid: 101
-    groups: sudo
-    shell: /bin/bash
-    state: present
-
 ansible_user: hal
 
 common_packages:
@@ -17,3 +6,16 @@ common_packages:
   - htop
   - sudo
 
+managed_users:
+  - name: bill
+    home: /home/bill
+    uid: 1000
+    groups: sudo, admin
+    shell: /bin/bash
+    state: present
+  - name: hal
+    home: /home/hal
+    uid: 101
+    groups: sudo
+    shell: /bin/bash
+    state: present
