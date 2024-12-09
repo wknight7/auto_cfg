@@ -13,12 +13,24 @@
   become: true
 
 - name: Gather LXC container IDs
-  command: lxc-ls --fancy --fancy-format name
-  register: lxc_container_ids
+  command: lxc-ls -1
+  register: lxc_container_ids_raw
 
-- name: Set fact for container IDs
+- name: Debug raw container IDs output
+  debug:
+    var: lxc_container_ids_raw.stdout_lines
+
+- name: Process container IDs
   set_fact:
-    dynamic_container_ids: "{{ lxc_container_ids.stdout_lines }}"
+    dynamic_container_ids: "{{ lxc_container_ids_raw.stdout_lines | map('trim') | reject('equalto', '') | list }}"
+
+- name: Debug processed container IDs
+  debug:
+    var: dynamic_container_ids
+
+- name: Debug mount points
+  debug:
+    var: mount_points
 
 - name: Ensure mountpoints are appended to LXC containers
   block:
@@ -28,7 +40,7 @@
         line: "{{ mount_points | selectattr('container_id', 'equalto', item) | map(attribute='mount_point') | list | join('\n') }}"
         state: present
       loop: "{{ dynamic_container_ids }}"
-      when: dynamic_container_ids is defined
+      when: dynamic_container_ids | length > 0
 
 - name: Clean up old NFS and CIFS entries in fstab
   lineinfile:
@@ -37,4 +49,3 @@
     regex: '^\s*192\.168\.86\.90:.*\s+(nfs|cifs)\s+.*'
     backup: yes
   when: fstab_entries is defined
-
