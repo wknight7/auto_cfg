@@ -1,0 +1,48 @@
+---
+- name: Gather LXC container information from Proxmox
+  hosts: proxmox
+  gather_facts: no
+  tasks:
+  - name: Gather LXC container information
+    command: lxc-ls -f
+    register: lxc_info_raw
+
+  - name: Debug raw LXC container info output
+    debug:
+      var: lxc_info_raw.stdout_lines
+
+  - name: Process LXC container information
+    set_fact:
+      lxc_containers: >-
+        {{
+          lxc_info_raw.stdout_lines[1:] |
+          map('regex_search', '^\\s*(\\d+)\\s') |
+          selectattr(1, 'defined') |
+          map('group', 1) |
+          list
+        }}
+
+  - name: Debug processed LXC containers
+    debug:
+      var: lxc_containers
+
+- name: Apply LXC configuration
+  hosts: all
+  gather_facts: yes
+  tasks:
+  - name: Debug container IDs from Proxmox
+    debug:
+      msg: "{{ hostvars['proxmox']['lxc_containers'] }}"
+
+  - name: Set LXC container IDs fact
+    set_fact:
+      lxc_containers: "{{ hostvars['proxmox']['lxc_containers'] }}"
+
+  - include_role:
+      name: manage_lxc
+    when: "'proxmox' not in group_names"
+
+
+
+
+

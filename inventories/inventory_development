@@ -1,8 +1,11 @@
 [workstations]
-test_desk ansible_host=192.168.86.101
+ubuntu_test_desk ansible_host=192.168.86.101 container_id=116 vm_type=vm
 
 [docs]
-test_lxc ansible_host=192.168.86.67 # ansible_user=bill
+test_lxc ansible_host=192.168.86.67 container_id=112
 
 [media_h]
-test_media_h ansible_host=192.168.86.76
+test_media_h ansible_host=192.168.86.76 container_id=124
+
+[proxmox]
+proxmox_server ansible_host=192.168.86.143

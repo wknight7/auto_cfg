@@ -1,3 +1,10 @@
+curl -s http://192.168.86.78/bootstrap.sh | sudo bash
+
+
+
+
+
+
 Step 1: Create a New LXC Container
 
     Log in to Proxmox:

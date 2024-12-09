@@ -1,18 +1,21 @@
-groups:
+custom_groups:
   - name: media
     gid: 1776
     state: present
 
 mount_points:
-  - { mount_point: "mp0: /mnt/media/storage,mp=/mnt/media/storage,backup=0" }
+  - { mount_point: "mp0: /media/storage,mp=/media/storage" }
 dynamic_container_ids: ["101", "102", "103"] # Adjust as needed
 
-users:
+managed_users:
   - name: bill
-    groups: media, sudo, admin
+    home: /home/bill
+    groups: ['sudo', 'docs']
     state: present
-    
   - name: hal
-    groups: sudo, non-login, media
-    shell: /usr/sbin/nologin
+    home: /home/hal
+    groups: ['sudo', 'docs']
+    shell: /bin/bash
     state: present
+
+users: "{{ managed_users }}"

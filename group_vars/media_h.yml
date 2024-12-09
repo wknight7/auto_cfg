@@ -4,7 +4,7 @@ custon_groups:
     state: present
 
 mount_points:
-  - { mount_point: "mp0: /mnt/media,mp=/mnt/media,backup=0" }
+  - { mount_point: "mp0: /media,mp=/media" }
 dynamic_container_ids: ["101", "102", "103"] # Adjust as needed
       
 managed_users:

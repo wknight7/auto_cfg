@@ -21,15 +21,15 @@
   roles:
     - manage_sudoers
 
-- name: Manage LXC containers and clean up fstab entries
-  hosts: all
-  roles:
-    - manage_lxc
-
 - name: Manage directories
   hosts: all
   roles:
     - manage_directories
+
+- name: Manage LXC containers and clean up fstab entries
+  hosts: all
+  roles:
+    - manage_lxc
 
 - name: Manage user photo
   hosts: workstations

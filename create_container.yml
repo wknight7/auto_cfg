@@ -1,0 +1,53 @@
+---
+- name: Create a new LXC container
+  hosts: proxmox
+  become: true
+  vars_prompt:
+    - name: "hostname"
+      prompt: "Enter the hostname"
+      private: no
+    - name: "password"
+      prompt: "Enter the password"
+      private: yes
+    - name: "disk_size"
+      prompt: "Enter the disk size (GB)"
+      private: no
+    - name: "cores"
+      prompt: "Enter the number of cores"
+      private: no
+    - name: "memory"
+      prompt: "Enter the amount of memory (MB)"
+      private: no
+    - name: "swap"
+      prompt: "Enter the amount of swap (MB)"
+      private: no
+
+  tasks:
+    - name: Create the LXC container
+      proxmox_kvm:
+        node: "{{ inventory_hostname }}"
+        name: "{{ hostname }}"
+        vmid: "{{ 120 + (inventory_hostname | int) }}"  # Ensure unique VMID
+        pool: default
+        storage: local-lvm
+        ostemplate: local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst
+        password: "{{ password }}"
+        net0: name=eth0,bridge=vmbr0,ip=dhcp
+        cores: "{{ cores }}"
+        memory: "{{ memory }}"
+        swap: "{{ swap }}"
+        disk: "{{ disk_size }}G"
+        state: present
+        timeout: 300
+
+    - name: Start the LXC container
+      command: "pct start {{ 120 + (inventory_hostname | int) }}"
+      delegate_to: "{{ groups['proxmox'][0] }}"
+
+    - name: Wait for the container to start
+      pause:
+        seconds: 10
+
+    - name: Run the bootstrap script inside the container
+      command: "pct exec {{ 120 + (inventory_hostname | int) }} -- bash -c 'curl -s http://192.168.86.78/bootstrap.sh | sudo bash'"
+      delegate_to: "{{ groups['proxmox'][0] }}"
