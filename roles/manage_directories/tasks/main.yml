@@ -11,22 +11,7 @@
     loop_var: item
   become: true
 
-- name: Ensure specific directories exist for workstation users
-  file:
-    path: "{{ dir }}"
-    state: directory
-    owner: "{{ user.name }}"
-    group: "{{ user.name }}"
-    mode: '0755'
-  loop: "{{ user.directories }}"
-  loop_control:
-    loop_var: dir
-  become: true
-  vars:
-    user: "{{ item }}"
-  when: user.directories is defined
-
-- name: Set ownership for specific directories
+- name: Ensure specific directories exist and set ownership for workstation users
   file:
     path: "{{ dir }}"
     state: directory
@@ -55,3 +40,4 @@
   loop: "{{ remove_directories }}"
   become: true
   when: remove_directories is defined
+

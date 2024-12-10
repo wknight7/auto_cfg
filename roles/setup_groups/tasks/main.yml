@@ -7,14 +7,6 @@
   include_vars:
     file: "../../group_vars/vault.yml"
 
-- name: Ensure directories for non-workstations exist
-  file:
-    path: "{{ item }}"
-    state: directory
-  loop:
-    - /mnt/docs
-  when: inventory_hostname != 'workstation'
-
 - name: Ensure custom_groups are present
   group:
     name: "{{ item.name }}"

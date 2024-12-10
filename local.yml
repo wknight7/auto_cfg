@@ -8,7 +8,7 @@
 - name: Apply group-specific configurations
   hosts: all
   roles:
-    - group_specific
+    - setup_groups
 
 - name: Manage users and groups
   hosts: all
