@@ -16,12 +16,3 @@ managed_users:
     state: present
     groups: ['sudo']
     home: /home/hal
-
-custom_groups:
-  - name: media
-    gid: 1776
-    state: present
-  - name: docs
-    gid: 1787
-    state: present
-

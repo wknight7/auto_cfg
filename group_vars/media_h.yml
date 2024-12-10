@@ -1,4 +1,4 @@
-custon_groups:
+custom_groups:
   - name: media
     gid: 1776
     state: present

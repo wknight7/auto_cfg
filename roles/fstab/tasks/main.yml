@@ -9,7 +9,7 @@
   lineinfile:
     path: /etc/fstab
     state: absent
-    regex: '^\s*[^#].*\s+(nfs|cifs)\s+.*'
+    regex: "{{ '^\\s*192\\.168\\.86\\.90:.*\\s+(nfs|cifs)\\s+.*' if (vm_type is defined and vm_type == 'vm') else '^\\s*[^#].*\\s+(nfs|cifs)\\s+.*' }}"
     backup: yes
 
 - name: Ensure directories exist
@@ -31,3 +31,13 @@
       {% endfor %}
       # End managed fstab entries
   when: fstab_entries is defined
+
+- name: Reload systemd daemon
+  command: systemctl daemon-reload
+  become: true
+  when: fstab_entries is defined and vm_type is defined and vm_type == 'vm'
+
+- name: Remount all filesystems
+  command: mount -a
+  become: true
+  when: fstab_entries is defined and vm_type is defined and vm_type == 'vm'
