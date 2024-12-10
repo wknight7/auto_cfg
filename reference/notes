@@ -1,3 +1,0 @@
-I don't think the ansible facts provide the container id we're looking at... after all, this is a number assigned by proxmox, for proxmox.  
-There is no reason for the proxmox container id # to be anywhere in the container file system.
-So, can 

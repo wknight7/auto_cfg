@@ -1,0 +1,13 @@
+to switch from development to production with merge:  
+
+git checkout main
+git pull origin main
+git merge development
+# Resolve conflicts if any
+git commit -m "Merge development branch into main"
+git push origin main
+
+to switch from production to development:  
+
+git checkout development
+git pull origin main
