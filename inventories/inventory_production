@@ -46,21 +46,6 @@ lidarr
 [docs]
 paperless
 
-[lxc]
-sab
-radarr
-sonarr
-prowlarr
-cloudflared
-paperless
-calibre-web
-photoprism
-trilium
-calibre
-wg
-plex
-lidarr
-
 [media_h]
 sab
 radarr
@@ -74,13 +59,12 @@ lidarr
 [media_p]
 plex
 
-[pvenodes]
+[proxmox]
 proxmox_ve
 proxmox_backup
 
 [workstations]
 desktop
-test_desk
 lily
 samsung_laptop
 dell_laptop

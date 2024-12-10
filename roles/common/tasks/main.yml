@@ -4,3 +4,10 @@
     name: "{{ item }}"
     state: present
   loop: "{{ common_packages }}"
+
+- name: add ansible-pull cron job
+  cron:
+    name: ansible auto-provision
+    user: hal
+    minute: "*/10"
+    job: ansible-pull -o -U https://github.com/wknight7/auto_cfg.git
