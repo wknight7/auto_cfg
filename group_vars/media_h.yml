@@ -8,14 +8,11 @@ mount_points:
 dynamic_container_ids: ["101", "102", "103"] # Adjust as needed
       
 managed_users:
-  - name: bill
-    home: /home/bill
-    groups: ['sudo', 'docs']
-    state: present
+  - name: bill    
+    groups: ['media']
+    append: yes
   - name: hal
-    home: /home/hal
-    groups: ['sudo', 'docs']
-    shell: /bin/bash
-    state: present
+    groups: ['media']
+    append: yes
 
 users: "{{ managed_users }}"

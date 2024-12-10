@@ -1,14 +1,9 @@
 managed_users:
-  - name: bill
-    password: "{{ user_passwords.bill }}"
-    state: present
-    home: /home/bill
+  - name: bill    
     groups: ['docs', 'media']
     directories:
       - /home/bill/Code
-      - /home/bill/Configs
-      - /home/bill/Documents
-      - /home/bill/Downloads
+      - /home/bill/Configs      
       - /home/bill/Media
       - /home/bill/Configs/user_bill
   - name: lily
@@ -18,9 +13,7 @@ managed_users:
     groups: ['docs', 'media']
     home: /home/lily
     directories:
-      - /home/lily/Configs
-      - /home/lily/Documents
-      - /home/lily/Downloads
+      - /home/lily/Configs      
       - /home/lily/Media
       - /home/lily/Configs/user_lily
 
@@ -35,9 +28,9 @@ custom_groups:
     state: present
 
 fstab_entries:
-  mounts:
-    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/docs", path: "/mnt/docs" }
+  mounts:    
     - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/home/bill/Media" }
+    - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/home/lily/Media" }
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Code", path: "/home/bill/Code" }
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Configs", path: "/home/bill/Configs" }
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/home/bill/Documents", path: "/home/bill/Documents" }
@@ -56,6 +49,12 @@ remove_directories:
   - /home/bill/Public
   - /home/bill/files
   - /home/bill/Music
+  - /home/lily/Videos
+  - /home/lily/Templates
+  - /home/lily/Pictures
+  - /home/lily/Books
+  - /home/lily/Public
+  - /home/lily/Music
 
 workstation_snap_packages:
   - libreoffice

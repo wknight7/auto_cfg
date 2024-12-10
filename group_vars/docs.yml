@@ -4,15 +4,12 @@ custom_groups:
     state: present
 
 managed_users:
-  - name: bill
-    home: /home/bill
-    groups: ['sudo', 'docs']
-    state: present
+  - name: bill    
+    groups: ['docs']
+    append: yes
   - name: hal
-    home: /home/hal
-    groups: ['sudo', 'docs']
-    shell: /bin/bash
-    state: present
+    groups: ['docs']
+    append: yes
 
 users: "{{ managed_users }}"
 

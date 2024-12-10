@@ -1,0 +1,63 @@
+---
+- name: Apply common configurations
+  hosts: all
+  vars_files:
+    - group_vars/common.yml
+    - group_vars/vault.yml
+  roles:
+    - common
+    - group_specific
+    - manage_users
+    - manage_sudoers
+    - manage_directories
+    - manage_vms
+    - manage_user_photo
+    - manage_wallpaper
+    - install_software
+    - manage_lxc
+
+
+- name: Apply group-specific configurations
+  hosts: all
+  roles:
+    - group_specific
+
+- name: Manage users and groups
+  hosts: all
+  roles:
+    - manage_users
+
+- name: Manage sudoers files
+  hosts: all
+  roles:
+    - manage_sudoers
+
+- name: Manage directories
+  hosts: all
+  roles:
+    - manage_directories
+
+- name: Manage LXC containers and clean up fstab entries
+  hosts: all
+  roles:
+    - manage_lxc
+
+- name: Manage user photo
+  hosts: workstations
+  roles:
+    - manage_user_photo
+
+- name: Manage wallpaper on workstations
+  hosts: workstations
+  roles:
+    - manage_wallpaper
+
+- name: Install software on workstations
+  hosts: workstations
+  roles:
+    - install_software
+
+- name: Manage fstab entries
+  hosts: all
+  roles:
+    - manage_vms

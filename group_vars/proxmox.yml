@@ -1,16 +1,3 @@
-managed_users:
-  - name: bill
-    home: /home/bill
-    groups: ['sudo', 'media', 'docs']
-    state: present
-  - name: hal
-    home: /home/hal
-    groups: ['sudo', 'media', 'docs']
-    shell: /bin/bash
-    state: present
-
-users: "{{ managed_users }}"
-
 custom_groups:
   - name: git
     gid: 2013
@@ -26,3 +13,13 @@ fstab_entries:
   mounts:
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/docs", path: "/mnt/docs" }
     - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/media" }
+
+managed_users:
+  - name: bill    
+    groups: ['docs', 'media']
+    append: yes
+  - name: hal
+    groups: ['docs', 'media']
+    append: yes
+
+users: "{{ managed_users }}"

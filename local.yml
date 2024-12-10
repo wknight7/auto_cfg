@@ -4,18 +4,6 @@
   vars_files:
     - group_vars/common.yml
     - group_vars/vault.yml
-  roles:
-    - common
-    - group_specific
-    - manage_users
-    - manage_sudoers
-    - manage_directories
-    - manage_vms
-    - manage_user_photo
-    - manage_wallpaper
-    - install_software
-    - manage_lxc
-
 
 - name: Apply group-specific configurations
   hosts: all
