@@ -9,3 +9,6 @@ test_media_h ansible_host=192.168.86.76 container_id=124
 
 [proxmox]
 proxmox_server ansible_host=192.168.86.143
+
+[media_p]
+test_media_p ansible_host=192.168.86.106 container_id=125

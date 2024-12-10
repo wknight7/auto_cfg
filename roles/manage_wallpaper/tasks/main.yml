@@ -3,6 +3,14 @@
   apt:
     name: python3-psutil
     state: present
+  when: inventory_hostname in groups['workstations']
+
+- name: Ensure backgrounds directory exists
+  file:
+    path: /usr/share/backgrounds
+    state: directory
+  become: true
+  when: inventory_hostname in groups['workstations']
 
 - name: Copy wallpaper file
   copy:
@@ -10,15 +18,18 @@
     dest: /usr/share/backgrounds/ansible-wallpaper.avif
     owner: root
     group: root
+  when: inventory_hostname in groups['workstations']
 
 - name: Set wallpaper
   become_user: bill
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/ansible-wallpaper.avif'"
+  when: inventory_hostname in groups['workstations']
 
 - name: Set wallpaper position
   become_user: bill
   dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
+  when: inventory_hostname in groups['workstations']

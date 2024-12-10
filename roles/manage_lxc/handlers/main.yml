@@ -1,0 +1,5 @@
+---
+- name: Restart LXC container
+  delegate_to: "{{ groups['proxmox'][0] }}"
+  command: pct reboot {{ container_id }}
+  when: vm_type is not defined or vm_type != 'vm'

@@ -1,23 +1,26 @@
-users:
-  - name: bill
-    uid: 1000
-    groups: ['sudo', 'admin']
-    home: /home/bill  # Ensure the home directory is defined
-    state: present
-  - name: hal
-    uid: 101
-    groups: ['sudo', 'non-login']
-    shell: /bin/bash  # Ensure hal has a functional shell
-    home: /home/hal  # Ensure the home directory is defined
-    state: present
-
 ansible_user: hal
-
-groups:
-  - sudo
 
 common_packages:
   - curl
   - git
   - htop
 
+managed_users:
+  - name: bill
+    password: "{{ user_passwords.bill }}"
+    state: present
+    home: /home/bill
+    groups: ['docs', 'media']
+  - name: hal
+    uid: 1999
+    state: present
+    groups: ['sudo']
+    home: /home/hal
+
+custom_groups:
+  - name: media
+    gid: 1776
+    state: present
+  - name: docs
+    gid: 1787
+    state: present

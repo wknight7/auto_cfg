@@ -1,12 +1,19 @@
 ---
+- name: Include common variables
+  include_vars:
+    file: "../../group_vars/common.yml"
+
+- name: Include vault variables
+  include_vars:
+    file: "../../group_vars/vault.yml"
+
 - name: Ensure directories for non-workstations exist
   file:
     path: "{{ item }}"
     state: directory
-  loop: "{{ ensure_directories | default([]) }}"
-  when:
-    - ensure_directories is defined
-    - inventory_hostname not in groups['workstations']
+  loop:
+    - /mnt/docs
+  when: inventory_hostname != 'workstation'
 
 - name: Ensure custom_groups are present
   group:
@@ -14,23 +21,14 @@
     gid: "{{ item.gid }}"
     state: "{{ item.state }}"
   loop: "{{ custom_groups }}"
-  when: custom_groups is defined
 
 - name: Ensure all required groups are present
-  group:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ users | map(attribute='groups') | flatten | unique }}"
-  loop_control:
-    loop_var: item
-  when: users is defined
-
-- name: Add user to groups
-  user:
-    name: "{{ item.name }}"
-    uid: "{{ item.uid | default(omit) }}"
-    groups: "{{ item.groups | join(',') }}"
-    shell: "{{ item.shell | default(omit) }}"
-    state: "{{ item.state }}"
-  loop: "{{ users }}"
-  when: users is defined
+  block:
+    - name: Gather all groups
+      set_fact:
+        all_groups: "{{ managed_users | map(attribute='groups') | flatten | unique }}"
+    - name: Ensure each group is present
+      group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ all_groups }}"

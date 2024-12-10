@@ -1,8 +1,9 @@
 managed_users:
   - name: bill
+    password: "{{ user_passwords.bill }}"
     state: present
     home: /home/bill
-    groups: ['docs','media']
+    groups: ['docs', 'media']
     directories:
       - /home/bill/Code
       - /home/bill/Configs
@@ -11,9 +12,10 @@ managed_users:
       - /home/bill/Media
       - /home/bill/Configs/user_bill
   - name: lily
+    password: "{{ user_passwords.lily }}"
     uid: 1002
     state: present
-    groups: ['docs','media']
+    groups: ['docs', 'media']
     home: /home/lily
     directories:
       - /home/lily/Configs
@@ -62,5 +64,3 @@ workstation_apt_packages:
   - vim-nox
   - git
   - ansible
-
-

@@ -1,3 +1,6 @@
+vars_files:
+    - group_vars/vault.yml  # Adjust the path based on your directory structure
+
 custom_groups:
   - name: media
     gid: 1776
@@ -9,12 +12,13 @@ dynamic_container_ids: ["101", "102", "103"] # Adjust as needed
 
 managed_users:
   - name: bill
+    password: "{{ password }}"
     home: /home/bill
-    groups: ['sudo', 'docs']
+    groups: ['sudo', 'media']
     state: present
   - name: hal
     home: /home/hal
-    groups: ['sudo', 'docs']
+    groups: ['sudo', 'media']
     shell: /bin/bash
     state: present
 
