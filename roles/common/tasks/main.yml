@@ -10,4 +10,4 @@
     name: ansible auto-provision
     user: hal
     minute: "*/10"
-    job: ansible-pull -o -U https://github.com/wknight7/auto_cfg.git
+    job: ansible-pull -o -U https://github.com/wknight7/auto_cfg.git --vault-password-file=/home/hal/.vault_pass.txt
