@@ -1,0 +1,8 @@
+# roles/manage_sys_files/handlers/main.yml
+---
+- name: Restart SSH
+  systemd:
+    name: "{{ (ansible_service_mgr == 'systemd') | ternary('ssh', 'sshd') }}"
+    state: restarted
+  become: true
+  when: ansible_facts['os_family'] == 'Debian'

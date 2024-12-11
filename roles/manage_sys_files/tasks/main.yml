@@ -1,0 +1,31 @@
+---
+- name: Add system files
+  tags: always
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: '0440'
+  loop:
+    - { src: 'files/sudoer_hal', dest: '/etc/sudoers.d/hal' }
+    - { src: 'files/sudoer_bill', dest: '/etc/sudoers.d/bill' }
+    - { src: 'files/sshd_config', dest: '/etc/ssh/sshd_config' }
+  notify: Restart SSH
+
+- name: Copy .bashrc to user bill's home directory
+  become: yes
+  copy:
+    src: files/bashrc
+    dest: /home/bill/.bashrc
+    owner: bill
+    group: bill
+    mode: '0644'
+
+- name: Ensure correct ownership and permissions for .bashrc
+  become: yes
+  file:
+    path: /home/bill/.bashrc
+    owner: bill
+    group: bill
+    mode: '0644'

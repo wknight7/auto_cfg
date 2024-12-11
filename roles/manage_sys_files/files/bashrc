@@ -1,0 +1,96 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Enable programmable completion features
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# Don't add duplicate lines or lines beginning with a space to the history
+HISTCONTROL=ignoreboth
+
+# Set history format to include timestamps
+HISTTIMEFORMAT="%Y-%m-%d %T "
+
+# PS1 Prompt
+PS1='\[\e[38;5;111m\]\d\[\e[0m\] \[\e[38;5;111m\]\T\n\[\e[93m\]\h\[\e[0m\] \[\e[93m\]\W\n\[\e[92m\]\u\[\e[0m\] \[\e[92m\]-->\[\e[0m\] 🔴 / '
+
+# aliases
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias c='clear'
+alias cd..='cd ..'
+
+
+
+alias egrep='egrep --colour=auto'
+alias grep='grep --color=auto'
+alias ls=' ls -lhF --time-style=long-iso --color=auto'
+alias mkdir='mkdir -pv'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias weather='curl wttr.in/Raleigh'
+alias mv='rsync -ai --info=progress2 --remove-source-files && rm -rf'
+alias cp='rsync -ai --info=progress2'
+
+# This command will display the disk usage of all mounted file systems, except for those of type squashfs, tmpfs, and devtmpfs, in a human-readable format.
+alias df='df -h -x squashfs -x tmpfs -x devtmpfs'  
+
+# This command will display the disk usage of all mounted file systems, except for those of type squashfs, tmpfs, and devtmpfs, in a human-readable format.
+alias diff='colordiff'
+
+# Top memory-consuming processes
+alias mem5='ps auxf | sort -nr -k 4 | head -5'
+alias mem10='ps auxf | sort -nr -k 4 | head -10'
+
+# Top CPU-consuming processes
+alias cpu5='ps auxf | sort -nr -k 3 | head -5'
+alias cpu10='ps auxf | sort -nr -k 3 | head -10'
+
+# List largest directories
+alias dir5='du -cksh * | sort -hr | head -n 5'
+alias dir10='du -cksh * | sort -hr | head -n 10'
+
+# Safety for rm command
+alias rm='rm -I --preserve-root'
+
+# Reload Bash configuration
+alias reload='source ~/.bashrc'
+
+# Extended PATH listing function
+path() {
+    test -n "$1" && {
+        echo $PATH | perl -p -e "s/:/\n/g;" | grep -i "$1"
+    } || {
+        echo $PATH | perl -p -e "s/:/\n/g;"
+    }
+}
+
+# Enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    eval "$(dircolors -b)"
+fi
+
+# Append to the bash history file, rather than overwriting it
+shopt -s histappend
+
+# Check the window size after each command and update the values of LINES and COLUMNS if necessary
+shopt -s checkwinsize
+
+# Limit bash history file size
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Ensure all background jobs complete before exiting the shell
+shopt -s huponexit
+
+# If you're on a Debian-based system, this will ensure your system is up to date
+if [ -f /usr/bin/apt ]; then
+  alias update='sudo apt update'
+  alias upgrade='sudo apt update && sudo apt dist-upgrade && sudo apt autoremove && sudo apt clean'
+  alias install='sudo apt install'
+fi

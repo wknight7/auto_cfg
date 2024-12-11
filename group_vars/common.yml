@@ -4,6 +4,7 @@ common_packages:
   - curl
   - git
   - htop
+  - rsync
 
 managed_users:
   - name: bill

@@ -4,7 +4,7 @@
   vars_files:
     - group_vars/common.yml
     - group_vars/vault.yml
-
+ 
 - name: Apply group-specific configurations
   hosts: all
   roles:
@@ -15,10 +15,10 @@
   roles:
     - manage_users
 
-- name: Manage sudoers files
+- name: Manage system files
   hosts: all
   roles:
-    - manage_sudoers
+    - manage_sys_files
 
 - name: Manage directories
   hosts: all
