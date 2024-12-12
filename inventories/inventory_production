@@ -14,7 +14,7 @@ lily ansible_host=192.168.86.53
 samsung_laptop ansible_host=192.168.86.94
 #trilium ansible_host=192.168.86.75
 calibre ansible_host=192.168.86.26 container_id=113 vm_type=vm
-dell_laptop ansible_host=192.168.86.55
+dell-laptop ansible_host=192.168.86.55
 wg ansible_host=192.168.86.56 container_id=101
 plex ansible_host=192.168.86.87 container_id=109
 lidarr ansible_host=192.168.86.31 container_id=123
@@ -37,7 +37,7 @@ samsung_laptop
 #trilium
 calibre
 test_desk
-dell_laptop
+dell-laptop
 wg
 plex
 lidarr
@@ -66,7 +66,7 @@ proxmox_backup
 desktop
 lily
 samsung_laptop
-dell_laptop
+dell-laptop
 
 [localhost]
 127.0.0.1 ansible_connection=local
