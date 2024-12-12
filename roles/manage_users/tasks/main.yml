@@ -36,3 +36,6 @@
     groups: sudo
     state: present
   when: hal_user_exists.failed
+
+
+
