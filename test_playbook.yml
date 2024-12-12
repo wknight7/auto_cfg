@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Fail intentionally to test email notification
+      fail:
+        msg: "This is a test failure for email notification"

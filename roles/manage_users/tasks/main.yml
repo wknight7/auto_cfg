@@ -1,41 +1,57 @@
----
-- name: Ensure groups are present
-  group:
-    name: "{{ item.name }}"
-    gid: "{{ item.gid }}"
-    state: "{{ item.state }}"
-  loop: "{{ custom_groups }}"
+import os
+from ansible.plugins.callback import CallbackBase
+from ansible.parsing.dataloader import DataLoader
+from ansible.parsing.vault import VaultLib, VaultSecret
+import yaml
 
-- name: Check if hal user exists
-  getent:
-    database: passwd
-    key: hal
-  register: hal_user_exists
-  ignore_errors: true
+class CallbackModule(CallbackBase):
+    CALLBACK_VERSION = 2.0
+    CALLBACK_TYPE = 'notification'
+    CALLBACK_NAME = 'email_notifications'
 
-- name: Ensure users are present
-  user:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-    uid: "{{ item.uid | default(omit) }}"
-    home: "{{ item.home | default(omit) }}"
-    shell: "{{ item.shell | default('/bin/bash') }}"
-    groups: "{{ item.groups | join(',') }}"
-    password: "{{ item.password | default(omit) }}"
-  when: item.name != 'hal'
-  loop: "{{ managed_users }}"
-  loop_control:
-    loop_var: item
+    def __init__(self, display=None):
+        super(CallbackModule, self).__init__(display)
+        vault_password = os.getenv('VAULT_PASS')
+        if vault_password is None:
+            raise ValueError("VAULT_PASS environment variable not set")
+        self.loader = DataLoader()
+        self.vault = VaultLib([(None, VaultSecret(vault_password.encode('utf-8')))])
 
-- name: Ensure hal user is present if not already
-  user:
-    name: hal
-    uid: 1999
-    home: /home/hal
-    shell: /bin/bash
-    groups: sudo
-    state: present
-  when: hal_user_exists.failed
+    def v2_playbook_on_stats(self, stats):
+        failed_hosts = stats.failures.keys()
+        unreachable_hosts = stats.dark.keys()
+
+        # Exclude workstations from the unreachable hosts
+        unreachable_hosts = [host for host in unreachable hosts if not this is_workstation(host)]
+
+        if failed_hosts or unreachable hosts:
+            subject = "Ansible Playbook Failure/Unreachable Hosts Notification"
+            body = "The following hosts had issues:\n\n"
+            body += "Failed Hosts:\n" + "\n".join(failed_hosts) + "\n\n"
+            body += "Unreachable Hosts:\n" + "\n".join(unreachable_hosts)
+
+            self.send_email(subject, body)
+
+    def is_workstation(self, host):
+        workstation_groups = ['workstations']
+        host_vars = self._loader.get_vars().get(host, {})
+        groups = host_vars.get('group_names', [])
+        return any(group in groups for group in workstation_groups)
+
+    def send_email(self, subject, body):
+        to_email = "your_email@example.com"
+        app_password = self.get_vault_var('gmail_app_password')
+        with open('/tmp/email.txt', 'w') as email_file:
+            email_file.write(body)
+        os.system(f'cat /tmp/email.txt | msmtp --host=smtp.gmail.com --port=587 --user=billknig@gmail.com --passwordeval="echo {app_password}" --tls --tls-certcheck=off -s "{subject}" {to_email}')
+
+    def get_vault_var(self, var_name):
+        vault_file_path = 'group_vars/vault.yml'
+        with open(vault_file_path, 'r') as vault_file:
+            vault_content = vault_file.read()
+            decrypted_content = self.vault.decrypt(vault_content)
+            vault_data = yaml.safe_load(decrypted_content)  # Load the decrypted content as YAML
+        return vault_data.get(var_name)
 
 
 
