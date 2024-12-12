@@ -2,7 +2,7 @@
 proxmox_ve ansible_host=192.168.86.143
 proxmox_backup ansible_host=192.168.86.33
 sab ansible_host=192.168.86.86 container_id=119
-radarr ansible_host=192.168.86.79container_id=104
+radarr ansible_host=192.168.86.79 container_id=104
 sonarr ansible_host=192.168.86.66 container_id=105
 prowlarr ansible_host=192.168.86.80 container_id=106
 cloudflared ansible_host=192.168.86.81 container_id=107
@@ -12,7 +12,7 @@ photoprism ansible_host=192.168.86.42 container_id=114
 desktop ansible_host=192.168.86.40 
 lily ansible_host=192.168.86.53 
 samsung_laptop ansible_host=192.168.86.94
-#trilium ansible_host=192.168.86.75
+trilium ansible_host=192.168.86.60 container_id=102
 calibre ansible_host=192.168.86.26 container_id=113 vm_type=vm
 dell-laptop ansible_host=192.168.86.55
 wg ansible_host=192.168.86.56 container_id=101
@@ -22,54 +22,53 @@ maintainerr ansible_host=192.168.86.105 container_id=117
 127.0.0.1 ansible_connection=local
 
 [common]
-proxmox_ve
-proxmox_backup
-sab
-radarr
-sonarr
-prowlarr
-cloudflared
-paperless
-calibre-web
-photoprism
-desktop
-lily
-samsung_laptop
-#trilium
-calibre
-test_desk
-dell-laptop
-wg
-plex
-lidarr
-maintainerr
+proxmox_ve ansible_host=192.168.86.143
+proxmox_backup ansible_host=192.168.86.33
+sab ansible_host=192.168.86.86 container_id=119
+radarr ansible_host=192.168.86.79 container_id=104
+sonarr ansible_host=192.168.86.66 container_id=105
+prowlarr ansible_host=192.168.86.80 container_id=106
+cloudflared ansible_host=192.168.86.81 container_id=107
+paperless ansible_host=192.168.86.93 container_id=108
+calibre-web ansible_host=192.168.86.84 container_id=111
+photoprism ansible_host=192.168.86.42 container_id=114
+desktop ansible_host=192.168.86.40 
+lily ansible_host=192.168.86.53 
+samsung_laptop ansible_host=192.168.86.94
+trilium ansible_host=192.168.86.60 container_id=102
+calibre ansible_host=192.168.86.26 container_id=113 vm_type=vm
+dell-laptop ansible_host=192.168.86.55
+wg ansible_host=192.168.86.56 container_id=101
+plex ansible_host=192.168.86.87 container_id=109
+lidarr ansible_host=192.168.86.31 container_id=123
+maintainerr ansible_host=192.168.86.105 container_id=117
 
 [docs]
-paperless
+paperless ansible_host=192.168.86.93 container_id=108
 
 [media_h]
-sab
-radarr
-sonarr
-prowlarr
-calibre-web
-photoprism
-calibre
-lidarr
-maintainerr
+sab ansible_host=192.168.86.86 container_id=119
+radarr ansible_host=192.168.86.79 container_id=104
+sonarr ansible_host=192.168.86.66 container_id=105
+prowlarr ansible_host=192.168.86.80 container_id=106
+calibre-web ansible_host=192.168.86.84 container_id=111
+photoprism ansible_host=192.168.86.42 container_id=114
+calibre ansible_host=192.168.86.26 container_id=113 vm_type=vm
+lidarr ansible_host=192.168.86.31 container_id=123
+maintainerr ansible_host=192.168.86.105 container_id=117
 
 [media_p]
-plex
+plex ansible_host=192.168.86.87 container_id=109
 
 [proxmox]
-proxmox_ve
-proxmox_backup
+proxmox_ve ansible_host=192.168.86.143
+proxmox_backup ansible_host=192.168.86.33
 
 [workstations]
-desktop
-lily
-samsung_laptop
-dell-laptop
+desktop ansible_host=192.168.86.40 
+lily ansible_host=192.168.86.53 
+samsung_laptop ansible_host=192.168.86.94
+dell-laptop ansible_host=192.168.86.55
 
 [localhost]
 127.0.0.1 ansible_connection=local
