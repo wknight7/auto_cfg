@@ -17,7 +17,7 @@ HISTCONTROL=ignoreboth
 HISTTIMEFORMAT="%Y-%m-%d %T "
 
 # PS1 Prompt
-PS1='\[\e[38;5;111m\]\d\[\e[0m\] \[\e[38;5;111m\]\T\n\[\e[93m\]\h\[\e[0m\] \[\e[93m\]\W\n\[\e[92m\]\u\[\e[0m\] \[\e[92m\]-->\[\e[0m\] 🔴 / '
+PS1='\[\e[38;5;111m\]\d\[\e[0m\] \[\e[38;5;111m\]\T\n\[\e[93m\]Host: \[\e[93m\]\h\[\e[0m\] \[\e[93m\]/\[\e[0m\] \[\e[93m\]Directory: \[\e[0m\]\w\n\[\e[92m\]\u\[\e[0m\] \[\e[92m\]-\[\e[92m\]-\[\e[92m\]>\[\e[0m\] 🔴 / '
 
 # aliases
 alias ..='cd ..'
