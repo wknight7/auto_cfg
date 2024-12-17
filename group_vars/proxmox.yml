@@ -13,6 +13,7 @@ fstab_entries:
   mounts:
     - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/docs", path: "/mnt/docs" }
     - { server: "192.168.86.90", remote_path: "/mnt/Data/media", path: "/media" }
+    - { server: "192.168.86.90", remote_path: "/mnt/ssd-files/fileshare/trilium-data", path: "/mnt/trilium" }
 
 managed_users:
   - name: bill    

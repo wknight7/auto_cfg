@@ -16,7 +16,7 @@ trilium ansible_host=192.168.86.60 container_id=102
 calibre ansible_host=192.168.86.26 container_id=113 vm_type=vm
 dell-laptop ansible_host=192.168.86.55
 wg ansible_host=192.168.86.56 container_id=101
-plex ansible_host=192.168.86.87 container_id=109
+plex ansible_host=192.168.86.83 container_id=109
 lidarr ansible_host=192.168.86.31 container_id=123
 maintainerr ansible_host=192.168.86.105 container_id=117
 127.0.0.1 ansible_connection=local
@@ -39,7 +39,7 @@ trilium ansible_host=192.168.86.60 container_id=102
 calibre ansible_host=192.168.86.26 container_id=113 vm_type=vm
 dell-laptop ansible_host=192.168.86.55
 wg ansible_host=192.168.86.56 container_id=101
-plex ansible_host=192.168.86.87 container_id=109
+plex ansible_host=192.168.86.83 container_id=109
 lidarr ansible_host=192.168.86.31 container_id=123
 maintainerr ansible_host=192.168.86.105 container_id=117
 
@@ -58,7 +58,7 @@ lidarr ansible_host=192.168.86.31 container_id=123
 maintainerr ansible_host=192.168.86.105 container_id=117
 
 [media_p]
-plex ansible_host=192.168.86.87 container_id=109
+plex ansible_host=192.168.86.83 container_id=109
 
 [proxmox]
 proxmox_ve ansible_host=192.168.86.143
