@@ -5,6 +5,11 @@ common_packages:
   - git
   - htop
   - rsync
+  - colordiff
+  - build-essential
+  - ubuntu-minimal
+  - deadsnakes
+  - task-essential
 
 managed_users:
   - name: bill

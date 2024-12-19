@@ -19,6 +19,7 @@ wg ansible_host=192.168.86.56 container_id=101
 plex ansible_host=192.168.86.83 container_id=109
 lidarr ansible_host=192.168.86.31 container_id=123
 maintainerr ansible_host=192.168.86.105 container_id=117
+bazarr ansible_host=192.168.86.101 container_id=118
 127.0.0.1 ansible_connection=local
 
 [common]
@@ -42,6 +43,7 @@ wg ansible_host=192.168.86.56 container_id=101
 plex ansible_host=192.168.86.83 container_id=109
 lidarr ansible_host=192.168.86.31 container_id=123
 maintainerr ansible_host=192.168.86.105 container_id=117
+bazarr ansible_host=192.168.86.101 container_id=118
 
 [docs]
 paperless ansible_host=192.168.86.93 container_id=108
@@ -56,6 +58,7 @@ photoprism ansible_host=192.168.86.42 container_id=114
 calibre ansible_host=192.168.86.26 container_id=113 vm_type=vm
 lidarr ansible_host=192.168.86.31 container_id=123
 maintainerr ansible_host=192.168.86.105 container_id=117
+bazarr ansible_host=192.168.86.101 container_id=118
 
 [media_p]
 plex ansible_host=192.168.86.83 container_id=109
