@@ -8,9 +8,7 @@ common_packages:
   - colordiff
   - build-essential
   - ubuntu-minimal
-  - deadsnakes
-  - task-essential
-
+ 
 managed_users:
   - name: bill
     password: "{{ user_passwords.bill }}"
